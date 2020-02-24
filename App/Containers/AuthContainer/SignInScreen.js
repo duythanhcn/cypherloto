@@ -5,6 +5,7 @@ import logo from '../../Images/logo.png';
 import InputComponent from '../../Components/ItemComponent/InputComponent';
 import TwoFAModel from '../../Components/ModelComponent/TwoFAModel';
 import Message from '../../Common/Message';
+import API from '../../Services/API';
 
 const SignInScreen = React.memo(props => {
   const { navigation } = props;
@@ -20,8 +21,16 @@ const SignInScreen = React.memo(props => {
     }
   }, [isBtnDisable])
 
-  function signIn() {
-    navigation.navigate('App');
+  async function signIn() {
+    const data = {
+      email: 'xinh2012@gmail.com',
+      password_token: 'ea6273810cfa880d7c58840137631ca829042f123e5f127557eb8f007063e8c5'
+    }
+    const result = await API.POST('/account/login', {}, data)
+    console.log('result', result)
+
+
+    // navigation.navigate('App');
     // if (email && password) {
     //   setBtnDisable(true);
     //   setErrorMessage('');
