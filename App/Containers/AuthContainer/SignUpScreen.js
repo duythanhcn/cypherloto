@@ -3,17 +3,22 @@ import Styles from './Styles/SignUpScreenStyles';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import logo from '../../Images/logo.png';
 import InputComponent from '../../Components/ItemComponent/InputComponent';
+import apiService from '../../Services/API';
 
 const SignUpScreen = React.memo(props => {
   const { navigation } = props;
   const [errorMessage, setErrorMessage] = useState('');
+  const [formData, setFormData] = useState({ email: '', password: '', rePassword: '', firstName: '', lastName: '' })
 
   useEffect(() => {
 
   }, [])
 
-  function signUp() {
-    navigation.navigate('SignIn');
+  async function signUp() {
+    // navigation.navigate('SignIn');
+    console.log(formData)
+    // const response = await apiService.register(formData.email, formData.firstName, formData.lastName, formData.password);
+    // console.log('response', response)
   }
 
   return (
@@ -29,25 +34,25 @@ const SignUpScreen = React.memo(props => {
         <InputComponent
           title='E-mail Address'
           placeHolder='E-mail'
-          onChange={val => { }}
+          onChange={val => setFormData({ ...formData, email: val })}
           icon='envelope'
-          value=''
+          value={formData.email}
           type='emailAddress' />
         <View style={Styles.inputInnerView}>
           <View style={Styles.innerChild}>
             <InputComponent title='First Name'
               placeHolder='First Name'
-              onChange={val => { }}
+              onChange={val => setFormData({ ...formData, firstName: val })}
               icon='user'
-              value=''
+              value={formData.firstName}
               type='name' />
           </View>
           <View style={Styles.innerChild}>
             <InputComponent title='Last Name'
               placeHolder='Last Name'
-              onChange={val => { }}
+              onChange={val => setFormData({ ...formData, lastName: val })}
               icon='user'
-              value=''
+              value={formData.lastName}
               type='name' />
           </View>
         </View>
@@ -55,17 +60,17 @@ const SignUpScreen = React.memo(props => {
           <View style={Styles.innerChild}>
             <InputComponent title='Password'
               placeHolder='Password'
-              onChange={val => { }}
+              onChange={val => setFormData({ ...formData, password: val })}
               icon='lock'
-              value=''
+              value={formData.password}
               type='password' />
           </View>
           <View style={Styles.innerChild}>
             <InputComponent title='Retype Password'
               placeHolder='Retype Password'
-              onChange={val => { }}
+              onChange={val => setFormData({ ...formData, rePassword: val })}
               icon='lock'
-              value=''
+              value={formData.rePassword}
               type='password' />
           </View>
         </View>
