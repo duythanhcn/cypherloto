@@ -4,28 +4,40 @@ import { View, Text, TouchableOpacity, Image } from 'react-native';
 import logo from '../../Images/logo.png';
 import InputComponent from '../../Components/ItemComponent/InputComponent';
 import apiService from '../../Services/API';
+import validation from '../../Common/validation';
 
 const SignUpScreen = React.memo(props => {
   const { navigation } = props;
   const [errorMessage, setErrorMessage] = useState('');
-  const [formData, setFormData] = useState({ email: '', password: '', rePassword: '', firstName: '', lastName: '' })
+  const [formData, setFormData] = useState({ email: '', password: '', confirmPassword: '', firstName: '', lastName: '' })
 
   useEffect(() => {
 
   }, [])
 
   async function signUp() {
-    // navigation.navigate('SignIn');
-    console.log(formData)
-    // const response = await apiService.register(formData.email, formData.firstName, formData.lastName, formData.password);
-    // console.log('response', response)
+    setErrorMessage('');
+    // const emailError = validation('email', formData.email);
+    // const passwordError = validation('password', formData.password);
+    // const confirmPasswordError = validation('confirmPassword', formData.confirmPassword, formData.password);
+    // if (emailError || passwordError || confirmPasswordError) {
+    //   setErrorMessage(emailError || passwordError || confirmPasswordError);
+    //   return;
+    // }
+    const response = await apiService.register(formData.email, formData.firstName, formData.lastName, formData.password);
+    const { data, status, statusText } = response;
+    if (status === 200) {
+      navigation.navigate('SignIn');
+    } else {
+      setErrorMessage(statusText);
+    }
   }
 
   return (
     <View style={Styles.container}>
       <View style={Styles.headerView}>
         <Image style={Styles.iconView} source={logo} />
-        <Text style={Styles.headerText}>CYPHER LOTO</Text>
+        <Text style={Styles.headerText}>CYPHER LOTTERY</Text>
       </View>
       <View style={Styles.titleView}>
         <Text style={Styles.titleText}>Create An Account</Text>
@@ -66,11 +78,11 @@ const SignUpScreen = React.memo(props => {
               type='password' />
           </View>
           <View style={Styles.innerChild}>
-            <InputComponent title='Retype Password'
-              placeHolder='Retype Password'
-              onChange={val => setFormData({ ...formData, rePassword: val })}
+            <InputComponent title='Comfirm Password'
+              placeHolder='Comfirm Password'
+              onChange={val => setFormData({ ...formData, confirmPassword: val })}
               icon='lock'
-              value={formData.rePassword}
+              value={formData.confirmPassword}
               type='password' />
           </View>
         </View>

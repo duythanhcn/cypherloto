@@ -1,5 +1,6 @@
-import { Dimensions } from 'react-native'
-import { widthPercentageToDP as _wp, heightPercentageToDP as _hp } from 'react-native-responsive-screen'
+import { Dimensions, Platform } from 'react-native';
+import { widthPercentageToDP as _wp, heightPercentageToDP as _hp } from 'react-native-responsive-screen';
+import crypto from 'crypto';
 
 const { width, height } = Dimensions.get('screen')
 const wBase = 375 // iPhone X
@@ -43,6 +44,14 @@ class Utils {
     return _hp(ratio)
   }
 
+  sp(value) {
+    if (Platform.OS === 'ios') {
+      return this.hp(value);
+    } else {
+      return this.wp(value);
+    }
+  }
+
   /**
    * compareABS
    * absolute compare data
@@ -59,9 +68,9 @@ class Utils {
    * @param {object} params 
    */
   hashString(params) {
-    // const hmac = crypto.createHmac('sha256', 'password_token');
-    // hmac.update(JSON.stringify(params));
-    // return hmac.digest('hex');
+    const hmac = crypto.createHmac('sha256', 'password_token');
+    hmac.update(JSON.stringify(params));
+    return hmac.digest('hex');
   }
 }
 export default new Utils()

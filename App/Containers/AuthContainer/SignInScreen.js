@@ -23,25 +23,26 @@ const SignInScreen = React.memo(props => {
   }, [isBtnDisable])
 
   async function signIn() {
+    navigation.navigate('App');
     setErrorMessage('');
-    const emailError = validation('email', email)
-    const passwordError = validation('password', password)
-    if (emailError || passwordError) {
-      setErrorMessage(emailError || passwordError);
-      return;
-    }
-    const response = await apiService.login(email, password);
-    const { data, status, statusText } = response
-    if (status === 200) {
-      const { enable_2fa } = data.account_info;
-      if (enable_2fa) {
-        setBtnDisable(true);
-      } else {
-        navigation.navigate('App');
-      }
-    } else {
-      setErrorMessage(statusText);
-    }
+    // const emailError = validation('email', email);
+    // const passwordError = validation('password', password);
+    // if (emailError || passwordError) {
+    //   setErrorMessage(emailError || passwordError);
+    //   return;
+    // }
+    // const response = await apiService.login(email, password);
+    // const { data, status, statusText } = response;
+    // if (status === 200) {
+    //   const { enable_2fa } = data.account_info;
+    //   if (enable_2fa) {
+    //     setBtnDisable(true);
+    //   } else {
+    //     navigation.navigate('App');
+    //   }
+    // } else {
+    //   setErrorMessage(statusText);
+    // }
   }
 
   function onSignInSuccess(code) {
@@ -60,7 +61,7 @@ const SignInScreen = React.memo(props => {
     <View style={Styles.container}>
       <View style={Styles.headerView}>
         <Image style={Styles.iconView} source={logo} />
-        <Text style={Styles.headerText}>CYPHER LOTO</Text>
+        <Text style={Styles.headerText}>CYPHER LOTTERY</Text>
       </View>
       <View style={Styles.titleView}>
         <Text style={Styles.titleText}>Sign In</Text>

@@ -18,18 +18,27 @@ const rules = {
       minimum: 5,
       message: '^Your password must be at least 5 characters'
     }
+  },
+  confirmPassword: {
+    presence: {
+      message: '^Please enter a password'
+    },
+    equality: "password"
   }
 }
 
-export default function validation(fieldName, value) {
-  var formValues = {}
-  formValues[fieldName] = value
-  var formFields = {}
-  formFields[fieldName] = rules[fieldName]
-  const result = validate(formValues, formFields)
-  if (result) {
-    return result[fieldName][0]
+export default function validation(fieldName, value, comfirmValue) {
+  var formValues = {};
+  formValues[fieldName] = value;
+  if (fieldName === 'confirmPassword') {
+    formValues['password'] = comfirmValue;
   }
-  return null
+  var formFields = {};
+  formFields[fieldName] = rules[fieldName];
+  const result = validate(formValues, formFields);
+  if (result) {
+    return result[fieldName][0];
+  }
+  return null;
 }
 
