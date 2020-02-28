@@ -17,7 +17,7 @@ LogoTitle.propTypes = {
 }
 
 LogoTitle.defaultProps = {
-  title: 'CypherLoto'
+  title: 'Cypher Lottery'
 }
 
 export default LogoTitle;

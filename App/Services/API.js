@@ -46,7 +46,8 @@ class API {
       password_token: Utils.hashString({ email, password }),
       referral_id: referralId
     }
-    return await POST(API_URL.LOGIN, {}, data);
+    console.log(data)
+    return await POST(API_URL.REGISTER, {}, data);
   }
 
 }

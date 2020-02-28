@@ -1,8 +1,9 @@
-import React from 'react'
-import { createStackNavigator, HeaderBackButton } from 'react-navigation'
-import { Button } from 'native-base'
-import BuyScreen from '../Containers/BuyContainer/BuyScreen'
+import React from 'react';
+import { createStackNavigator } from 'react-navigation';
+import BuyScreen from '../Containers/BuyContainer/BuyScreen';
 import LogoTitle from '../Components/ItemComponent/LogoTitle';
+import AccountButton from '../Components/ButtonComponent/AccountButton';
+import InforButton from '../Components/ButtonComponent/InforButton';
 
 const BuyStack = createStackNavigator({
   Buy: {
@@ -13,10 +14,8 @@ const BuyStack = createStackNavigator({
     headerTitle: () => <LogoTitle />,
     headerBackTitle: null,
     gesturesEnabled: false,
-    headerLeft: HeaderBackButton,
-    headerRight: (
-      <Button transparent onPress={() => { }} />
-    )
+    headerLeft: <AccountButton navigation={navigation} />,
+    headerRight: <InforButton navigation={navigation} />
   })
 })
 

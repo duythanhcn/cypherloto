@@ -17,13 +17,13 @@ const SignUpScreen = React.memo(props => {
 
   async function signUp() {
     setErrorMessage('');
-    // const emailError = validation('email', formData.email);
-    // const passwordError = validation('password', formData.password);
-    // const confirmPasswordError = validation('confirmPassword', formData.confirmPassword, formData.password);
-    // if (emailError || passwordError || confirmPasswordError) {
-    //   setErrorMessage(emailError || passwordError || confirmPasswordError);
-    //   return;
-    // }
+    const emailError = validation('email', formData.email);
+    const passwordError = validation('password', formData.password);
+    const confirmPasswordError = validation('confirmPassword', formData.confirmPassword, formData.password);
+    if (emailError || passwordError || confirmPasswordError) {
+      setErrorMessage(emailError || passwordError || confirmPasswordError);
+      return;
+    }
     const response = await apiService.register(formData.email, formData.firstName, formData.lastName, formData.password);
     const { data, status, statusText } = response;
     if (status === 200) {

@@ -26,7 +26,7 @@ const HomeScreen = React.memo(props => {
       </View>
       <View style={Styles.balanceView}>
         <View style={Styles.iconView}>
-          <Image style={Styles.img} source={coin} resizeMethod='contain' />
+          <Image style={Styles.img} source={coin} resizeMode='contain' />
         </View>
         <View style={Styles.coinView}>
           <Text style={Styles.cointText}>{balance} USDT</Text>
