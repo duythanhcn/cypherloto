@@ -82,7 +82,8 @@ export default StyleSheet.create({
     fontWeight: 'bold'
   },
   hourDesc: {
-    fontSize: Utils.sp(16)
+    fontSize: Utils.sp(16),
+    color: '#000'
   },
   //winner
   winnerView: {
@@ -103,7 +104,7 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   numberView: {
-    flex: 9,
+    flex: 8,
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row'
@@ -111,4 +112,8 @@ export default StyleSheet.create({
   nextNumber: {
     flex: 1
   },
+  prevNumber: {
+    flex: 1,
+    alignItems: 'flex-end'
+  }
 })

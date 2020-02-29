@@ -5,18 +5,78 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import coin from '../../Images/Icons/coin.png';
 import BallComponent from '../../Components/ItemComponent/BallComponent';
 import Utils from '../../Common/Utils';
+import apiService from '../../Services/API';
+import moment from 'moment';
+import CountDown from 'react-native-countdown-component';
 import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
 
+const now = moment();
 const HomeScreen = React.memo(props => {
   const [balance, setBalance] = useState(0);
-  const [nextDraw, setNextDraw] = useState([0, 0, 0]);
+  const [nextDraw, setNextDraw] = useState(0);
   const [estValue, setESTValue] = useState(0);
-  const [winnerDate, setWinnerDate] = useState('Febulary, 21st 2020');
-  const [arrWinner, setArrWinner] = useState([20, 20, 20, 20, 20, 20])
+  const [winnerDate, setWinnerDate] = useState('');
+  const [arrWinner, setArrWinner] = useState([0, 0, 0, 0, 0, 0]);
+  const [dataWinner, setDataWinner] = useState([]);
+  const [index, setIndex] = useState(-1);
 
-  function nextWinnerNumber() {
+  useEffect(() => {
+    getBalance();
+    getCurrentLot();
+    nextWinnerNumber();
+    getCurLotReport();
+  }, [])
 
+  useEffect(() => {
+    setWinnerBall(index)
+  }, [index])
+
+  async function getBalance() {
+    const res = await apiService.getUserBalance();
+    const { data, status, statusText } = res;
+    if (status === 200) {
+      const { address, balance } = data;
+      setBalance(balance);
+    }
+  }
+
+  async function getCurrentLot() {
+    const res = await apiService.getCurrentLot();
+    const { data, status, statusText } = res;
+    if (status === 200) {
+      const { next_lottery_date } = data;
+      const diff = moment(next_lottery_date).diff(moment.now());
+      setNextDraw(diff / 1000);
+    }
+  }
+
+  async function nextWinnerNumber() {
+    const res = await apiService.getWinnerLot(10);
+    const { data, status, statusText } = res;
+    if (status === 200) {
+      setDataWinner(data);
+      setIndex(0);
+    }
+  }
+
+  async function getCurLotReport() {
+    const res = await apiService.getCurLotReport();
+    const { data, status, statusText } = res;
+    if (status === 200) {
+      const { total_amount } = data.results;
+      setESTValue(total_amount);
+    }
+  }
+
+  function setWinnerBall(index) {
+    const data = dataWinner[index];
+    if (data) {
+      const { date_created, white_ball_1, white_ball_2, white_ball_3, white_ball_4, white_ball_5, red_ball } = data;
+      setWinnerDate(moment(date_created).format('MMMM-Do-YYYY'));
+      const winnerLot = [white_ball_1, white_ball_2, white_ball_3, white_ball_4, white_ball_5, red_ball];
+      setArrWinner(winnerLot);
+    }
   }
 
   return (
@@ -44,24 +104,16 @@ const HomeScreen = React.memo(props => {
         <View style={Styles.nextDrawView}>
           <Text style={Styles.esttitle}>NEXT DRAWING</Text>
           <View style={Styles.timeDrawView}>
-            <View style={Styles.timeView}>
-              <View style={Styles.hour}>
-                <Text style={Styles.hourText}>{nextDraw[0]}</Text>
-              </View>
-              <Text style={Styles.hourDesc}>Hours</Text>
-            </View>
-            <View style={Styles.timeView}>
-              <View style={Styles.hour}>
-                <Text style={Styles.hourText}>{nextDraw[1]}</Text>
-              </View>
-              <Text style={Styles.hourDesc}>Minutes</Text>
-            </View>
-            <View style={Styles.timeView}>
-              <View style={Styles.hour}>
-                <Text style={Styles.hourText}>{nextDraw[2]}</Text>
-              </View>
-              <Text style={Styles.hourDesc}>Seconds</Text>
-            </View>
+            <CountDown
+              until={nextDraw}
+              size={30}
+              onFinish={() => { }}
+              style={Styles.timeView}
+              digitStyle={Styles.hour}
+              digitTxtStyle={Styles.hourText}
+              timeToShow={['H', 'M', 'S']}
+              timeLabels={{ h: 'Hours', m: 'Minutes', s: 'Seconds' }}
+              timeLabelStyle={Styles.hourDesc} />
           </View>
         </View>
       </View>
@@ -74,6 +126,13 @@ const HomeScreen = React.memo(props => {
           <Text style={Styles.winnerDate}>{winnerDate}</Text>
         </View>
         <View style={Styles.winnerBody}>
+          <View style={Styles.prevNumber}>
+            <TouchableOpacity
+              disabled={index <= 0 ? true : false}
+              onPress={() => index > 0 ? setIndex(index - 1) : null}>
+              <Icon name='chevron-left' color='gray' size={Utils.hp(30)} />
+            </TouchableOpacity>
+          </View>
           <View style={Styles.numberView}>
             <BallComponent number={arrWinner[0]} type={0} />
             <BallComponent number={arrWinner[1]} type={0} />
@@ -84,7 +143,8 @@ const HomeScreen = React.memo(props => {
           </View>
           <View style={Styles.nextNumber}>
             <TouchableOpacity
-              onPress={() => nextWinnerNumber()}>
+              disabled={index >= 9 ? true : false}
+              onPress={() => index < 9 ? setIndex(index + 1) : null}>
               <Icon name='chevron-right' color='gray' size={Utils.hp(30)} />
             </TouchableOpacity>
           </View>

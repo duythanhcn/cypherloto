@@ -35,7 +35,8 @@ class API {
       email,
       password_token: Utils.hashString({ email, password })
     }
-    return await POST(API_URL.LOGIN, {}, data);
+    const res = await POST(API_URL.LOGIN, {}, data);
+    return res;
   }
 
   async register(email, firstName, lastName, password, referralId = '') {
@@ -46,8 +47,26 @@ class API {
       password_token: Utils.hashString({ email, password }),
       referral_id: referralId
     }
-    console.log(data)
     return await POST(API_URL.REGISTER, {}, data);
+  }
+
+  async getUserBalance() {
+    const email = 'thanhld@gmail.com'
+    const url = `${API_URL.GET_BALANCE}?account=${email}`
+    return await GET(url, {}, {});
+  }
+
+  async getCurrentLot() {
+    return await GET(API_URL.GET_CURRENT_LOT, {}, {});
+  }
+
+  async getWinnerLot(num) {
+    const url = `${API_URL.GET_WINNER_LOT}?limit=${num}`
+    return await GET(url, {}, {});
+  }
+
+  async getCurLotReport() {
+    return await GET(API_URL.GET_CUR_LOT_REPORT, {}, {});
   }
 
 }
