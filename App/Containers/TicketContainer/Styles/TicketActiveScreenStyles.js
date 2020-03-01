@@ -18,7 +18,6 @@ export default StyleSheet.create({
     height: Utils.sp(50),
     justifyContent: 'center',
     flexDirection: 'row',
-    paddingHorizontal: '2%',
     borderBottomColor: 'gray',
     borderBottomWidth: Utils.sp(1)
 
@@ -35,8 +34,7 @@ export default StyleSheet.create({
     width: '35%',
     justifyContent: 'center',
     alignItems: 'flex-end',
-    borderLeftColor: 'gray',
-    borderLeftWidth: Utils.sp(1)
+    backgroundColor: '#f2f2f2'
   },
   headerText: {
     fontSize: Utils.sp(20),

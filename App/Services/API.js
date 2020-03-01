@@ -81,6 +81,12 @@ class API {
     return await GET(url, {}, {});
   }
 
+  async getDrawing(page) {
+    const email = 'xxx'
+    const url = `${API_URL.GET_USER_TICKET}?buyer=${email}&status=Played&limit=20&page=${page}`
+    return await GET(url, {}, {});
+  }
+
 }
 
 export default new API()

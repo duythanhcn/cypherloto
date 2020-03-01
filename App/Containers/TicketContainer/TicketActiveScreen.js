@@ -9,7 +9,7 @@ Icon.loadFont();
 
 const TicketActiveScreen = React.memo(props => {
   const [dataList, setDataList] = useState([]);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const [isNext, setNext] = useState(true);
   const [isRefresh, setRefresh] = useState(false);
 
@@ -23,7 +23,7 @@ const TicketActiveScreen = React.memo(props => {
 
   useEffect(() => {
     if (isRefresh) {
-      setPage(1)
+      setPage(0)
     }
   }, [isRefresh])
 
@@ -77,7 +77,7 @@ const TicketActiveScreen = React.memo(props => {
           {power === 1 ? <Icon name='star' color='#FFCF20' size={Utils.hp(20)} /> : null}
         </View>
         <View style={Styles.rightView}>
-          <Text style={Styles.itemText}>{won_amount} USDT</Text>
+          <Text style={Styles.itemText}>{won_amount}</Text>
         </View>
       </View>
     )

@@ -13,8 +13,12 @@ export default StyleSheet.create({
   activeTab: {
     backgroundColor: '#197BFF'
   },
-
   tabText: {
-
+    color: '#197BFF',
+    fontSize: Utils.sp(24)
+  },
+  tabActiveText: {
+    color: '#FFF',
+    fontSize: Utils.sp(24)
   }
 })

@@ -1,31 +1,31 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Styles from './Styles/TicketScreenStyles';
-import { Container, Header, Tab, Tabs, TabHeading } from 'native-base';
-import { View, Text } from 'react-native';
+import { Tab, Tabs } from 'native-base';
+import { View } from 'react-native';
 import TicketActiveScreen from './TicketActiveScreen';
 import TicketPlayedScreen from './TicketPlayedScreen';
 
 const TicketScreen = React.memo(props => {
 
-  function renderTab(text) {
-    return (
-      <TabHeading>
-        <Text>{text}</Text>
-      </TabHeading>
-    )
-  }
   return (
     <View style={Styles.container}>
-      <Tabs
-        tabBarUnderlineStyle={{}}>
-        <Tab heading={renderTab('Active')} >
+      <Tabs>
+        <Tab heading='Active'
+          tabStyle={Styles.tabView}
+          activeTabStyle={Styles.activeTab}
+          textStyle={Styles.tabText}
+          activeTextStyle={Styles.tabActiveText}>
           <TicketActiveScreen />
         </Tab>
-        <Tab heading={renderTab('Played')}>
+        <Tab heading='Played'
+          tabStyle={Styles.tabView}
+          activeTabStyle={Styles.activeTab}
+          textStyle={Styles.tabText}
+          activeTextStyle={Styles.tabActiveText}>
           <TicketPlayedScreen />
         </Tab>
       </Tabs>
-    </View>);
+    </View >);
 })
 
 export default TicketScreen;

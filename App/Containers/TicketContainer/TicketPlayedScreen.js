@@ -10,7 +10,7 @@ Icon.loadFont();
 
 const TicketPlayedScreen = React.memo(props => {
   const [dataList, setDataList] = useState([]);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const [isNext, setNext] = useState(true);
   const [isRefresh, setRefresh] = useState(false);
 
@@ -24,7 +24,7 @@ const TicketPlayedScreen = React.memo(props => {
 
   useEffect(() => {
     if (isRefresh) {
-      setPage(1)
+      setPage(0)
     }
   }, [isRefresh])
 
@@ -72,7 +72,7 @@ const TicketPlayedScreen = React.memo(props => {
   function renderItem(item, index) {
     const { white1_ball, white2_ball, white3_ball, created_at, power,
       white4_ball, white5_ball, red_ball, won_amount, is_win } = item;
-    const date = moment(created_at).format('D/M/YY')
+    const date = moment(created_at).format('DD/MM/YY')
     return (
       <View style={[Styles.containerItem, index === 0 ? Styles.borderTop : null]}>
         <View style={Styles.firstView}>
@@ -85,13 +85,15 @@ const TicketPlayedScreen = React.memo(props => {
           <Text style={Styles.itemText}>{white4_ball}</Text>
           <Text style={Styles.itemText}>{white5_ball}</Text>
           <Text style={[Styles.itemText, Styles.redItem]}>{red_ball}</Text>
-          {power === 1 ? <Icon name='star' color='#FFCF20' size={Utils.hp(20)} /> : null}
+          {/* {power === 1 ?  */}
+          <Icon name='star' color='#FFCF20' size={Utils.hp(20)} />
+          {/* : null} */}
         </View>
         <View style={Styles.thirdView}>
           <Text style={Styles.itemText}>{is_win === 0 ? 'Lost' : 'Win'}</Text>
         </View>
         <View style={[Styles.fourView, Styles.amountStyle]}>
-          <Text style={Styles.itemText}>{won_amount} USDT</Text>
+          <Text style={Styles.itemText}>{won_amount}</Text>
         </View>
       </View>
     )

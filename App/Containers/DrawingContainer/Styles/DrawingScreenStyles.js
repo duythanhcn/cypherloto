@@ -20,9 +20,24 @@ export default StyleSheet.create({
     flexDirection: 'row',
     borderBottomColor: 'gray',
     borderBottomWidth: Utils.sp(1)
+
+  },
+  leftView: {
+    height: '100%',
+    width: '35%',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  rightView: {
+    height: '100%',
+    width: '65%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    backgroundColor: '#f2f2f2'
   },
   headerText: {
-    fontSize: Utils.sp(18),
+    fontSize: Utils.sp(20),
     fontWeight: 'bold'
   },
   itemText: {
@@ -39,36 +54,6 @@ export default StyleSheet.create({
   },
   redItem: {
     color: 'red'
-  },
-  //item
-  firstView: {
-    width: '20%',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  secondView: {
-    width: '47%',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
-    backgroundColor: '#f2f2f2'
-  },
-  thirdView: {
-    width: '13%',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  fourView: {
-    width: '20%',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f2f2f2'
-  },
-  amountStyle: {
-    alignItems: 'flex-end'
   }
+  //item
 })
