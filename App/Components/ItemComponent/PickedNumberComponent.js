@@ -8,12 +8,12 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
 
 const PickedNumberComponent = React.memo(props => {
-  const { data, index, key } = props;
-  const [arrNumber, setArrNum] = useState(data);
+  const { index, key } = props;
+  const [data, setData] = useState(props.data);
 
   useEffect(() => {
-    setArrNum(data)
-  }, [data])
+    setData(props.data)
+  }, [props.data])
 
   function onRemove() {
     props.onRemove(index)
@@ -22,17 +22,20 @@ const PickedNumberComponent = React.memo(props => {
   return (
     <View style={Styles.container} key={key}>
       <View style={Styles.innerView}>
-        {arrNumber.map((item, index) => {
+        {data.ball.map((item, index) => {
           let type = 0;
           if (index >= 5) type = 1;
           return (<BallComponent number={item} key={index} type={type} />)
         })}
       </View>
+      <View style={Styles.powerView}>
+        <Icon name='star' color='#FFCF20' size={Utils.hp(30)} />
+      </View>
       <View style={Styles.actionView}>
         <TouchableOpacity
           onPress={() => onRemove()}
           style={Styles.btnRemove}>
-          <Icon name='minus' color='#137EF4' size={Utils.hp(30)} />
+          <Icon name='minus' color='#137EF4' size={Utils.hp(20)} />
         </TouchableOpacity>
       </View>
     </View>

@@ -43,7 +43,7 @@ export default StyleSheet.create({
     paddingTop: '3%'
   },
   btnAction: {
-    paddingHorizontal: '10%',
+    paddingHorizontal: '5%',
     justifyContent: 'center',
     alignItems: 'center'
   },

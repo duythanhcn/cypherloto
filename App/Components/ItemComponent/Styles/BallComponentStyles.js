@@ -22,5 +22,8 @@ export default StyleSheet.create({
     fontSize: Utils.sp(20),
     color: '#FFF',
     fontWeight: 'bold'
+  },
+  active: {
+    backgroundColor: '#FFCF20'
   }
 })

@@ -1,16 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Styles from './Styles/BallComponentStyles';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 
 const BallComponent = React.memo(props => {
-  const { number, type } = props;
+  const { number, type, onSelect } = props;
+  const [status, setStatus] = useState(false);
+  const [total, setTotal] = useState(props.total);
+
+  useEffect(() => {
+    setTotal(props.props);
+  }, [props.total])
+
+  useEffect(() => {
+    onSelect(number, status);
+  }, [status])
+
+  function onChange() {
+    console.log(type, total)
+    if (type === 0 && total < 4) {
+      setStatus(!status)
+    }
+  }
+
   return (
     <View style={Styles.container}>
-      <View style={[Styles.ballView, type === 0 ? Styles.whiteBall : Styles.redBall]}>
-        <Text style={Styles.numberText}>{number}</Text>
-      </View>
-    </View>
+      <TouchableOpacity
+        onPress={() => onChange()}>
+        <View style={[Styles.ballView, type === 0 ? Styles.whiteBall : Styles.redBall, status ? Styles.active : null]}>
+          <Text style={Styles.numberText}>{number}</Text>
+        </View>
+      </TouchableOpacity>
+    </View >
   )
 })
 
@@ -20,7 +41,7 @@ BallComponent.propTypes = {
 }
 
 BallComponent.defaultProps = {
-  number: 0
+  onSelect: () => { }
 }
 
 export default BallComponent;

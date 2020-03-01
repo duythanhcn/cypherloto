@@ -9,10 +9,7 @@ Icon.loadFont();
 
 const BuyScreen = React.memo(props => {
   const [showPicker, setShowPicker] = useState(false);
-  const [data, setData] = useState([[20, 20, 20, 20, 20, 20],
-  [20, 20, 20, 20, 20, 20], [20, 20, 20, 20, 20, 20], [20, 20, 20, 20, 20, 20], [20, 20, 20, 20, 20, 20],
-  [20, 20, 20, 20, 20, 20], [20, 20, 20, 20, 20, 20], [20, 20, 20, 20, 20, 20], [20, 20, 20, 20, 20, 20],
-  [20, 20, 20, 20, 20, 20], [20, 20, 20, 20, 20, 20], [20, 20, 20, 20, 20, 20], [20, 20, 20, 20, 20, 20]]);
+  const [data, setData] = useState([{ ball: [20, 20, 20, 20, 20, 20], power: true }]);
 
   function onRemove(index) {
     console.log('remove', index, data)
@@ -72,7 +69,8 @@ const BuyScreen = React.memo(props => {
         </View>
       </View>
       <PickNumberModal
-        isVisible={showPicker} />
+        isVisible={showPicker}
+        onCancle={() => setShowPicker(false)} />
     </View >);
 })
 

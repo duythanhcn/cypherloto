@@ -11,14 +11,19 @@ export default StyleSheet.create({
   },
   innerView: {
     flexDirection: 'row',
-    flex: 8.5,
+    flex: 8,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  powerView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'flex-start'
   },
   actionView: {
     justifyContent: 'center',
     alignItems: 'center',
-    flex: 1.5
+    flex: 1
   },
   btnRemove: {
     width: Utils.sp(40),
