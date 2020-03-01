@@ -12,6 +12,7 @@ const TicketActiveScreen = React.memo(props => {
   const [page, setPage] = useState(0);
   const [isNext, setNext] = useState(true);
   const [isRefresh, setRefresh] = useState(false);
+  const [isFirstLoad, setFirstLoad] = useState(true);
 
   useEffect(() => {
     getData();
@@ -42,7 +43,8 @@ const TicketActiveScreen = React.memo(props => {
       }
     }
     setDataList(newData);
-    setRefresh(false)
+    setRefresh(false);
+    setFirstLoad(false);
   }
 
   function onRefresh() {
@@ -95,7 +97,7 @@ const TicketActiveScreen = React.memo(props => {
         renderItem={({ item, index }) => renderItem(item, index)}
         onEndReached={() => isNext ? setPage(page + 1) : null}
         onRefresh={() => onRefresh()}
-        ListEmptyComponent={<EmptyState />}
+        ListEmptyComponent={isFirstLoad ? null : <EmptyState />}
       />
     </View>
   );

@@ -20,7 +20,6 @@ export default StyleSheet.create({
     flexDirection: 'row',
     borderBottomColor: 'gray',
     borderBottomWidth: Utils.sp(1)
-
   },
   leftView: {
     height: '100%',

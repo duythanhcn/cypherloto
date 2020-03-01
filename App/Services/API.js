@@ -87,6 +87,12 @@ class API {
     return await GET(url, {}, {});
   }
 
+  async getDepositeHistory(page) {
+    const email = 'xxx'
+    const url = `${API_URL.GET_USER_TICKET}?account=${email}&limit=20&page=${page}`
+    return await GET(url, {}, {});
+  }
+
 }
 
 export default new API()

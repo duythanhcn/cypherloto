@@ -13,6 +13,7 @@ const TicketPlayedScreen = React.memo(props => {
   const [page, setPage] = useState(0);
   const [isNext, setNext] = useState(true);
   const [isRefresh, setRefresh] = useState(false);
+  const [isFirstLoad, setFirstLoad] = useState(true);
 
   useEffect(() => {
     getData();
@@ -43,7 +44,8 @@ const TicketPlayedScreen = React.memo(props => {
       }
     }
     setDataList(newData);
-    setRefresh(false)
+    setRefresh(false);
+    setFirstLoad(false);
   }
 
   function onRefresh() {
@@ -85,9 +87,7 @@ const TicketPlayedScreen = React.memo(props => {
           <Text style={Styles.itemText}>{white4_ball}</Text>
           <Text style={Styles.itemText}>{white5_ball}</Text>
           <Text style={[Styles.itemText, Styles.redItem]}>{red_ball}</Text>
-          {/* {power === 1 ?  */}
-          <Icon name='star' color='#FFCF20' size={Utils.hp(20)} />
-          {/* : null} */}
+          {power === 1 ? <Icon name='star' color='#FFCF20' size={Utils.hp(20)} /> : null}
         </View>
         <View style={Styles.thirdView}>
           <Text style={Styles.itemText}>{is_win === 0 ? 'Lost' : 'Win'}</Text>
@@ -111,7 +111,7 @@ const TicketPlayedScreen = React.memo(props => {
         renderItem={({ item, index }) => renderItem(item, index)}
         onEndReached={() => isNext ? setPage(page + 1) : null}
         onRefresh={() => onRefresh()}
-        ListEmptyComponent={<EmptyState />}
+        ListEmptyComponent={isFirstLoad ? null : <EmptyState />}
       />
     </View>
   );
