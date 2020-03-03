@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Styles from './Styles/SignInScreenStyles';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import logo from '../../Images/logo.png';
+import { connect } from 'react-redux';
 import InputComponent from '../../Components/ItemComponent/InputComponent';
 import TwoFAModel from '../../Components/ModelComponent/TwoFAModel';
 import Message from '../../Common/Message';
@@ -9,7 +10,7 @@ import apiService from '../../Services/API';
 import validation from '../../Common/validation';
 
 const SignInScreen = React.memo(props => {
-  const { navigation } = props;
+  const { navigation, setUser } = props;
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [isShow2FA, setShow2FA] = useState(false);
@@ -31,18 +32,20 @@ const SignInScreen = React.memo(props => {
     //   setErrorMessage(emailError || passwordError);
     //   return;
     // }
-    // const response = await apiService.login(email, password);
-    // const { data, status, statusText } = response;
-    // if (status === 200) {
-    //   const { enable_2fa } = data.account_info;
-    //   if (enable_2fa) {
-    //     setBtnDisable(true);
-    //   } else {
-    //     navigation.navigate('App');
-    //   }
-    // } else {
-    //   setErrorMessage(statusText);
-    // }
+    const response = await apiService.login(email, password);
+    const { data, status, statusText } = response;
+    if (status === 200) {
+      const { enable_2fa } = data.account_info;
+      const userInfo = { ...data.account_info, email }
+      setUser(userInfo);
+      if (enable_2fa) {
+        setBtnDisable(true);
+      } else {
+        navigation.navigate('App');
+      }
+    } else {
+      setErrorMessage(statusText);
+    }
   }
 
   function onSignInSuccess(code) {
@@ -105,4 +108,12 @@ const SignInScreen = React.memo(props => {
   )
 });
 
-export default SignInScreen;
+const mapStateToProps = state => {
+  return { user: state.user }
+}
+
+const mapDispatchToProps = dispatch => {
+  return { setUser: (data) => dispatch({ data, type: 'SET_USER' }) }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignInScreen);

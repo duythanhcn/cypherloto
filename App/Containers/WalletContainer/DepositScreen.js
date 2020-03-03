@@ -3,17 +3,22 @@ import Styles from './Styles/DepositScreenStyles';
 import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 import Utils from '../../Common/Utils';
 import moment from 'moment';
+import { connect } from 'react-redux';
+import apiService from '../../Services/API';
 import EmptyState from '../../Components/StateComponent/EmptyState';
 import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
 
+let timerLoad = null;
+
 const DepositScreen = React.memo(props => {
-  const { navigation } = props;
-  const [dataList, setDataList] = useState([1, 2, 3]);
+  const { navigation, user } = props;
+  const [dataList, setDataList] = useState([]);
   const [page, setPage] = useState(0);
   const [isNext, setNext] = useState(true);
   const [isRefresh, setRefresh] = useState(false);
   const [isFirstLoad, setFirstLoad] = useState(true);
+  const [isLoad, setLoad] = useState(false);
 
   useEffect(() => {
     getData();
@@ -30,15 +35,24 @@ const DepositScreen = React.memo(props => {
   }, [isRefresh])
 
   async function getData() {
+    if (isLoad) return;
+    clearTimeout(timerLoad);
+    timerLoad = setTimeout(() => {
+      setLoad(true);
+      getDepositeHistory();
+    }, 500)
+  }
+
+  async function getDepositeHistory() {
     if (!isNext) return;
     let newData = [...dataList];
     if (isRefresh) newData = [];
     const res = await apiService.getDepositeHistory(page);
     const { data, status, statusText } = res;
     if (status === 200) {
-      const { tickets } = data;
-      if (tickets.length > 0) {
-        newData = [...newData, ...tickets];
+      const { deposit_history } = data;
+      if (deposit_history.length > 0) {
+        newData = [...newData, ...deposit_history];
       } else {
         setNext(false);
       }
@@ -46,6 +60,7 @@ const DepositScreen = React.memo(props => {
     setDataList(newData);
     setRefresh(false);
     setFirstLoad(false);
+    setLoad(false);
   }
 
   function onRefresh() {
@@ -72,26 +87,27 @@ const DepositScreen = React.memo(props => {
   }
 
   function renderItem(item, index) {
-    const date = moment().format('DD/MM/YY');
+    const { address, amount, status, date } = item;
+    const _date = moment(date).format('DD/MM/YY');
     let icon = 'times';
     let color = 'red';
-    if (index == 0) {
+    if (status === 'Completed') {
       icon = 'check';
       color = 'green';
-    } else if (index == 2) {
+    } else if (status == 'Pending') {
       icon = 'stop-circle';
-      color = '#197BFF';
+      color = '#FFCF20';
     }
     return (
       <View style={[Styles.containerItem, index === 0 ? Styles.borderTop : null]}>
         <View style={Styles.firstView}>
-          <Text style={Styles.itemText}>{date}</Text>
+          <Text style={Styles.itemText}>{_date}</Text>
         </View>
         <View style={Styles.secondView}>
-          <Text style={Styles.itemText}>0xC2D8d2e2a39485BBac1345a3F9fbFf10e85252C5</Text>
+          <Text style={Styles.itemText}>{address}</Text>
         </View>
         <View style={Styles.thirdView}>
-          <Text style={Styles.itemText}>1000</Text>
+          <Text style={Styles.itemText}>{amount}</Text>
         </View>
         <View style={[Styles.fourView, Styles.amountStyle]}>
           <Text style={Styles.itemText}>
@@ -109,7 +125,7 @@ const DepositScreen = React.memo(props => {
         <Text style={Styles.walletWarningMess}>Send only USDT to this deposit address. Sending any other coin or token to this address may result in the loss of your deposit.</Text>
         <Text style={Styles.walletTitle}>USDT Deposit Address</Text>
         <View style={Styles.walletBox}>
-          <Text style={Styles.walletAdd}>0xC2D8d2e2a39485BBac1345a3F9fbFf10e85252C5</Text>
+          <Text style={Styles.walletAdd}>{user.address}</Text>
         </View>
         <View style={Styles.walletCopy}>
           <TouchableOpacity
@@ -137,6 +153,7 @@ const DepositScreen = React.memo(props => {
             onEndReached={() => isNext ? setPage(page + 1) : null}
             onRefresh={() => onRefresh()}
             ListEmptyComponent={isFirstLoad ? null : <EmptyState />}
+            onEndReachedThreshold={1}
           />
         </View>
       </View>
@@ -144,4 +161,12 @@ const DepositScreen = React.memo(props => {
   )
 });
 
-export default DepositScreen;
+const mapStateToProps = state => {
+  return { user: state.user }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DepositScreen);

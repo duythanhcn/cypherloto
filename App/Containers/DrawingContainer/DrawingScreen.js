@@ -7,12 +7,14 @@ import EmptyState from '../../Components/StateComponent/EmptyState';
 import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
 
+let timerLoad = null;
 const DrawingScreen = React.memo(props => {
   const [dataList, setDataList] = useState([]);
   const [page, setPage] = useState(0);
   const [isNext, setNext] = useState(true);
   const [isRefresh, setRefresh] = useState(false);
   const [isFirstLoad, setFirstLoad] = useState(true);
+  const [isLoad, setLoad] = useState(false);
 
   useEffect(() => {
     getData();
@@ -29,6 +31,15 @@ const DrawingScreen = React.memo(props => {
   }, [isRefresh])
 
   async function getData() {
+    if (isLoad) return;
+    clearTimeout(timerLoad);
+    timerLoad = setTimeout(() => {
+      setLoad(true);
+      getDrawing();
+    }, 500)
+  }
+
+  async function getDrawing() {
     if (!isNext) return;
     let newData = [...dataList];
     if (isRefresh) newData = [];
@@ -45,6 +56,7 @@ const DrawingScreen = React.memo(props => {
     setDataList(newData);
     setRefresh(false);
     setFirstLoad(false);
+    setLoad(false);
   }
 
   function onRefresh() {
@@ -98,6 +110,7 @@ const DrawingScreen = React.memo(props => {
         onEndReached={() => isNext ? setPage(page + 1) : null}
         onRefresh={() => onRefresh()}
         ListEmptyComponent={isFirstLoad ? null : <EmptyState />}
+        onEndReachedThreshold={1}
       />
     </View>
   );

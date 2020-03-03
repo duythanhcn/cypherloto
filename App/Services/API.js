@@ -2,6 +2,7 @@ import axios from 'axios';
 import { API_URL } from '../Common/constants';
 import Message from '../Common/Message';
 import Utils from '../Common/Utils';
+import { connect } from 'react-redux';
 
 const baseURL = 'http://95.216.25.89:3001/api/v1';
 
@@ -51,7 +52,7 @@ class API {
   }
 
   async getUserBalance() {
-    const email = 'thanhld@gmail.com'
+    const email = 'xxx'
     const url = `${API_URL.GET_BALANCE}?account=${email}`
     return await GET(url, {}, {});
   }
@@ -89,7 +90,13 @@ class API {
 
   async getDepositeHistory(page) {
     const email = 'xxx'
-    const url = `${API_URL.GET_USER_TICKET}?account=${email}&limit=20&page=${page}`
+    const url = `${API_URL.GET_DEPOSIT}?account=${email}&limit=10&page=${page}`
+    return await GET(url, {}, {});
+  }
+
+  async getWithdrawHistory(page) {
+    const email = 'xxx'
+    const url = `${API_URL.GET_WITHDRAW}?account=${email}&limit=10&page=${page}`
     return await GET(url, {}, {});
   }
 

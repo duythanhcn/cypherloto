@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Styles from './Styles/HomeScrennStyles';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import coin from '../../Images/Icons/coin.png';
 import BallComponent from '../../Components/ItemComponent/BallComponent';
@@ -11,8 +12,8 @@ import CountDown from 'react-native-countdown-component';
 import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
 
-const now = moment();
 const HomeScreen = React.memo(props => {
+  const { setUser } = props;
   const [balance, setBalance] = useState(0);
   const [nextDraw, setNextDraw] = useState(0);
   const [estValue, setESTValue] = useState(0);
@@ -37,6 +38,7 @@ const HomeScreen = React.memo(props => {
     const { data, status, statusText } = res;
     if (status === 200) {
       const { address, balance } = data;
+      setUser({ address, balance })
       setBalance(balance);
     }
   }
@@ -156,4 +158,12 @@ const HomeScreen = React.memo(props => {
 HomeScreen.propTypes = {
 }
 
-export default HomeScreen;
+const mapStateToProps = state => {
+  return { user: state.user }
+}
+
+const mapDispatchToProps = dispatch => {
+  return { setUser: (data) => dispatch({ data, type: 'SET_USER' }) }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
