@@ -78,7 +78,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     width: '100%',
-    width: Utils.sp(350)
+    width: Utils.sp(380)
   },
   scrollView: {
     width: '100%'

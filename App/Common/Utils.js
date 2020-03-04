@@ -72,5 +72,14 @@ class Utils {
     hmac.update(JSON.stringify(params));
     return hmac.digest('hex');
   }
+
+  randomNumberInList(num, start, end) {
+    let arr = [];
+    while (arr.length < num) {
+      let r = Math.floor(Math.random() * end) + start;
+      if (arr.indexOf(r) === -1) arr.push(r);
+    }
+    return arr
+  }
 }
 export default new Utils()

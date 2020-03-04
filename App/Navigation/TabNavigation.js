@@ -9,7 +9,6 @@ import DrawingStack from './DrawingStack';
 import WalletStack from './WalletStack';
 import HiddenStack from './HiddenStack';
 import TabBarBottomIcon from '../Components/ItemComponent/TabBarBottomIcon';
-import DrawMenuStack from './DrawMenuStack';
 
 const TabNavigation = createBottomTabNavigator(
   {
@@ -28,9 +27,9 @@ const TabNavigation = createBottomTabNavigator(
     Wallet: {
       screen: WalletStack
     },
-    // HiddenTab: {
-    //   screen: HiddenStack
-    // }
+    HiddenTab: {
+      screen: HiddenStack
+    }
   },
   {
     backBehavior: 'history',

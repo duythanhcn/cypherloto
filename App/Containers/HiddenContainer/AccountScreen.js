@@ -1,9 +1,32 @@
 import React, { useEffect } from 'react';
 import Styles from './Styles/AccountScreenStyles';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
 
 const AccountScreen = React.memo(props => {
-    return (<View style={{ width: 200, height: 200, backgroundColor: 'yellow' }}><Text>acount</Text></View>);
+  const { clearUser, navigation } = props;
+
+  function signOut() {
+    clearUser({});
+    navigation.navigate('SignIn');
+  }
+
+  return (
+    <View style={{}}>
+      <TouchableOpacity
+        style={Styles.btnView}
+        onPress={() => signOut()}>
+        <Text style={Styles.btnText}>Sign Out</Text>
+      </TouchableOpacity>
+    </View>);
 })
 
-export default AccountScreen;
+const mapStateToProps = state => {
+  return { user: state.user }
+}
+
+const mapDispatchToProps = dispatch => {
+  return { clearUser: (data) => dispatch({ data, type: 'CLEAR_USER' }) }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AccountScreen);

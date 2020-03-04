@@ -9,14 +9,13 @@ Icon.loadFont();
 
 const BuyScreen = React.memo(props => {
   const [showPicker, setShowPicker] = useState(false);
-  const [data, setData] = useState([{ ball: [20, 20, 20, 20, 20, 20], power: true }]);
+  const [data, setData] = useState({ list: [], timestamp: Date.now() });
 
   function onRemove(index) {
-    console.log('remove', index, data)
-    let newData = data
+    let newData = [...data.list]
     newData.splice(index, 1)
-    console.log(newData)
     setData(newData)
+    setData({ list: newData, timestamp: Date.now() });
   }
 
   function oncancel() {
@@ -24,7 +23,13 @@ const BuyScreen = React.memo(props => {
   }
 
   function onBuy() {
-    setData([])
+    setData({ list: [], timestamp: Date.now() })
+  }
+
+  function onAddNum(_data) {
+    let newData = [...data.list];
+    newData.unshift(_data);
+    setData({ list: newData, timestamp: Date.now() });
   }
 
   return (
@@ -60,7 +65,8 @@ const BuyScreen = React.memo(props => {
         <View style={Styles.bodyListView}>
           <FlatList
             style={Styles.listView}
-            data={data}
+            data={data.list}
+            extraData={data.timestamp}
             numColumns={1}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ item, index }) => <PickedNumberComponent data={item} index={index} key={index} onRemove={(index) => onRemove(index)} />}
@@ -70,7 +76,8 @@ const BuyScreen = React.memo(props => {
       </View>
       <PickNumberModal
         isVisible={showPicker}
-        onCancle={() => setShowPicker(false)} />
+        onCancle={() => setShowPicker(false)}
+        onSave={data => onAddNum(data)} />
     </View >);
 })
 

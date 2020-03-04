@@ -1,5 +1,4 @@
 import React from 'react';
-import { DrawerActions } from 'react-navigation';
 import PropTypes from 'prop-types';
 import Styles from './Styles/AccountButtonStyles';
 import { View, Image, TouchableOpacity } from 'react-native';
@@ -12,8 +11,7 @@ const AccountButton = React.memo(props => {
       <TouchableOpacity
         style={Styles.actionView}
         onPress={() => {
-          console.log(navigation)
-          navigation.dispatch(DrawerActions.openDrawer())
+          navigation.navigate('Account')
         }}>
         <Image style={Styles.icon} source={accountIcon} resizeMode='contain' />
       </TouchableOpacity>

@@ -10,7 +10,6 @@ Icon.loadFont();
 const PickedNumberComponent = React.memo(props => {
   const { index, key } = props;
   const [data, setData] = useState(props.data);
-
   useEffect(() => {
     setData(props.data)
   }, [props.data])
@@ -29,7 +28,7 @@ const PickedNumberComponent = React.memo(props => {
         })}
       </View>
       <View style={Styles.powerView}>
-        <Icon name='star' color='#FFCF20' size={Utils.hp(30)} />
+        {data.power ? <Icon name='star' color='#FFCF20' size={Utils.hp(30)} /> : null}
       </View>
       <View style={Styles.actionView}>
         <TouchableOpacity

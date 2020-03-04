@@ -4,22 +4,41 @@ import Styles from './Styles/BallComponentStyles';
 import { View, Text, TouchableOpacity } from 'react-native';
 
 const BallComponent = React.memo(props => {
-  const { number, type, onSelect } = props;
+  const { number, type, onSelect, data } = props;
   const [status, setStatus] = useState(false);
   const [total, setTotal] = useState(props.total);
 
   useEffect(() => {
-    setTotal(props.props);
+    setTotal(props.total);
   }, [props.total])
+
+  useEffect(() => {
+    if (!data) return;
+    const index = data.indexOf(number);
+    if (index !== -1 && !status) {
+      setStatus(true);
+    } else {
+      setStatus(false);
+    }
+  }, [data])
 
   useEffect(() => {
     onSelect(number, status);
   }, [status])
 
   function onChange() {
-    console.log(type, total)
-    if (type === 0 && total < 4) {
-      setStatus(!status)
+    if (type === 0) {
+      if (total < 5) {
+        setStatus(!status);
+      } else {
+        setStatus(false);
+      }
+    } else {
+      if (total < 1) {
+        setStatus(!status);
+      } else {
+        setStatus(false);
+      }
     }
   }
 
@@ -36,7 +55,7 @@ const BallComponent = React.memo(props => {
 })
 
 BallComponent.propTypes = {
-  number: PropTypes.number.isRequired,
+  number: PropTypes.number,
   type: PropTypes.number
 }
 

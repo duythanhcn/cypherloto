@@ -24,19 +24,19 @@ const SignInScreen = React.memo(props => {
   }, [isBtnDisable])
 
   async function signIn() {
-    navigation.navigate('App');
     setErrorMessage('');
-    // const emailError = validation('email', email);
-    // const passwordError = validation('password', password);
-    // if (emailError || passwordError) {
-    //   setErrorMessage(emailError || passwordError);
-    //   return;
-    // }
+    const emailError = validation('email', email);
+    const passwordError = validation('password', password);
+    if (emailError || passwordError) {
+      setErrorMessage(emailError || passwordError);
+      return;
+    }
     const response = await apiService.login(email, password);
     const { data, status, statusText } = response;
+
     if (status === 200) {
       const { enable_2fa } = data.account_info;
-      const userInfo = { ...data.account_info, email }
+      const userInfo = { ...data.account_info, email };
       setUser(userInfo);
       if (enable_2fa) {
         setBtnDisable(true);

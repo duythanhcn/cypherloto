@@ -11,9 +11,9 @@ const PrimaryNavigation = createSwitchNavigator(
     App: {
       screen: TabNavigation
     },
-    DrawMenu: {
-      screen: DrawMenuStack
-    }
+    // DrawMenu: {
+    //   screen: DrawMenuStack
+    // }
   },
   {
     initialRouteName: 'Auth',

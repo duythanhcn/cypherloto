@@ -35,6 +35,7 @@ const TwoFAModel = React.memo(props => {
         </View>
         <View style={Styles.inputView}>
           <TextInput
+            keyboardType='number-pad'
             value={code}
             onChangeText={val => setCode(val !== '' ? val : null)}
             style={Styles.input}

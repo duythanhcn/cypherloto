@@ -4,13 +4,14 @@ import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 import { Input } from 'native-base';
 import apiService from '../../Services/API';
 import Utils from '../../Common/Utils';
+import { connect } from 'react-redux';
 import moment from 'moment';
 import EmptyState from '../../Components/StateComponent/EmptyState';
 import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
 let timerLoad = null;
 const WithdrawScreen = React.memo(props => {
-  const { navigation } = props;
+  const { user } = props;
   const [dataList, setDataList] = useState([]);
   const [page, setPage] = useState(0);
   const [isNext, setNext] = useState(true);
@@ -47,7 +48,7 @@ const WithdrawScreen = React.memo(props => {
     if (!isNext) return;
     let newData = [...dataList];
     if (isRefresh) newData = [];
-    const res = await apiService.getWithdrawHistory(page);
+    const res = await apiService.getWithdrawHistory(user.email, 10, page);
     const { data, status, statusText } = res;
     if (status === 200) {
       const { withdraw_history } = data;
@@ -136,7 +137,7 @@ const WithdrawScreen = React.memo(props => {
           </View>
           <View style={Styles.inputView}>
             <Input style={Styles.input}
-              value={amount}
+              value={amount.toString()}
               keyboardType='numeric'
               onChangeText={val => setAmount(val)}
               placeholder="Amount" />
@@ -177,4 +178,12 @@ const WithdrawScreen = React.memo(props => {
   )
 });
 
-export default WithdrawScreen;
+const mapStateToProps = state => {
+  return { user: state.user }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(WithdrawScreen);

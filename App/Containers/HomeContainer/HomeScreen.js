@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Styles from './Styles/HomeScrennStyles';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import coin from '../../Images/Icons/coin.png';
@@ -13,7 +12,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
 
 const HomeScreen = React.memo(props => {
-  const { setUser } = props;
+  const { user, setUser } = props;
   const [balance, setBalance] = useState(0);
   const [nextDraw, setNextDraw] = useState(0);
   const [estValue, setESTValue] = useState(0);
@@ -23,18 +22,21 @@ const HomeScreen = React.memo(props => {
   const [index, setIndex] = useState(-1);
 
   useEffect(() => {
-    getBalance();
     getCurrentLot();
     nextWinnerNumber();
     getCurLotReport();
   }, [])
 
   useEffect(() => {
-    setWinnerBall(index)
+    getBalance(user.email);
+  }, [user])
+
+  useEffect(() => {
+    setWinnerBall(index);
   }, [index])
 
-  async function getBalance() {
-    const res = await apiService.getUserBalance();
+  async function getBalance(email) {
+    const res = await apiService.getUserBalance(email);
     const { data, status, statusText } = res;
     if (status === 200) {
       const { address, balance } = data;
@@ -154,9 +156,6 @@ const HomeScreen = React.memo(props => {
       </View>
     </View>);
 })
-
-HomeScreen.propTypes = {
-}
 
 const mapStateToProps = state => {
   return { user: state.user }

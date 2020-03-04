@@ -47,7 +47,7 @@ const DepositScreen = React.memo(props => {
     if (!isNext) return;
     let newData = [...dataList];
     if (isRefresh) newData = [];
-    const res = await apiService.getDepositeHistory(page);
+    const res = await apiService.getDepositeHistory(user.email, 10, page);
     const { data, status, statusText } = res;
     if (status === 200) {
       const { deposit_history } = data;

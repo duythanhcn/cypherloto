@@ -3,11 +3,13 @@ import Styles from './Styles/TicketActiveScreenStyles';
 import { View, Text, FlatList } from 'react-native';
 import apiService from '../../Services/API';
 import Utils from '../../Common/Utils';
+import { connect } from 'react-redux';
 import EmptyState from '../../Components/StateComponent/EmptyState';
 import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
 
 const TicketActiveScreen = React.memo(props => {
+  const { user } = props;
   const [dataList, setDataList] = useState([]);
   const [page, setPage] = useState(0);
   const [isNext, setNext] = useState(true);
@@ -32,7 +34,7 @@ const TicketActiveScreen = React.memo(props => {
     if (!isNext) return;
     let newData = [...dataList];
     if (isRefresh) newData = [];
-    const res = await apiService.getUserActiveTicket(page);
+    const res = await apiService.getUserActiveTicket(user.email, 10, page);
     const { data, status, statusText } = res;
     if (status === 200) {
       const { tickets } = data;
@@ -103,4 +105,12 @@ const TicketActiveScreen = React.memo(props => {
   );
 })
 
-export default TicketActiveScreen;
+const mapStateToProps = state => {
+  return { user: state.user }
+}
+
+const mapDispatchToProps = dispatch => {
+  return { setUser: (data) => dispatch({ data, type: 'SET_USER' }) }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TicketActiveScreen);

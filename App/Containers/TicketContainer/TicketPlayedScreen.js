@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Styles from './Styles/TicketPlayedScreenStyles';
 import { View, Text, FlatList } from 'react-native';
 import apiService from '../../Services/API';
+import { connect } from 'react-redux';
 import moment from 'moment';
 import Utils from '../../Common/Utils';
 import EmptyState from '../../Components/StateComponent/EmptyState';
@@ -9,6 +10,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
 
 const TicketPlayedScreen = React.memo(props => {
+  const { user } = props;
   const [dataList, setDataList] = useState([]);
   const [page, setPage] = useState(0);
   const [isNext, setNext] = useState(true);
@@ -33,7 +35,7 @@ const TicketPlayedScreen = React.memo(props => {
     if (!isNext) return;
     let newData = [...dataList];
     if (isRefresh) newData = [];
-    const res = await apiService.getUserPlayedTicket(page);
+    const res = await apiService.getUserPlayedTicket(user.email, 10, page);
     const { data, status, statusText } = res;
     if (status === 200) {
       const { tickets } = data;
@@ -117,4 +119,12 @@ const TicketPlayedScreen = React.memo(props => {
   );
 })
 
-export default TicketPlayedScreen;
+const mapStateToProps = state => {
+  return { user: state.user }
+}
+
+const mapDispatchToProps = dispatch => {
+  return { setUser: (data) => dispatch({ data, type: 'SET_USER' }) }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TicketPlayedScreen);

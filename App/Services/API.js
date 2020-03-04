@@ -51,8 +51,7 @@ class API {
     return await POST(API_URL.REGISTER, {}, data);
   }
 
-  async getUserBalance() {
-    const email = 'xxx'
+  async getUserBalance(email) {
     const url = `${API_URL.GET_BALANCE}?account=${email}`
     return await GET(url, {}, {});
   }
@@ -70,36 +69,30 @@ class API {
     return await GET(API_URL.GET_CUR_LOT_REPORT, {}, {});
   }
 
-  async getUserActiveTicket(page) {
-    const email = 'xxx'
-    const url = `${API_URL.GET_USER_TICKET}?buyer=${email}&status=Active&limit=20&page=${page}`
+  async getUserActiveTicket(email, limit, page) {
+    const url = `${API_URL.GET_USER_TICKET}?buyer=${email}&status=Active&limit=${limit}&page=${page}`
     return await GET(url, {}, {});
   }
 
-  async getUserPlayedTicket(page) {
-    const email = 'xxx'
-    const url = `${API_URL.GET_USER_TICKET}?buyer=${email}&status=Played&limit=20&page=${page}`
+  async getUserPlayedTicket(email, limit, page) {
+    const url = `${API_URL.GET_USER_TICKET}?buyer=${email}&status=Played&limit=${limit}&page=${page}`
     return await GET(url, {}, {});
   }
 
-  async getDrawing(page) {
-    const email = 'xxx'
-    const url = `${API_URL.GET_USER_TICKET}?buyer=${email}&status=Played&limit=20&page=${page}`
+  async getDrawing(email, limit, page) {
+    const url = `${API_URL.GET_USER_TICKET}?buyer=${email}&status=Played&limit=${limit}&page=${page}`
     return await GET(url, {}, {});
   }
 
-  async getDepositeHistory(page) {
-    const email = 'xxx'
-    const url = `${API_URL.GET_DEPOSIT}?account=${email}&limit=10&page=${page}`
+  async getDepositeHistory(email, limit, page) {
+    const url = `${API_URL.GET_DEPOSIT}?account=${email}&limit=${limit}&page=${page}`
     return await GET(url, {}, {});
   }
 
-  async getWithdrawHistory(page) {
-    const email = 'xxx'
-    const url = `${API_URL.GET_WITHDRAW}?account=${email}&limit=10&page=${page}`
+  async getWithdrawHistory(email, limit, page) {
+    const url = `${API_URL.GET_WITHDRAW}?account=${email}&limit=${limit}&page=${page}`
     return await GET(url, {}, {});
   }
-
 }
 
 export default new API()
