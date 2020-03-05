@@ -2,14 +2,23 @@ import React, { useEffect, useState } from 'react';
 import Styles from './Styles/BuyScreenStyles';
 import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 import Utils from '../../Common/Utils';
+import apiService from '../../Services/API';
+import { connect } from 'react-redux';
 import PickedNumberComponent from '../../Components/ItemComponent/PickedNumberComponent';
 import PickNumberModal from '../../Components/ModelComponent/PickNumberModal';
+import AlertModal from '../../Components/ModelComponent/AlertModal';
 import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
 
 const BuyScreen = React.memo(props => {
+  const { user } = props;
   const [showPicker, setShowPicker] = useState(false);
   const [data, setData] = useState({ list: [], timestamp: Date.now() });
+  const [isShowAlert, setShowAlert] = useState(false)
+  const [message, setMessage] = useState('');
+  const actions = [
+    { btnText: 'OK', btnAction: () => { setShowAlert(false), setMessage('') } }
+  ]
 
   function onRemove(index) {
     let newData = [...data.list]
@@ -22,8 +31,38 @@ const BuyScreen = React.memo(props => {
     setData([])
   }
 
-  function onBuy() {
-    setData({ list: [], timestamp: Date.now() })
+  async function onBuy() {
+    const signature = '';
+    const amount = 0;
+    const _tickets = await processData();
+    console.log(_tickets)
+    // const response = await apiService.buyTicket(signature, user.email, amount, tickets);
+    // const { data, status, statusText } = response;
+    // if (status === 200) {
+    //   setMessage('Success')
+    // } else {
+    //   setMessage('Fail')
+    // }
+    // setShowAlert(true);
+    // setData({ list: [], timestamp: Date.now() })
+  }
+
+  function processData() {
+    let amount = 0;
+    const { list } = data;
+    let tickets = [];
+    for (let i = 0; i < list.length; i++) {
+      amount += 2;
+      const item = list[i];
+      const ticket = {
+        whiteBalls: [item.ball[0], item.ball[1], item.ball[2], item.ball[3], item.ball[4]],
+        redBall: item.ball[5],
+        power: item.power ? 1 : 0
+      }
+      if (item.power) amount += 1;
+      tickets.push(ticket);
+    }
+    return [tickets, amount];
   }
 
   function onAddNum(_data) {
@@ -78,7 +117,20 @@ const BuyScreen = React.memo(props => {
         isVisible={showPicker}
         onCancle={() => setShowPicker(false)}
         onSave={data => onAddNum(data)} />
+      <AlertModal
+        isVisible={isShowAlert}
+        message={message}
+        title='Inform'
+        actions={actions} />
     </View >);
 })
 
-export default BuyScreen;
+const mapStateToProps = state => {
+  return { user: state.user }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BuyScreen);

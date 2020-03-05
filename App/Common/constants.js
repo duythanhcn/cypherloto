@@ -8,5 +8,8 @@ export const API_URL = {
   GET_CUR_LOT_REPORT: '/actions/reports',
   GET_USER_TICKET: '/tickets',
   GET_DEPOSIT: '/account/deposit_history',
-  GET_WITHDRAW: '/account/withdraw_history'
+  GET_WITHDRAW: '/account/withdraw_history',
+  GET_DRAWING: '/lottery',
+  WITHDRAW: '/account/withdraw',
+  BUY: '/buy_tickets'
 }

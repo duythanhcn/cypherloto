@@ -9,6 +9,7 @@ const TwoFAModel = React.memo(props => {
   const [isVisible, setVisible] = useState(props.isVisible);
   const [code, setCode] = useState(null);
   const [isKeyboard, setKeyBoard] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     setVisible(props.isVisible);
@@ -43,6 +44,7 @@ const TwoFAModel = React.memo(props => {
             onFocus={() => setKeyBoard(true)}
             onBlur={() => setKeyBoard(false)}
             onSubmitEditing={() => onSubmit()} />
+          <Text style={Styles.errorMessage}>{errorMessage}</Text>
         </View>
         <View style={Styles.actionView}>
           <TouchableOpacity

@@ -43,12 +43,12 @@ const DrawingScreen = React.memo(props => {
     if (!isNext) return;
     let newData = [...dataList];
     if (isRefresh) newData = [];
-    const res = await apiService.getDrawing(page);
+    const res = await apiService.getDrawing(10, page);
     const { data, status, statusText } = res;
     if (status === 200) {
-      const { tickets } = data;
-      if (tickets.length > 0) {
-        newData = [...newData, ...tickets];
+      const { lotteries } = data;
+      if (lotteries.length > 0) {
+        newData = [...newData, ...lotteries];
       } else {
         setNext(false);
       }
@@ -77,20 +77,20 @@ const DrawingScreen = React.memo(props => {
   }
 
   function renderItem(item, index) {
-    const { white1_ball, white2_ball, white3_ball, white4_ball,
-      white5_ball, red_ball, created_at } = item;
-    const date = moment(created_at).format('DD/MM/YY')
+    const { white_ball_1, white_ball_2, white_ball_3, white_ball_4,
+      white_ball_5, red_ball, date_created } = item;
+    const date = moment(date_created).format('DD/MM/YY')
     return (
       <View style={[Styles.containerItem, index === 0 ? Styles.borderTop : null]}>
         <View style={Styles.leftView}>
           <Text style={Styles.itemText}>{date}</Text>
         </View>
         <View style={Styles.rightView}>
-          <Text style={Styles.itemText}>{white1_ball}</Text>
-          <Text style={Styles.itemText}>{white2_ball}</Text>
-          <Text style={Styles.itemText}>{white3_ball}</Text>
-          <Text style={Styles.itemText}>{white4_ball}</Text>
-          <Text style={Styles.itemText}>{white5_ball}</Text>
+          <Text style={Styles.itemText}>{white_ball_1}</Text>
+          <Text style={Styles.itemText}>{white_ball_2}</Text>
+          <Text style={Styles.itemText}>{white_ball_3}</Text>
+          <Text style={Styles.itemText}>{white_ball_4}</Text>
+          <Text style={Styles.itemText}>{white_ball_5}</Text>
           <Text style={[Styles.itemText, Styles.redItem]}>{red_ball}</Text>
         </View>
       </View>

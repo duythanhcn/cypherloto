@@ -61,5 +61,11 @@ export default StyleSheet.create({
   },
   marginFocus: {
     marginBottom: Utils.hp(200)
+  },
+  errorMessage: {
+    paddingVertical: '3%',
+    position: 'absolute',
+    bottom: 0,
+    color: 'red'
   }
 })

@@ -7,8 +7,10 @@ import Utils from '../../Common/Utils';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import EmptyState from '../../Components/StateComponent/EmptyState';
+import AlertModal from '../../Components/ModelComponent/AlertModal';
 import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
+
 let timerLoad = null;
 const WithdrawScreen = React.memo(props => {
   const { user } = props;
@@ -20,6 +22,11 @@ const WithdrawScreen = React.memo(props => {
   const [amount, setAmount] = useState(0);
   const [isFirstLoad, setFirstLoad] = useState(true);
   const [isLoad, setLoad] = useState(false);
+  const [isShowAlert, setShowAlert] = useState(false)
+  const [message, setMessage] = useState('');
+  const actions = [
+    { btnText: 'OK', btnAction: () => { setShowAlert(false), setMessage('') } }
+  ]
 
   useEffect(() => {
     getData();
@@ -67,6 +74,18 @@ const WithdrawScreen = React.memo(props => {
   function onRefresh() {
     setRefresh(true);
     setNext(true);
+  }
+
+  async function doWithDraw() {
+    const signature = '';
+    const response = await apiService.doWithdraw(signature, user.email, amount, address);
+    const { data, status, statusText } = response;
+    if (status === 200) {
+      setMessage('Success')
+    } else {
+      setMessage('Fail')
+    }
+    setShowAlert(true);
   }
 
   function renderHeader() {
@@ -144,7 +163,7 @@ const WithdrawScreen = React.memo(props => {
           </View>
           <View style={Styles.submitView}>
             <TouchableOpacity
-              onPress={() => { }}
+              onPress={() => doWithDraw()}
               style={Styles.btnSubmit}>
               <Text style={Styles.submitText}>Submit</Text>
             </TouchableOpacity>
@@ -174,6 +193,11 @@ const WithdrawScreen = React.memo(props => {
           />
         </View>
       </View>
+      <AlertModal
+        isVisible={isShowAlert}
+        message={message}
+        title='Inform'
+        actions={actions} />
     </View>
   )
 });

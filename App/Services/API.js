@@ -36,6 +36,7 @@ class API {
       email,
       password_token: Utils.hashString({ email, password })
     }
+    console.log(data)
     const res = await POST(API_URL.LOGIN, {}, data);
     return res;
   }
@@ -79,8 +80,8 @@ class API {
     return await GET(url, {}, {});
   }
 
-  async getDrawing(email, limit, page) {
-    const url = `${API_URL.GET_USER_TICKET}?buyer=${email}&status=Played&limit=${limit}&page=${page}`
+  async getDrawing(limit, page) {
+    const url = `${API_URL.GET_DRAWING}?limit=${limit}&page=${page}`
     return await GET(url, {}, {});
   }
 
@@ -92,6 +93,24 @@ class API {
   async getWithdrawHistory(email, limit, page) {
     const url = `${API_URL.GET_WITHDRAW}?account=${email}&limit=${limit}&page=${page}`
     return await GET(url, {}, {});
+  }
+
+  async doWithdraw(signature, account, amount, address_to) {
+    const data = {
+      account,
+      amount,
+      address_to
+    }
+    return await POST(API_URL.WITHDRAW, { signature: signature }, data);
+  }
+
+  async buyTicket(signature, user, amount, tickets) {
+    const data = {
+      user,
+      amount,
+      tickets
+    }
+    return await POST(API_URL.BUY, { signature: signature }, data);
   }
 }
 
