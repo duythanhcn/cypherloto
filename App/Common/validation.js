@@ -24,6 +24,20 @@ const rules = {
       message: '^Please enter a password'
     },
     equality: "password"
+  },
+  amount: {
+    presence: {
+      message: '^Please enter an amount'
+    },
+    numericality: {
+      greaterThan: 0,
+      message: '^Amount must be a number and greater than 0'
+    }
+  },
+  address: {
+    presence: {
+      message: '^Please enter an address'
+    }
   }
 }
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Styles from './Styles/DrawingScreenStyles';
 import { View, Text, FlatList } from 'react-native';
 import apiService from '../../Services/API';
+import { Spinner } from 'native-base';
 import moment from 'moment';
 import EmptyState from '../../Components/StateComponent/EmptyState';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -44,8 +45,8 @@ const DrawingScreen = React.memo(props => {
     let newData = [...dataList];
     if (isRefresh) newData = [];
     const res = await apiService.getDrawing(10, page);
-    const { data, status, statusText } = res;
-    if (status === 200) {
+    const { data } = res;
+    if (!data.errors) {
       const { lotteries } = data;
       if (lotteries.length > 0) {
         newData = [...newData, ...lotteries];
@@ -110,6 +111,7 @@ const DrawingScreen = React.memo(props => {
         onEndReached={() => isNext ? setPage(page + 1) : null}
         onRefresh={() => onRefresh()}
         ListEmptyComponent={isFirstLoad ? null : <EmptyState />}
+        ListFooterComponent={isLoad ? Spinner : null}
         onEndReachedThreshold={1}
       />
     </View>

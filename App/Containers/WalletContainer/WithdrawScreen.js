@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Styles from './Styles/WithdrawScreenStyles';
 import { View, Text, TouchableOpacity, FlatList } from 'react-native';
-import { Input } from 'native-base';
+import { Input, Spinner } from 'native-base';
 import apiService from '../../Services/API';
 import Utils from '../../Common/Utils';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import validation from '../../Common/validation';
 import EmptyState from '../../Components/StateComponent/EmptyState';
 import AlertModal from '../../Components/ModelComponent/AlertModal';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -18,7 +19,7 @@ const WithdrawScreen = React.memo(props => {
   const [page, setPage] = useState(0);
   const [isNext, setNext] = useState(true);
   const [isRefresh, setRefresh] = useState(false);
-  const [address, setAddress] = useState('');
+  const [address, setAddress] = useState(null);
   const [amount, setAmount] = useState(0);
   const [isFirstLoad, setFirstLoad] = useState(true);
   const [isLoad, setLoad] = useState(false);
@@ -56,8 +57,8 @@ const WithdrawScreen = React.memo(props => {
     let newData = [...dataList];
     if (isRefresh) newData = [];
     const res = await apiService.getWithdrawHistory(user.email, 10, page);
-    const { data, status, statusText } = res;
-    if (status === 200) {
+    const { data } = res;
+    if (!data.errors) {
       const { withdraw_history } = data;
       if (withdraw_history.length > 0) {
         newData = [...newData, ...withdraw_history];
@@ -77,15 +78,23 @@ const WithdrawScreen = React.memo(props => {
   }
 
   async function doWithDraw() {
-    const signature = '';
-    const response = await apiService.doWithdraw(signature, user.email, amount, address);
-    const { data, status, statusText } = response;
-    if (status === 200) {
-      setMessage('Success')
+    const amountError = validation('amount', amount);
+    const addressError = validation('address', address);
+    if (amountError || addressError) {
+      setMessage(amountError || addressError);
+      setShowAlert(true);
+      return;
+    }
+    const response = await apiService.doWithdraw(user.email, amount, address);
+    const { data } = response;
+    if (!data.errors) {
+      setMessage('Withdraw Success');
     } else {
-      setMessage('Fail')
+      setMessage(data.errors.message);
     }
     setShowAlert(true);
+    setAddress('');
+    setAmount(0);
   }
 
   function renderHeader() {
@@ -189,6 +198,7 @@ const WithdrawScreen = React.memo(props => {
             onEndReached={() => isNext ? setPage(page + 1) : null}
             onRefresh={() => onRefresh()}
             ListEmptyComponent={isFirstLoad ? null : <EmptyState />}
+            ListFooterComponent={isLoad ? Spinner : null}
             onEndReachedThreshold={1}
           />
         </View>

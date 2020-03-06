@@ -5,10 +5,12 @@ import apiService from '../../Services/API';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import Utils from '../../Common/Utils';
+import { Spinner } from 'native-base';
 import EmptyState from '../../Components/StateComponent/EmptyState';
 import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
 
+let timerLoad = null;
 const TicketPlayedScreen = React.memo(props => {
   const { user } = props;
   const [dataList, setDataList] = useState([]);
@@ -16,6 +18,7 @@ const TicketPlayedScreen = React.memo(props => {
   const [isNext, setNext] = useState(true);
   const [isRefresh, setRefresh] = useState(false);
   const [isFirstLoad, setFirstLoad] = useState(true);
+  const [isLoad, setLoad] = useState(false);
 
   useEffect(() => {
     getData();
@@ -32,12 +35,21 @@ const TicketPlayedScreen = React.memo(props => {
   }, [isRefresh])
 
   async function getData() {
+    if (isLoad) return;
+    clearTimeout(timerLoad);
+    timerLoad = setTimeout(() => {
+      setLoad(true);
+      getUserPlayedTicket();
+    }, 500)
+  }
+
+  async function getUserPlayedTicket() {
     if (!isNext) return;
     let newData = [...dataList];
     if (isRefresh) newData = [];
     const res = await apiService.getUserPlayedTicket(user.email, 10, page);
-    const { data, status, statusText } = res;
-    if (status === 200) {
+    const { data } = res;
+    if (!data.errors) {
       const { tickets } = data;
       if (tickets.length > 0) {
         newData = [...newData, ...tickets];
@@ -48,6 +60,7 @@ const TicketPlayedScreen = React.memo(props => {
     setDataList(newData);
     setRefresh(false);
     setFirstLoad(false);
+    setLoad(false);
   }
 
   function onRefresh() {
@@ -114,6 +127,7 @@ const TicketPlayedScreen = React.memo(props => {
         onEndReached={() => isNext ? setPage(page + 1) : null}
         onRefresh={() => onRefresh()}
         ListEmptyComponent={isFirstLoad ? null : <EmptyState />}
+        ListFooterComponent={isLoad ? Spinner : null}
       />
     </View>
   );

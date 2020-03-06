@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Styles from './Styles/AccountScreenStyles';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';

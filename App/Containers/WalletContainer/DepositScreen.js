@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Styles from './Styles/DepositScreenStyles';
-import { View, Text, TouchableOpacity, FlatList } from 'react-native';
+import { View, Text, TouchableOpacity, FlatList, Clipboard } from 'react-native';
 import Utils from '../../Common/Utils';
 import moment from 'moment';
+import { Spinner } from 'native-base';
 import { connect } from 'react-redux';
 import apiService from '../../Services/API';
 import EmptyState from '../../Components/StateComponent/EmptyState';
@@ -10,9 +11,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
 
 let timerLoad = null;
-
 const DepositScreen = React.memo(props => {
-  const { navigation, user } = props;
+  const { user } = props;
   const [dataList, setDataList] = useState([]);
   const [page, setPage] = useState(0);
   const [isNext, setNext] = useState(true);
@@ -48,8 +48,8 @@ const DepositScreen = React.memo(props => {
     let newData = [...dataList];
     if (isRefresh) newData = [];
     const res = await apiService.getDepositeHistory(user.email, 10, page);
-    const { data, status, statusText } = res;
-    if (status === 200) {
+    const { data } = res;
+    if (!data.errors) {
       const { deposit_history } = data;
       if (deposit_history.length > 0) {
         newData = [...newData, ...deposit_history];
@@ -129,6 +129,7 @@ const DepositScreen = React.memo(props => {
         </View>
         <View style={Styles.walletCopy}>
           <TouchableOpacity
+            onPress={() => Clipboard.setString(user.address)}
             style={Styles.btnWalletCopy}>
             <Icon name='copy' color='gray' size={Utils.hp(25)} />
             <Text style={Styles.copyText}>Copy</Text>
@@ -153,6 +154,7 @@ const DepositScreen = React.memo(props => {
             onEndReached={() => isNext ? setPage(page + 1) : null}
             onRefresh={() => onRefresh()}
             ListEmptyComponent={isFirstLoad ? null : <EmptyState />}
+            ListFooterComponent={isLoad ? Spinner : null}
             onEndReachedThreshold={1}
           />
         </View>

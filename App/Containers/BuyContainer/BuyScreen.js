@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Styles from './Styles/BuyScreenStyles';
 import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 import Utils from '../../Common/Utils';
@@ -32,19 +32,22 @@ const BuyScreen = React.memo(props => {
   }
 
   async function onBuy() {
-    const signature = '';
-    const amount = 0;
+    const { email, balance } = user;
+    if (balance <= 0) {
+      setMessage('The balance is not enough to make a transaction')
+    }
     const _tickets = await processData();
-    console.log(_tickets)
-    // const response = await apiService.buyTicket(signature, user.email, amount, tickets);
-    // const { data, status, statusText } = response;
-    // if (status === 200) {
-    //   setMessage('Success')
-    // } else {
-    //   setMessage('Fail')
-    // }
-    // setShowAlert(true);
-    // setData({ list: [], timestamp: Date.now() })
+    const amount = _tickets.amount;
+    const tickets = _tickets.tickets;
+    const response = await apiService.buyTicket(email, amount, tickets);
+    const { data } = response;
+    if (!data.errors) {
+      setMessage('Transaction Success');
+    } else {
+      setMessage(data.errors.message)
+    }
+    setShowAlert(true);
+    setData({ list: [], timestamp: Date.now() })
   }
 
   function processData() {
@@ -62,7 +65,7 @@ const BuyScreen = React.memo(props => {
       if (item.power) amount += 1;
       tickets.push(ticket);
     }
-    return [tickets, amount];
+    return { tickets, amount };
   }
 
   function onAddNum(_data) {

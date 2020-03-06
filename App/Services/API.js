@@ -34,7 +34,7 @@ class API {
   async login(email, password) {
     const data = {
       email,
-      password_token: Utils.hashString({ email, password })
+      password_token: Utils.hashString({ email, password }, 'password_token')
     }
     console.log(data)
     const res = await POST(API_URL.LOGIN, {}, data);
@@ -46,7 +46,7 @@ class API {
       email,
       first_name: firstName,
       last_name: lastName,
-      password_token: Utils.hashString({ email, password }),
+      password_token: Utils.hashString({ email, password }, 'password_token'),
       referral_id: referralId
     }
     return await POST(API_URL.REGISTER, {}, data);
@@ -95,21 +95,25 @@ class API {
     return await GET(url, {}, {});
   }
 
-  async doWithdraw(signature, account, amount, address_to) {
+  async doWithdraw(account, amount, address_to) {
     const data = {
       account,
       amount,
       address_to
-    }
+    };
+    const signature = Utils.hashString(data, '2WYDN0b9igPimkW');
     return await POST(API_URL.WITHDRAW, { signature: signature }, data);
   }
 
-  async buyTicket(signature, user, amount, tickets) {
+  async buyTicket(user, amount, tickets) {
     const data = {
       user,
       amount,
       tickets
     }
+    const signature = Utils.hashString(data, '2WYDN0b9igPimkW');
+    console.log('data', data)
+    console.log('signature', signature)
     return await POST(API_URL.BUY, { signature: signature }, data);
   }
 }

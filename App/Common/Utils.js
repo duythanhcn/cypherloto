@@ -67,8 +67,8 @@ class Utils {
    * 
    * @param {object} params 
    */
-  hashString(params) {
-    const hmac = crypto.createHmac('sha256', 'password_token');
+  hashString(params, key) {
+    const hmac = crypto.createHmac('sha256', key);
     hmac.update(JSON.stringify(params));
     return hmac.digest('hex');
   }

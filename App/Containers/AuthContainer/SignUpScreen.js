@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Styles from './Styles/SignUpScreenStyles';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import logo from '../../Images/logo.png';
@@ -11,10 +11,6 @@ const SignUpScreen = React.memo(props => {
   const [errorMessage, setErrorMessage] = useState('');
   const [formData, setFormData] = useState({ email: '', password: '', confirmPassword: '', firstName: '', lastName: '' })
 
-  useEffect(() => {
-
-  }, [])
-
   async function signUp() {
     setErrorMessage('');
     const emailError = validation('email', formData.email);
@@ -25,11 +21,11 @@ const SignUpScreen = React.memo(props => {
       return;
     }
     const response = await apiService.register(formData.email, formData.firstName, formData.lastName, formData.password);
-    const { data, status, statusText } = response;
-    if (status === 200) {
+    const { data } = response;
+    if (!data.errors) {
       navigation.navigate('SignIn');
     } else {
-      setErrorMessage(statusText);
+      setErrorMessage(data.errors.message);
     }
   }
 

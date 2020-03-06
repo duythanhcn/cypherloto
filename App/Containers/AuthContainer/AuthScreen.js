@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Styles from './Styles/AuthScreenStyles';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View } from 'react-native';
 
 const AuthScreen = React.memo(props => {
   const { navigation } = props;

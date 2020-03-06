@@ -37,8 +37,8 @@ const HomeScreen = React.memo(props => {
 
   async function getBalance(email) {
     const res = await apiService.getUserBalance(email);
-    const { data, status, statusText } = res;
-    if (status === 200) {
+    const { data } = res;
+    if (!data.errors) {
       const { address, balance } = data;
       setUser({ address, balance })
       setBalance(balance);
@@ -47,8 +47,8 @@ const HomeScreen = React.memo(props => {
 
   async function getCurrentLot() {
     const res = await apiService.getCurrentLot();
-    const { data, status, statusText } = res;
-    if (status === 200) {
+    const { data } = res;
+    if (!data.errors) {
       const { next_lottery_date } = data;
       const diff = moment(next_lottery_date).diff(moment.now());
       setNextDraw(diff / 1000);
@@ -57,8 +57,8 @@ const HomeScreen = React.memo(props => {
 
   async function nextWinnerNumber() {
     const res = await apiService.getWinnerLot(10);
-    const { data, status, statusText } = res;
-    if (status === 200) {
+    const { data } = res;
+    if (!data.errors) {
       setDataWinner(data);
       setIndex(0);
     }
@@ -66,8 +66,8 @@ const HomeScreen = React.memo(props => {
 
   async function getCurLotReport() {
     const res = await apiService.getCurLotReport();
-    const { data, status, statusText } = res;
-    if (status === 200) {
+    const { data } = res;
+    if (!data.errors) {
       const { total_amount } = data.results;
       setESTValue(total_amount);
     }

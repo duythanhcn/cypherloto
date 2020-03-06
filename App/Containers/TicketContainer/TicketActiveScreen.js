@@ -4,10 +4,12 @@ import { View, Text, FlatList } from 'react-native';
 import apiService from '../../Services/API';
 import Utils from '../../Common/Utils';
 import { connect } from 'react-redux';
+import { Spinner } from 'native-base';
 import EmptyState from '../../Components/StateComponent/EmptyState';
 import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
 
+let timerLoad = null;
 const TicketActiveScreen = React.memo(props => {
   const { user } = props;
   const [dataList, setDataList] = useState([]);
@@ -15,6 +17,7 @@ const TicketActiveScreen = React.memo(props => {
   const [isNext, setNext] = useState(true);
   const [isRefresh, setRefresh] = useState(false);
   const [isFirstLoad, setFirstLoad] = useState(true);
+  const [isLoad, setLoad] = useState(false);
 
   useEffect(() => {
     getData();
@@ -29,14 +32,22 @@ const TicketActiveScreen = React.memo(props => {
       setPage(0)
     }
   }, [isRefresh])
-
   async function getData() {
+    if (isLoad) return;
+    clearTimeout(timerLoad);
+    timerLoad = setTimeout(() => {
+      setLoad(true);
+      getUserActiveTicket();
+    }, 500)
+  }
+
+  async function getUserActiveTicket() {
     if (!isNext) return;
     let newData = [...dataList];
     if (isRefresh) newData = [];
     const res = await apiService.getUserActiveTicket(user.email, 10, page);
-    const { data, status, statusText } = res;
-    if (status === 200) {
+    const { data } = res;
+    if (!data.errors) {
       const { tickets } = data;
       if (tickets.length > 0) {
         newData = [...newData, ...tickets];
@@ -47,6 +58,7 @@ const TicketActiveScreen = React.memo(props => {
     setDataList(newData);
     setRefresh(false);
     setFirstLoad(false);
+    setLoad(false);
   }
 
   function onRefresh() {
@@ -100,6 +112,7 @@ const TicketActiveScreen = React.memo(props => {
         onEndReached={() => isNext ? setPage(page + 1) : null}
         onRefresh={() => onRefresh()}
         ListEmptyComponent={isFirstLoad ? null : <EmptyState />}
+        ListFooterComponent={isLoad ? Spinner : null}
       />
     </View>
   );
