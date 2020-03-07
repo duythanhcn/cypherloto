@@ -61,13 +61,13 @@ const SignInScreen = React.memo(props => {
   }
 
   return (
-    <View style={[Styles.container]}>
+    <View style={Styles.container}>
       <KeyboardAvoidingView
-        style={{ flex: 1 }}
-        behavior='height'
-        keyboardVerticalOffset={0}>
-
-
+        style={Styles.innerView}
+        behavior={Platform.OS === 'ios' ? 'position' : null}
+        contentContainerStyle={Styles.innerView}
+        keyboardVerticalOffset={0}
+        enabled>
         <View style={Styles.headerView}>
           <Image style={Styles.iconView} source={logo} />
           <Text style={Styles.headerText}>CYPHER LOTTERY</Text>
@@ -75,7 +75,6 @@ const SignInScreen = React.memo(props => {
         <View style={Styles.titleView}>
           <Text style={Styles.titleText}>Sign In</Text>
         </View>
-
         <View style={Styles.contentView}>
           <InputComponent title='E-mail Address'
             placeHolder='E-mail'
@@ -100,7 +99,6 @@ const SignInScreen = React.memo(props => {
             <Text style={Styles.messageText}>{errorMessage}</Text>
           </View>
         </View>
-
         <View style={Styles.footerView}>
           <Text style={Styles.footerText}>Sign up for an account</Text>
           <TouchableOpacity
@@ -109,10 +107,6 @@ const SignInScreen = React.memo(props => {
             <Text style={Styles.redirectBtnText}>SIGN UP</Text>
           </TouchableOpacity>
         </View>
-
-
-
-
         <TwoFAModel
           isVisible={isShow2FA}
           onChange={(status) => onSignInSuccess(status)} />

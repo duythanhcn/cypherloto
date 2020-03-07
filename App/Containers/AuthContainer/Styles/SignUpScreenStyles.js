@@ -5,13 +5,16 @@ export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#13161D',
-    paddingTop: Utils.hp(60),
     paddingHorizontal: '5%'
   },
+  innerView: {
+    flex: 1,
+    backgroundColor: '#13161D'
+  },
   headerView: {
-    flex: 1.5,
+    flex: 2,
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   iconView: {
     width: Utils.hp(50),
@@ -24,14 +27,15 @@ export default StyleSheet.create({
     fontSize: Utils.hp(28)
   },
   titleView: {
-    flex: 1.5
+    flex: 1
   },
   titleText: {
     color: '#FFF',
     fontSize: Utils.hp(32)
   },
   contentView: {
-    flex: 6
+    flex: 6,
+    justifyContent: 'center'
   },
   actionView: {
     width: '100%',
@@ -53,23 +57,24 @@ export default StyleSheet.create({
   },
   footerView: {
     flex: 1,
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
     alignItems: 'center',
-    flexDirection: 'column',
-    marginBottom: '5%'
+    flexDirection: 'column'
   },
   footerText: {
     color: 'gray',
     fontSize: Utils.hp(14),
   },
   redirectBtn: {
-
+    height: Utils.hp(50),
+    width: Utils.hp(100),
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   redirectBtnText: {
     color: '#FFF',
     fontSize: Utils.hp(15),
-    fontWeight: 'bold',
-    marginTop: '3%'
+    fontWeight: 'bold'
   },
   inputInnerView: {
     width: '100%',

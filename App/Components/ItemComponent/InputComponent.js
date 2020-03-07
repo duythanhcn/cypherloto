@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Styles from './Styles/InputComponentStyles';
-import { View, Text, TextInput } from 'react-native';
+import { View, Text, TextInput, Keyboard } from 'react-native';
 import Utils from '../../Common/Utils';
 import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
@@ -27,6 +27,7 @@ const InputComponent = React.memo(props => {
           onChangeText={val => setValue(val)}
           numberOfLines={1}
           secureTextEntry={type === 'password'}
+          onSubmitEditing={()=>Keyboard.dismiss()}
         />
         <View style={Styles.inputIcon}>
           <Icon name={icon} color='#FFF' size={Utils.hp(20)} />
