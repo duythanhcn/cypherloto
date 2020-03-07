@@ -98,15 +98,15 @@ const TicketPlayedScreen = React.memo(props => {
         </View>
         <View style={Styles.secondView}>
           <View style={Styles.ballView}>
-            <BallComponent number={white1_ball} size={Utils.hp(35)} type={0} textSize={Utils.hp(16)} />
-            <BallComponent number={white2_ball} size={Utils.hp(35)} type={0} textSize={Utils.hp(16)} />
-            <BallComponent number={white3_ball} size={Utils.hp(35)} type={0} textSize={Utils.hp(16)} />
-            <BallComponent number={white4_ball} size={Utils.hp(35)} type={0} textSize={Utils.hp(16)} />
-            <BallComponent number={white5_ball} size={Utils.hp(35)} type={0} textSize={Utils.hp(16)} />
-            <BallComponent number={red_ball} size={Utils.hp(35)} type={1} textSize={Utils.hp(16)} />
+            <BallComponent number={white1_ball} size={Utils.hp(28)} type={0} textSize={Utils.hp(14)} />
+            <BallComponent number={white2_ball} size={Utils.hp(28)} type={0} textSize={Utils.hp(14)} />
+            <BallComponent number={white3_ball} size={Utils.hp(28)} type={0} textSize={Utils.hp(14)} />
+            <BallComponent number={white4_ball} size={Utils.hp(28)} type={0} textSize={Utils.hp(14)} />
+            <BallComponent number={white5_ball} size={Utils.hp(28)} type={0} textSize={Utils.hp(14)} />
+            <BallComponent number={red_ball} size={Utils.hp(28)} type={1} textSize={Utils.hp(14)} />
           </View>
           <View style={Styles.starView}>
-            {power === 1 ? <Icon name='star' color='#FFCF20' size={Utils.hp(20)} /> : null}
+            {power === 1 ? <Icon name='star' color='#FFCF20' size={Utils.hp(15)} /> : null}
           </View>
         </View>
         <View style={Styles.thirdView}>

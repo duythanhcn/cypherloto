@@ -55,7 +55,7 @@ const BallComponent = React.memo(props => {
         onPress={() => onChange()}>
         <View style={[Styles.ballView,
         type === 0 ? Styles.whiteBall : Styles.redBall, status ? Styles.active : null,
-        size ? { width: size * 0.9, height: size * 0.9 } : null]}>
+        size ? { width: size * 0.95, height: size * 0.95 } : null]}>
           <Text style={[Styles.numberText, textSize ? { fontSize: textSize } : null]}>{number}</Text>
         </View>
       </TouchableOpacity>

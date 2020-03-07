@@ -104,7 +104,7 @@ const DepositScreen = React.memo(props => {
         </View>
         <View style={[Styles.fourView, Styles.amountStyle]}>
           <Text style={Styles.itemText}>
-            <Icon name={statusGroup.icon} color={statusGroup.color} size={Utils.hp(25)} />
+            <Icon name={statusGroup.icon} color={statusGroup.color} size={Utils.hp(20)} />
           </Text>
         </View>
       </View>
@@ -124,7 +124,7 @@ const DepositScreen = React.memo(props => {
           <TouchableOpacity
             onPress={() => Clipboard.setString(user.address)}
             style={Styles.btnWalletCopy}>
-            <Icon name='copy' color='gray' size={Utils.hp(25)} />
+            <Icon name='copy' color='gray' size={Utils.hp(20)} />
             <Text style={Styles.copyText}>Copy</Text>
           </TouchableOpacity>
         </View>

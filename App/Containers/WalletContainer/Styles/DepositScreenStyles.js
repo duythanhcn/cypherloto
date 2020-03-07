@@ -11,14 +11,14 @@ export default StyleSheet.create({
   //walletView
   walletView: {
     width: '100%',
-    height: '40%',
+    height: '45%',
     backgroundColor: '#f2f2f2',
     alignContent: 'center',
     paddingHorizontal: '3%'
   },
   walletBox: {
     width: '100%',
-    height: Utils.hp(60),
+    height: Utils.hp(50),
     borderWidth: Utils.hp(1),
     borderColor: '#e6e6e6',
     justifyContent: 'center',
@@ -26,26 +26,26 @@ export default StyleSheet.create({
     alignSelf: 'center'
   },
   walletAdd: {
-    fontSize: Utils.hp(15)
+    fontSize: Utils.hp(13)
   },
   walletWarning: {
     paddingVertical: '2%',
-    fontSize: Utils.hp(16)
+    fontSize: Utils.hp(14)
   },
   walletWarningMess: {
     paddingHorizontal: '3%',
-    fontSize: Utils.hp(14)
+    fontSize: Utils.hp(13)
   },
   walletTitle: {
     paddingVertical: '2%',
-    fontSize: Utils.hp(16)
+    fontSize: Utils.hp(15)
   },
   walletCopy: {
-    paddingTop: '3%'
+    paddingTop: '5%'
   },
   btnWalletCopy: {
-    width: Utils.hp(110),
-    height: Utils.hp(40),
+    width: Utils.hp(100),
+    height: Utils.hp(30),
     borderColor: '#d9d9d9',
     borderWidth: Utils.hp(1),
     justifyContent: 'center',
@@ -61,20 +61,20 @@ export default StyleSheet.create({
   //historyView
   historyView: {
     width: '100%',
-    height: '60%',
+    height: '55%',
   },
   historyHeader: {
-    flex: 3,
+    flex: 4,
     paddingHorizontal: '3%'
   },
   historyList: {
-    flex: 7,
+    flex: 6,
     justifyContent: 'center',
     alignItems: 'center'
   },
   containerItem: {
     width: '100%',
-    height: Utils.hp(50),
+    height: Utils.hp(45),
     justifyContent: 'center',
     flexDirection: 'row',
     borderBottomColor: 'gray',
@@ -106,5 +106,8 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#f2f2f2'
+  },
+  itemText: {
+    fontSize: Utils.hp(13)
   },
 })

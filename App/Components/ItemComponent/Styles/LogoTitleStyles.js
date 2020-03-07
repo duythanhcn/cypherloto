@@ -8,7 +8,7 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   titleText: {
-    fontSize: Utils.hp(20),
+    fontSize: Utils.hp(24),
     fontWeight: 'bold'
   }
 })

@@ -17,21 +17,21 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   iconView: {
-    width: Utils.hp(50),
-    height: Utils.hp(50),
+    width: Utils.hp(45),
+    height: Utils.hp(45),
     resizeMode: 'contain'
   },
   headerText: {
     color: '#FFF',
     marginLeft: '5%',
-    fontSize: Utils.hp(28)
+    fontSize: Utils.hp(24)
   },
   titleView: {
     flex: 1
   },
   titleText: {
     color: '#FFF',
-    fontSize: Utils.hp(32)
+    fontSize: Utils.hp(20)
   },
   contentView: {
     flex: 6,
@@ -39,13 +39,13 @@ export default StyleSheet.create({
   },
   actionView: {
     width: '100%',
-    height: Utils.hp(100),
+    height: Utils.hp(90),
     justifyContent: 'center',
     alignItems: 'center'
   },
   buttonView: {
     backgroundColor: '#D91D5C',
-    height: Utils.hp(50),
+    height: Utils.hp(45),
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center'

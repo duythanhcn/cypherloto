@@ -15,7 +15,7 @@ export default StyleSheet.create({
   //header
   containerItem: {
     width: '100%',
-    height: Utils.hp(50),
+    height: Utils.hp(45),
     justifyContent: 'center',
     flexDirection: 'row',
     borderBottomColor: 'gray',
@@ -36,11 +36,11 @@ export default StyleSheet.create({
     backgroundColor: '#f2f2f2'
   },
   headerText: {
-    fontSize: Utils.hp(20),
+    fontSize: Utils.hp(16),
     fontWeight: 'bold'
   },
   itemText: {
-    fontSize: Utils.hp(18),
+    fontSize: Utils.hp(14),
     paddingHorizontal: '2%'
   },
   borderTop: {

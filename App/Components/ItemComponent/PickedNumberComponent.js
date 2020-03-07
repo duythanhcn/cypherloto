@@ -24,7 +24,7 @@ const PickedNumberComponent = React.memo(props => {
         {data.ball.map((item, index) => {
           let type = 0;
           if (index >= 5) type = 1;
-          return (<BallComponent number={item} key={index} type={type} />)
+          return (<BallComponent number={item} key={index} type={type} size={Utils.hp(45)}/>)
         })}
       </View>
       <View style={Styles.powerView}>

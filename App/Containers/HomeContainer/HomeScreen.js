@@ -135,7 +135,7 @@ const HomeScreen = React.memo(props => {
               <TouchableOpacity
                 disabled={index <= 0 ? true : false}
                 onPress={() => index > 0 ? setIndex(index - 1) : null}>
-                <Icon name='chevron-left' color='gray' size={Utils.hp(30)} />
+                <Icon name='chevron-left' color='gray' size={Utils.hp(25)} />
               </TouchableOpacity>
               : null}
           </View>
@@ -152,7 +152,7 @@ const HomeScreen = React.memo(props => {
               <TouchableOpacity
                 disabled={index >= 9 ? true : false}
                 onPress={() => index < 9 ? setIndex(index + 1) : null}>
-                <Icon name='chevron-right' color='gray' size={Utils.hp(30)} />
+                <Icon name='chevron-right' color='gray' size={Utils.hp(25)} />
               </TouchableOpacity>
               : null}
           </View>

@@ -30,7 +30,7 @@ const InputComponent = React.memo(props => {
           onSubmitEditing={()=>Keyboard.dismiss()}
         />
         <View style={Styles.inputIcon}>
-          <Icon name={icon} color='#FFF' size={Utils.hp(20)} />
+          <Icon name={icon} color='#FFF' size={Utils.hp(15)} />
         </View>
       </View>
     </View>

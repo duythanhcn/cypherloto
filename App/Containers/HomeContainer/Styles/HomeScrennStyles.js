@@ -13,7 +13,7 @@ export default StyleSheet.create({
     paddingHorizontal: '3%'
   },
   headerText: {
-    fontSize: Utils.hp(20),
+    fontSize: Utils.hp(16),
     color: 'gray'
   },
   //balance
@@ -49,11 +49,11 @@ export default StyleSheet.create({
     paddingVertical: '2%'
   },
   esttitle: {
-    fontSize: Utils.hp(16),
+    fontSize: Utils.hp(14),
     color: 'gray'
   },
   estValue: {
-    fontSize: Utils.hp(40),
+    fontSize: Utils.hp(30),
     color: '#000'
   },
   nextDrawView: {
@@ -69,8 +69,8 @@ export default StyleSheet.create({
     flexDirection: 'row'
   },
   hour: {
-    width: Utils.hp(70),
-    height: Utils.hp(70),
+    width: Utils.wp(60),
+    height: Utils.wp(60),
     backgroundColor: '#3F4172',
     borderRadius: Utils.hp(10),
     justifyContent: 'center',
@@ -78,11 +78,11 @@ export default StyleSheet.create({
   },
   hourText: {
     color: '#FFCF20',
-    fontSize: Utils.hp(30),
+    fontSize: Utils.hp(25),
     fontWeight: 'bold'
   },
   hourDesc: {
-    fontSize: Utils.hp(16),
+    fontSize: Utils.hp(14),
     color: '#000'
   },
   //winner
@@ -95,7 +95,7 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   winnerDate: {
-    fontSize: Utils.hp(22)
+    fontSize: Utils.hp(20)
   },
   winnerBody: {
     flex: 7,
@@ -110,10 +110,13 @@ export default StyleSheet.create({
     flexDirection: 'row'
   },
   nextNumber: {
-    flex: 1
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   prevNumber: {
     flex: 1,
-    alignItems: 'flex-end'
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 })

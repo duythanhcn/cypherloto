@@ -7,7 +7,7 @@ export default StyleSheet.create({
     backgroundColor: '#FFF'
   },
   actionView: {
-    flex: 1,
+    flex: 1.5,
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: '3%',
@@ -16,11 +16,11 @@ export default StyleSheet.create({
   cancelView: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'flex-start',
+    alignItems: 'flex-start'
   },
   actionText: {
     color: '#137EF4',
-    fontSize: Utils.hp(24)
+    fontSize: Utils.hp(20)
   },
   addView: {
     flex: 1,
@@ -44,11 +44,11 @@ export default StyleSheet.create({
   buyView: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'flex-end',
+    alignItems: 'flex-end'
   },
   ///
   bodyView: {
-    flex: 9
+    flex: 7.5
   },
   headerListView: {
     flex: 1,

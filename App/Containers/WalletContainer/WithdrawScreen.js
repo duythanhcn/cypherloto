@@ -168,7 +168,7 @@ const WithdrawScreen = React.memo(props => {
         </View>
         <View style={[Styles.fourView, Styles.amountStyle]}>
           <Text style={Styles.itemText}>
-            <Icon name={statusGroup.icon} color={statusGroup.color} size={Utils.hp(25)} />
+            <Icon name={statusGroup.icon} color={statusGroup.color} size={Utils.hp(20)} />
           </Text>
         </View>
       </View>

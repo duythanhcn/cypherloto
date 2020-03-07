@@ -3,13 +3,13 @@ import Utils from '../../../Common/Utils'
 
 export default StyleSheet.create({
   container: {
-    width: Utils.hp(55),
-    height: Utils.hp(55)
+    width: Utils.hp(50),
+    height: Utils.hp(50)
   },
   ballView: {
-    width: Utils.hp(50),
-    height: Utils.hp(50),
-    borderRadius: Utils.hp(50 / 2),
+    width: Utils.hp(45),
+    height: Utils.hp(45),
+    borderRadius: Utils.hp(45 / 2),
     justifyContent: 'center',
     alignItems: 'center'
   },

@@ -26,29 +26,27 @@ const SignInScreen = React.memo(props => {
   }, [isBtnDisable])
 
   async function signIn() {
-    navigation.navigate('App');
-    // setErrorMessage('');
-    // const emailError = validation('email', email);
-    // const passwordError = validation('password', password);
-    // if (emailError || passwordError) {
-    //   setErrorMessage(emailError || passwordError);
-    //   return;
-    // }
-    // const response = await apiService.login(email, password);
-    // const { data, status } = response;
-    // if (status === 200 && !data.errors) {
-    //   const { enable_2fa } = data.account_info;
-    //   const userInfo = { ...data.account_info, email, password };
-    //   setUser(userInfo);
-    //   if (enable_2fa) {
-    //     // setBtnDisable(true);
-    //     navigation.navigate('App');
-    //   } else {
-    //     navigation.navigate('App');
-    //   }
-    // } else {
-    //   setErrorMessage(data.errors.message);
-    // }
+    setErrorMessage('');
+    const emailError = validation('email', email);
+    const passwordError = validation('password', password);
+    if (emailError || passwordError) {
+      setErrorMessage(emailError || passwordError);
+      return;
+    }
+    const response = await apiService.login(email, password);
+    const { data, status } = response;
+    if (status === 200 && !data.errors) {
+      const { enable_2fa } = data.account_info;
+      const userInfo = { ...data.account_info, email, password };
+      setUser(userInfo);
+      if (enable_2fa) {
+        setBtnDisable(true);
+      } else {
+        navigation.navigate('App');
+      }
+    } else {
+      setErrorMessage(data.errors.message);
+    }
   }
 
   function onSignInSuccess(status) {
@@ -59,6 +57,7 @@ const SignInScreen = React.memo(props => {
         navigation.navigate('App');
       }, 200)
     }
+    setBtnDisable(false);
   }
 
   return (

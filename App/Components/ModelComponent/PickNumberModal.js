@@ -94,6 +94,9 @@ const PickNumberModal = React.memo(props => {
   }
 
   function onSave() {
+    if (data.whiteBall.length <= 0) {
+      return;
+    }
     const newData = { ball: [...data.whiteBall, ...data.redBall], power: data.power };
     props.onSave(newData);
     onCancle();

@@ -15,18 +15,18 @@ export default StyleSheet.create({
   //header
   containerItem: {
     width: '100%',
-    height: Utils.hp(50),
+    height: Utils.hp(45),
     justifyContent: 'center',
     flexDirection: 'row',
     borderBottomColor: 'gray',
     borderBottomWidth: Utils.hp(1)
   },
   headerText: {
-    fontSize: Utils.hp(18),
+    fontSize: Utils.hp(16),
     fontWeight: 'bold'
   },
   itemText: {
-    fontSize: Utils.hp(18),
+    fontSize: Utils.hp(14),
     paddingHorizontal: '2%'
   },
   borderTop: {
@@ -48,7 +48,7 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   secondView: {
-    width: '55%',
+    width: '53%',
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
@@ -56,13 +56,13 @@ export default StyleSheet.create({
     backgroundColor: '#f2f2f2'
   },
   thirdView: {
-    width: '13%',
+    width: '14%',
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center'
   },
   fourView: {
-    width: '15%',
+    width: '16%',
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
@@ -78,7 +78,7 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   starView: {
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     flex: 1,
     alignItems: 'flex-start'
   }

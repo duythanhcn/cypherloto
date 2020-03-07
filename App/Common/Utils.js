@@ -3,8 +3,8 @@ import { widthPercentageToDP as _wp, heightPercentageToDP as _hp } from 'react-n
 import crypto from 'crypto';
 
 const { width, height } = Dimensions.get('screen')
-const wBase = 375 // iPhone X
-const hBase = 812 // iPhone X
+const wBase = width // iPhone X
+const hBase = height // iPhone X
 
 class Utils {
   /**

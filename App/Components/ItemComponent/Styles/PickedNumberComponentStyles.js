@@ -6,7 +6,7 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    height: Utils.hp(70),
+    height: Utils.hp(55),
     flexDirection: 'row'
   },
   innerView: {
@@ -26,9 +26,9 @@ export default StyleSheet.create({
     flex: 1
   },
   btnRemove: {
-    width: Utils.hp(40),
-    height: Utils.hp(40),
-    borderRadius: Utils.hp(40 / 2),
+    width: Utils.hp(20),
+    height: Utils.hp(20),
+    borderRadius: Utils.hp(20 / 2),
     backgroundColor: '#FFF',
     borderColor: '#137EF4',
     justifyContent: 'center',

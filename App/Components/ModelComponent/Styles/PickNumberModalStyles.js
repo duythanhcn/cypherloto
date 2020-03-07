@@ -44,29 +44,29 @@ export default StyleSheet.create({
     paddingTop: '3%'
   },
   btnAction: {
-    paddingHorizontal: '5%',
+    flex:1,
     justifyContent: 'center',
     alignItems: 'center'
   },
   actionText: {
-    fontSize: Utils.hp(22),
+    fontSize: Utils.hp(16),
     color: '#137EF4'
   },
   btnSave: {
-    width: Utils.hp(130),
-    height: Utils.hp(40),
-    borderRadius: Utils.hp(40 / 2),
+    width: Utils.hp(110),
+    height: Utils.hp(30),
+    borderRadius: Utils.hp(30 / 2),
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#137EF4'
   },
   saveText: {
-    fontSize: Utils.hp(22),
+    fontSize: Utils.hp(20),
     color: '#FFF'
   },
   headerPicker: {
     width: '100%',
-    height: Utils.hp(70),
+    height: Utils.hp(50),
     backgroundColor: '#F0F1F5',
     justifyContent: 'center',
     paddingHorizontal: '3%'
@@ -93,7 +93,7 @@ export default StyleSheet.create({
     alignContent: 'center'
   },
   headerText: {
-    fontSize: Utils.hp(22),
+    fontSize: Utils.hp(20),
     color: 'gray'
   }
 })

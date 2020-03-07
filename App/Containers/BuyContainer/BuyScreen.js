@@ -88,7 +88,7 @@ const BuyScreen = React.memo(props => {
           <TouchableOpacity
             onPress={() => setShowPicker(true)}
             style={Styles.btnAdd}>
-            <Icon name='plus' style={Styles.addIcon} size={Utils.hp(40)} />
+            <Icon name='plus' style={Styles.addIcon} size={Utils.hp(30)} />
           </TouchableOpacity>
         </View>
         <View style={Styles.buyView}>
