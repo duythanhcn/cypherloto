@@ -1,29 +1,34 @@
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React from 'react';
 import Styles from './Styles/SlideMenuStyles';
-import { NavigationActions } from 'react-navigation';
-import { ScrollView, Text, View } from 'react-native';
-import { StackNavigator } from 'react-navigation';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
 
-class SideMenu extends Component {
-  navigateToScreen = (route) => () => {
-    const navigateAction = NavigationActions.navigate({
-      routeName: route
-    });
-    this.props.navigation.dispatch(navigateAction);
+const SideMenu = React.memo(props => {
+  const { clearUser, navigation } = props;
+
+  function signOut() {
+    clearUser({});
+    navigation.navigate('SignIn');
   }
 
-  render() {
-    return (
-      <View style={Styles.container}>
-
+  return (
+    <View style={Styles.container}>
+      <View style={Styles.headerView}>
+        <TouchableOpacity
+          onPress={() => signOut()}>
+          <Text style={Styles.headerText}>Sign Out</Text>
+        </TouchableOpacity>
       </View>
-    );
-  }
+    </View>)
+})
+
+
+const mapStateToProps = state => {
+  return { user: state.user }
 }
 
-SideMenu.propTypes = {
-  navigation: PropTypes.object
-};
+const mapDispatchToProps = dispatch => {
+  return { clearUser: (data) => dispatch({ data, type: 'CLEAR_USER' }) }
+}
 
-export default SideMenu;
+export default connect(mapStateToProps, mapDispatchToProps)(SideMenu);

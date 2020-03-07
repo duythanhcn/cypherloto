@@ -3,8 +3,20 @@ import Utils from '../../../Common/Utils'
 
 export default StyleSheet.create({
   container: {
-    paddingTop: 20,
     flex: 1,
-    backgroundColor: 'red'
+    backgroundColor: '#202832'
+  },
+  headerView: {
+    width: '100%',
+    height: Utils.hp(78),
+    justifyContent: 'center',
+    borderBottomColor: 'gray',
+    borderBottomWidth: Utils.hp(1),
+    paddingHorizontal: '5%'
+  },
+  headerText: {
+    fontSize: Utils.hp(20),
+    color: '#FFF',
+    fontWeight: 'bold'
   }
 })

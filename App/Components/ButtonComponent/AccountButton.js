@@ -1,21 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Styles from './Styles/AccountButtonStyles';
-import { View, Image, TouchableOpacity } from 'react-native';
-import accountIcon from '../../Images/Icons/account-icon.png';
+import { TouchableOpacity } from 'react-native';
+import { DrawerActions } from 'react-navigation';
+import Utils from '../../Common/Utils';
+import Icon from 'react-native-vector-icons/FontAwesome';
+Icon.loadFont();
 
 const AccountButton = React.memo(props => {
   const { navigation } = props;
   return (
-    <View style={Styles.container}>
-      <TouchableOpacity
-        style={Styles.actionView}
-        onPress={() => {
-          navigation.navigate('Account')
-        }}>
-        <Image style={Styles.icon} source={accountIcon} resizeMode='contain' />
-      </TouchableOpacity>
-    </View>);
+    <TouchableOpacity
+      style={Styles.actionView}
+      onPress={() => {
+        navigation.dispatch(DrawerActions.openDrawer());
+      }}>
+      <Icon name={'user-circle'} color='gray' size={Utils.hp(30)} />
+    </TouchableOpacity>
+  );
 })
 
 AccountButton.propTypes = {

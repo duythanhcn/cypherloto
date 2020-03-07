@@ -1,44 +1,17 @@
-import React, { Component } from 'react';
-import { Dimensions } from 'react-native';
-import { HeaderBackButton, createDrawerNavigator, createStackNavigator } from 'react-navigation';
+import React from 'react';
+import { createDrawerNavigator } from 'react-navigation';
 import SideMenu from '../Containers/DrawMenuContainer/SlideMenu';
-import { Button } from 'native-base';
-import LogoTitle from '../Components/ItemComponent/LogoTitle';
-import InformationScreen from '../Containers/HiddenContainer/InformationScreen';
-import AccountScreen from '../Containers/HiddenContainer/AccountScreen';
-
-
-const DrawMenu = createStackNavigator(
-  {
-    Account: {
-      screen: AccountScreen
-    },
-    Info: {
-      screen: InformationScreen
-    }
-  },
-  {
-    defaultNavigationOptions: ({ navigation }) => ({
-      headerTitle: () => <LogoTitle />,
-      headerBackTitle: null,
-      gesturesEnabled: false,
-      headerLeft: HeaderBackButton,
-      headerRight: (
-        <Button transparent onPress={() => { }} />
-      )
-    })
-  })
+import TabNavigation from './TabNavigation'
 
 const DrawMenuStack = createDrawerNavigator(
   {
-    Menu: SideMenu
+    TabNavigation
   },
   {
-    hideStatusBar: true,
-    drawerBackgroundColor: 'red',
-    drawerWidth: 250
+    contentComponent: props => <SideMenu {...props} />,
+    hideStatusBar: false,
+    overlayColor: 'rgba(242, 242, 242, .2)'
   }
 );
-
 
 export default DrawMenuStack;

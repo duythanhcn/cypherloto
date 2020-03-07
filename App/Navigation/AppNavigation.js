@@ -1,6 +1,5 @@
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import AuthStack from './AuthStack';
-import TabNavigation from './TabNavigation';
 import DrawMenuStack from './DrawMenuStack';
 
 const PrimaryNavigation = createSwitchNavigator(
@@ -9,16 +8,15 @@ const PrimaryNavigation = createSwitchNavigator(
       screen: AuthStack
     },
     App: {
-      screen: TabNavigation
-    },
-    // DrawMenu: {
-    //   screen: DrawMenuStack
-    // }
+      screen: DrawMenuStack
+    }
   },
   {
     initialRouteName: 'Auth',
+    headerMode: 'screen',
     defaultNavigationOptions: {
       headerBackTitle: null,
+      cardStyle: { backgroundColor: '#202832' },
     }
   })
 

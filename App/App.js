@@ -8,7 +8,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <SafeAreaView style={{ flex: 1 }}>
-        <StatusBar backgroundColor='white' barStyle='dark-content' />
+        <StatusBar backgroundColor='#202832' barStyle='dark-content' />
         <AppNavigation />
       </SafeAreaView>
     </Provider>

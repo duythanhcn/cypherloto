@@ -5,9 +5,6 @@ import SignUpScreen from '../Containers/AuthContainer/SignUpScreen';
 
 const AuthStack = createStackNavigator(
   {
-    // Auth: {
-    //   screen: AuthScreen
-    // },
     SignIn: {
       screen: SignInScreen
     },

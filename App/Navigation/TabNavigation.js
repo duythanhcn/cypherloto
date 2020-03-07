@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from 'react-navigation'
 import { BottomTabBar } from 'react-navigation-tabs'
-import { View, Image } from 'react-native';
+import { View } from 'react-native';
 import HomeStack from './HomeStack';
 import BuyStack from './BuyStack';
 import TicketStack from './TicketStack';
@@ -53,7 +53,7 @@ const TabNavigation = createBottomTabNavigator(
         {...props}
         getButtonComponent={({ route }) => {
           // Custom TabBar to hide TabItem
-          if (route.key === 'HiddenTab' || route.key === 'DrawMenu') {
+          if (route.key === 'HiddenTab') {
             return () => <View />
           } else {
             return null
