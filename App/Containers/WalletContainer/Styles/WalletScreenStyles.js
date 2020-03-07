@@ -15,10 +15,10 @@ export default StyleSheet.create({
   },
   tabText: {
     color: '#197BFF',
-    fontSize: Utils.sp(24)
+    fontSize: Utils.hp(24)
   },
   tabActiveText: {
     color: '#FFF',
-    fontSize: Utils.sp(24)
+    fontSize: Utils.hp(24)
   }
 })

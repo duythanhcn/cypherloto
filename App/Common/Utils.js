@@ -44,14 +44,6 @@ class Utils {
     return _hp(ratio)
   }
 
-  sp(value) {
-    if (Platform.OS === 'ios') {
-      return this.hp(value);
-    } else {
-      return this.wp(value);
-    }
-  }
-
   /**
    * compareABS
    * absolute compare data

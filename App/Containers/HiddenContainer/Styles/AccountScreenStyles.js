@@ -7,13 +7,13 @@ export default StyleSheet.create({
   },
   btnView: {
     width: '100%',
-    height: Utils.sp(50),
+    height: Utils.hp(50),
     justifyContent: 'center',
     paddingHorizontal: '5%',
     backgroundColor: '#202832'
   },
   btnText: {
-    fontSize: Utils.sp(18),
+    fontSize: Utils.hp(18),
     color: '#FFF'
   }
 })

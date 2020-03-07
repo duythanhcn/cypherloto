@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Styles from './Styles/TwoFAModelStyles';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
-import PropTypes from 'prop-types';
 import Dialog from 'react-native-popup-dialog';
 import apiService from '../../Services/API';
 import { connect } from 'react-redux';
@@ -34,7 +33,8 @@ const TwoFAModel = React.memo(props => {
     const response = await apiService.verifyQR(user.email, user.password, token);
     const { data, status } = response;
     if (status === 200 && !data.errors) {
-      onChange(token)
+      setErrorMessage('');
+      onChange(true);
     } else {
       setErrorMessage(data.errors.message);
     }
@@ -46,7 +46,10 @@ const TwoFAModel = React.memo(props => {
       width={0.9}
       height={0.4}
       onHardwareBackPress={() => false}
-      onTouchOutside={() => false}
+      onTouchOutside={() => {
+        setErrorMessage('');
+        onChange(false);
+      }}
       dialogStyle={[Styles.dialogStyle, isKeyboard ? Styles.marginFocus : null]}>
       <View style={Styles.container}>
         <View style={Styles.titleView}>

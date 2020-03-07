@@ -9,17 +9,17 @@ export default StyleSheet.create({
   },
   seperatorView: {
     width: '100%',
-    height: Utils.sp(1),
+    height: Utils.hp(1),
     backgroundColor: 'gray'
   },
   //header
   containerItem: {
     width: '100%',
-    height: Utils.sp(50),
+    height: Utils.hp(50),
     justifyContent: 'center',
     flexDirection: 'row',
     borderBottomColor: 'gray',
-    borderBottomWidth: Utils.sp(1)
+    borderBottomWidth: Utils.hp(1)
 
   },
   leftView: {
@@ -37,16 +37,16 @@ export default StyleSheet.create({
     backgroundColor: '#f2f2f2'
   },
   headerText: {
-    fontSize: Utils.sp(20),
+    fontSize: Utils.hp(20),
     fontWeight: 'bold'
   },
   itemText: {
-    fontSize: Utils.sp(18),
+    fontSize: Utils.hp(18),
     paddingHorizontal: '2%'
   },
   borderTop: {
     borderTopColor: 'gray',
-    borderTopWidth: Utils.sp(1)
+    borderTopWidth: Utils.hp(1)
   },
   headerStyles: {
     justifyContent: 'center',

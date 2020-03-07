@@ -124,6 +124,15 @@ class API {
     const res = await POST(API_URL.VERIFY_QR, {}, data);
     return res;
   }
+
+  async verifyAddress(hash) {
+    const data = {
+      hash,
+      currency: 'USDT'
+    }
+    const res = await POST('http://95.216.25.89:9001/validate_address', {}, data);
+    return res;
+  }
 }
 
 export default new API()

@@ -10,7 +10,7 @@
     "ios": "react-native run-ios --simulator='Iphone 8'",
     "ios-device": "react-native run-ios --device",
     "android": "react-native run-android",
-    "build-android": "cd android && ./gradlew bundleRelease"
+    "build-android": "npx jetify && cd android && ./gradlew -v && ./gradlew assembleRelease"
   },
   "dependencies": {
     "@tradle/react-native-http": "^2.0.1",
@@ -45,7 +45,7 @@
     "react-native-randombytes": "^3.5.3",
     "react-native-responsive-screen": "^1.4.0",
     "react-native-tcp": "^3.3.2",
-    "react-native-udp": "^2.7.0",
+    "react-native-udp": "^3.0.0",
     "react-native-vector-icons": "^6.6.0",
     "react-navigation": "3.11.1",
     "react-navigation-redux-helpers": "^2.0.6",

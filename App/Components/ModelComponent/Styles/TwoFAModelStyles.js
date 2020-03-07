@@ -23,7 +23,7 @@ export default StyleSheet.create({
   },
   titleText: {
     fontWeight: 'bold',
-    fontSize: Utils.wp(20),
+    fontSize: Utils.hp(20),
     color: '#FFF'
   },
   inputView: {
@@ -38,7 +38,7 @@ export default StyleSheet.create({
     borderColor: 'gray',
     borderWidth: 1,
     textAlign: 'center',
-    fontSize: Utils.sp(20)
+    fontSize: Utils.hp(20)
   },
   actionView: {
     width: '100%',
@@ -58,7 +58,7 @@ export default StyleSheet.create({
   },
   btnText: {
     fontWeight: 'bold',
-    fontSize: Utils.wp(20),
+    fontSize: Utils.hp(20),
     color: '#FFF'
   },
   marginFocus: {

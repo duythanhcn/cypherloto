@@ -13,7 +13,7 @@ export default StyleSheet.create({
     paddingHorizontal: '3%'
   },
   headerText: {
-    fontSize: Utils.sp(20),
+    fontSize: Utils.hp(20),
     color: 'gray'
   },
   //balance
@@ -23,8 +23,8 @@ export default StyleSheet.create({
     justifyContent: 'center'
   },
   iconView: {
-    width: Utils.sp(40),
-    height: Utils.sp(40),
+    width: Utils.hp(40),
+    height: Utils.hp(40),
     paddingRight: '1%'
   },
   img: {
@@ -32,7 +32,7 @@ export default StyleSheet.create({
     height: '100%'
   },
   cointText: {
-    fontSize: Utils.sp(40),
+    fontSize: Utils.hp(40),
     color: '#424169'
   },
   coinView: {
@@ -49,11 +49,11 @@ export default StyleSheet.create({
     paddingVertical: '2%'
   },
   esttitle: {
-    fontSize: Utils.sp(16),
+    fontSize: Utils.hp(16),
     color: 'gray'
   },
   estValue: {
-    fontSize: Utils.sp(40),
+    fontSize: Utils.hp(40),
     color: '#000'
   },
   nextDrawView: {
@@ -69,20 +69,20 @@ export default StyleSheet.create({
     flexDirection: 'row'
   },
   hour: {
-    width: Utils.sp(70),
-    height: Utils.sp(70),
+    width: Utils.hp(70),
+    height: Utils.hp(70),
     backgroundColor: '#3F4172',
-    borderRadius: Utils.sp(10),
+    borderRadius: Utils.hp(10),
     justifyContent: 'center',
     alignItems: 'center'
   },
   hourText: {
     color: '#FFCF20',
-    fontSize: Utils.sp(30),
+    fontSize: Utils.hp(30),
     fontWeight: 'bold'
   },
   hourDesc: {
-    fontSize: Utils.sp(16),
+    fontSize: Utils.hp(16),
     color: '#000'
   },
   //winner
@@ -95,7 +95,7 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   winnerDate: {
-    fontSize: Utils.sp(22)
+    fontSize: Utils.hp(22)
   },
   winnerBody: {
     flex: 7,

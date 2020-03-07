@@ -83,6 +83,46 @@ const PickNumberModal = React.memo(props => {
     onCancle();
   }
 
+  function renderNumPad2() {
+    return (
+      <View style={Styles.pickerLayer2}>
+        <View style={Styles.headerPicker}>
+          <Text style={Styles.headerText}>Pick 1 number from 1 to 26</Text>
+        </View>
+        <View style={Styles.numberView}>
+          <FlatList
+            contentContainerStyle={Styles.lisContentStyle}
+            style={Styles.listView2}
+            data={_redBall}
+            numColumns={6}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item, index }) => <BallComponent data={data.redBall} total={data.redBall.length} number={index + 1} type={1} key={index} onSelect={(val, status) => setRedBall(val, status)} />}
+          />
+        </View>
+      </View>
+    )
+  }
+
+  function renderNumPad1() {
+    return (
+      <View style={Styles.pickerLayer1}>
+        <View style={Styles.headerPicker}>
+          <Text style={Styles.headerText}>Pick 5 number from 1 to 69</Text>
+        </View>
+        <View style={Styles.numberView}>
+          <FlatList
+            contentContainerStyle={Styles.lisContentStyle}
+            style={Styles.listView1}
+            data={_whiteBall}
+            numColumns={6}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item, index }) => <BallComponent data={data.whiteBall} total={data.whiteBall.length} number={index + 1} type={0} key={index} onSelect={(val, status) => setWhiteBall(val, status)} />}
+          />
+        </View>
+      </View>
+    )
+  }
+  const t = Array(5).fill(1)
   return (
     <Dialog
       visible={isVisible}
@@ -121,34 +161,8 @@ const PickNumberModal = React.memo(props => {
         </View>
         <View style={Styles.pickView}>
           <ScrollView style={Styles.scrollView}>
-            <View style={Styles.pickerLayer}>
-              <View style={Styles.headerPicker}>
-                <Text style={Styles.headerText}>Pick 5 number from 1 to 69</Text>
-              </View>
-              <View style={Styles.numberView}>
-                <FlatList
-                  style={Styles.listView1}
-                  data={_whiteBall}
-                  numColumns={6}
-                  keyExtractor={(item, index) => index.toString()}
-                  renderItem={({ item, index }) => <BallComponent data={data.whiteBall} total={data.whiteBall.length} number={index + 1} type={0} key={index} onSelect={(val, status) => setWhiteBall(val, status)} />}
-                />
-              </View>
-              <View style={Styles.pickerLayer}>
-                <View style={Styles.headerPicker}>
-                  <Text style={Styles.headerText}>Pick 1 number from 1 to 26</Text>
-                </View>
-                <View style={Styles.numberView}>
-                  <FlatList
-                    style={Styles.listView2}
-                    data={_redBall}
-                    numColumns={6}
-                    keyExtractor={(item, index) => index.toString()}
-                    renderItem={({ item, index }) => <BallComponent data={data.redBall} total={data.redBall.length} number={index + 1} type={1} key={index} onSelect={(val, status) => setRedBall(val, status)} />}
-                  />
-                </View>
-              </View>
-            </View>
+            {renderNumPad1()}
+            {renderNumPad2()}
           </ScrollView>
         </View>
         <View style={Styles.saveView}>

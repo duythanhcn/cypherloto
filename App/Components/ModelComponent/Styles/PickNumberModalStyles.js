@@ -22,7 +22,8 @@ export default StyleSheet.create({
     width: '100%',
     height: '70%',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    flexDirection: 'column'
   },
   pickedNumber: {
     flexDirection: 'row'
@@ -48,53 +49,52 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   actionText: {
-    fontSize: Utils.sp(22),
+    fontSize: Utils.hp(22),
     color: '#137EF4'
   },
   btnSave: {
-    width: Utils.sp(130),
-    height: Utils.sp(40),
-    borderRadius: Utils.sp(40 / 2),
+    width: Utils.hp(130),
+    height: Utils.hp(40),
+    borderRadius: Utils.hp(40 / 2),
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#137EF4'
   },
   saveText: {
-    fontSize: Utils.sp(22),
+    fontSize: Utils.hp(22),
     color: '#FFF'
   },
   headerPicker: {
     width: '100%',
-    height: Utils.sp(70),
+    height: Utils.hp(70),
     backgroundColor: '#F0F1F5',
     justifyContent: 'center',
     paddingHorizontal: '3%'
   },
-  pickerLayer: {
-    width: '100%',
-    alignItems: 'center'
+  pickerLayer1: {
+    height: Utils.hp(750),
+    width: '100%'
+  },
+  pickerLayer2: {
+    height: Utils.hp(365),
+    width: '100%'
   },
   numberView: {
-    flexDirection: 'row',
     alignItems: 'center',
-    width: '100%',
-    width: Utils.sp(380)
+    alignSelf: 'center',
+    alignContent: 'center',
+    justifyContent: 'center',
+    marginVertical: Utils.hp(10)
   },
   scrollView: {
     width: '100%'
   },
-  listView1: {
-    height: Utils.sp(700),
-    marginVertical: '2%',
-    alignSelf: 'center'
-  },
-  listView2: {
-    width: '100%',
-    height: Utils.sp(250),
-    marginVertical: '2%'
+  lisContentStyle: {
+    justifyContent: 'center',
+    alignContent: 'center'
   },
   headerText: {
-    fontSize: Utils.sp(22),
+    fontSize: Utils.hp(22),
     color: 'gray'
   }
 })

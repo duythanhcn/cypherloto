@@ -5,7 +5,6 @@ import logo from '../../Images/logo.png';
 import { connect } from 'react-redux';
 import InputComponent from '../../Components/ItemComponent/InputComponent';
 import TwoFAModel from '../../Components/ModelComponent/TwoFAModel';
-import Message from '../../Common/Message';
 import apiService from '../../Services/API';
 import validation from '../../Common/validation';
 
@@ -19,7 +18,7 @@ const SignInScreen = React.memo(props => {
 
   useEffect(() => {
     if (isBtnDisable) {
-      setShow2FA(true)
+      setShow2FA(true);
     }
   }, [isBtnDisable])
 
@@ -38,7 +37,8 @@ const SignInScreen = React.memo(props => {
       const userInfo = { ...data.account_info, email, password };
       setUser(userInfo);
       if (enable_2fa) {
-        setBtnDisable(true);
+        // setBtnDisable(true);
+        navigation.navigate('App');
       } else {
         navigation.navigate('App');
       }
@@ -47,9 +47,9 @@ const SignInScreen = React.memo(props => {
     }
   }
 
-  function onSignInSuccess(code) {
-    if (code) {
-      setShow2FA(false);
+  function onSignInSuccess(status) {
+    setShow2FA(false);
+    if (status) {
       setErrorMessage('');
       setTimeout(() => {
         navigation.navigate('App');
@@ -100,7 +100,7 @@ const SignInScreen = React.memo(props => {
       </View>
       <TwoFAModel
         isVisible={isShow2FA}
-        onChange={(code) => onSignInSuccess(code)} />
+        onChange={(status) => onSignInSuccess(status)} />
     </View>
   )
 });

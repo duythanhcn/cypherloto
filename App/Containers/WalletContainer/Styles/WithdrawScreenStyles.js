@@ -24,28 +24,28 @@ export default StyleSheet.create({
     flexDirection: 'column'
   },
   walletAdd: {
-    fontSize: Utils.sp(15)
+    fontSize: Utils.hp(15)
   },
   walletWarning: {
     paddingVertical: '2%',
-    fontSize: Utils.sp(16)
+    fontSize: Utils.hp(16)
   },
   walletWarningMess: {
     paddingHorizontal: '3%',
-    fontSize: Utils.sp(14)
+    fontSize: Utils.hp(14)
   },
   walletTitle: {
     paddingVertical: '2%',
-    fontSize: Utils.sp(16)
+    fontSize: Utils.hp(16)
   },
   walletCopy: {
     paddingTop: '3%'
   },
   btnWalletCopy: {
-    width: Utils.sp(110),
-    height: Utils.sp(40),
+    width: Utils.hp(110),
+    height: Utils.hp(40),
     borderColor: '#d9d9d9',
-    borderWidth: Utils.sp(1),
+    borderWidth: Utils.hp(1),
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'flex-end',
@@ -53,7 +53,7 @@ export default StyleSheet.create({
     backgroundColor: '#e6e6e6'
   },
   copyText: {
-    fontSize: Utils.sp(14),
+    fontSize: Utils.hp(14),
     paddingLeft: '5%'
   },
   //historyView
@@ -72,11 +72,11 @@ export default StyleSheet.create({
   },
   containerItem: {
     width: '100%',
-    height: Utils.sp(50),
+    height: Utils.hp(50),
     justifyContent: 'center',
     flexDirection: 'row',
     borderBottomColor: 'gray',
-    borderBottomWidth: Utils.sp(1)
+    borderBottomWidth: Utils.hp(1)
   },
   firstView: {
     width: '20%',
@@ -108,8 +108,8 @@ export default StyleSheet.create({
   //input
   inputView: {
     width: '100%',
-    height: Utils.sp(50),
-    borderWidth: Utils.sp(1),
+    height: Utils.hp(50),
+    borderWidth: Utils.hp(1),
     borderColor: 'gray',
     justifyContent: 'center',
     alignItems: 'center'
@@ -122,18 +122,18 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
-    height: Utils.sp(50),
+    height: Utils.hp(50),
   },
   btnSubmit: {
     backgroundColor: 'rebeccapurple',
-    width: Utils.sp(120),
-    height: Utils.sp(40),
+    width: Utils.hp(120),
+    height: Utils.hp(40),
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: Utils.sp(10)
+    borderRadius: Utils.hp(10)
   },
   submitText: {
     color: '#FFF',
-    fontSize: Utils.sp(18)
+    fontSize: Utils.hp(18)
   }
 })

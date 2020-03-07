@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import validation from '../../Common/validation';
 import EmptyState from '../../Components/StateComponent/EmptyState';
+import TwoFAModel from '../../Components/ModelComponent/TwoFAModel';
 import AlertModal from '../../Components/ModelComponent/AlertModal';
 import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
@@ -25,6 +26,7 @@ const WithdrawScreen = React.memo(props => {
   const [isLoad, setLoad] = useState(false);
   const [isShowAlert, setShowAlert] = useState(false)
   const [message, setMessage] = useState('');
+  const [isShow2FA, setShow2FA] = useState(false);
   const actions = [
     { btnText: 'OK', btnAction: () => { setShowAlert(false), setMessage('') } }
   ]
@@ -77,17 +79,41 @@ const WithdrawScreen = React.memo(props => {
     setNext(true);
   }
 
-  async function doWithDraw() {
-    const amountError = validation('amount', amount);
-    const addressError = validation('address', address);
-    if (amountError || addressError) {
-      setMessage(amountError || addressError);
-      setShowAlert(true);
-      return;
+  async function validateWithdraw() {
+    console.log(user)
+    // const amountError = validation('amount', amount);
+    // let addressError = validation('address', address);
+    // if (amountError || addressError) {
+    //   setMessage(amountError || addressError);
+    //   setShowAlert(true);
+    //   return;
+    // }
+    // //check address
+    // addressError = await checkAddress(address);
+    // if (addressError) {
+    //   setMessage(addressError);
+    //   setShowAlert(true);
+    //   return;
+    // }
+    // verify 2FA
+    if (user.enable_2fa) {
+      setShow2FA(true);
+    } else {
+      doWithDraw();
     }
+  }
+
+  async function onValid2FA(status) {
+    setShow2FA(false);
+    if (status) {
+      doWithDraw();
+    }
+  }
+
+  async function doWithDraw() {
     const response = await apiService.doWithdraw(user.email, amount, address);
-    const { data } = response;
-    if (!data.errors) {
+    const { data, status } = response;
+    if (status === 200 && !data.errors) {
       setMessage('Withdraw Success');
     } else {
       setMessage(data.errors.message);
@@ -95,6 +121,16 @@ const WithdrawScreen = React.memo(props => {
     setShowAlert(true);
     setAddress('');
     setAmount(0);
+  }
+
+  async function checkAddress(address) {
+    const response = await apiService.doWithdraw(address);
+    const { data, status } = response;
+    if (status === 200 && !data.errors) {
+      return null;
+    } else {
+      return data.errors.message;
+    }
   }
 
   function renderHeader() {
@@ -172,7 +208,7 @@ const WithdrawScreen = React.memo(props => {
           </View>
           <View style={Styles.submitView}>
             <TouchableOpacity
-              onPress={() => doWithDraw()}
+              onPress={() => validateWithdraw()}
               style={Styles.btnSubmit}>
               <Text style={Styles.submitText}>Submit</Text>
             </TouchableOpacity>
@@ -208,6 +244,9 @@ const WithdrawScreen = React.memo(props => {
         message={message}
         title='Inform'
         actions={actions} />
+      <TwoFAModel
+        isVisible={isShow2FA}
+        onChange={(status) => onValid2FA(status)} />
     </View>
   )
 });

@@ -65,11 +65,11 @@ const HomeScreen = React.memo(props => {
   }
 
   async function getCurLotReport() {
-    const res = await apiService.getCurLotReport();
+    const res = await apiService.getUserBalance('poolprize');
     const { data } = res;
     if (!data.errors) {
-      const { total_amount } = data.results;
-      setESTValue(total_amount);
+      const { balance } = data;
+      setESTValue(balance);
     }
   }
 
@@ -77,7 +77,7 @@ const HomeScreen = React.memo(props => {
     const data = dataWinner[index];
     if (data) {
       const { date_created, white_ball_1, white_ball_2, white_ball_3, white_ball_4, white_ball_5, red_ball } = data;
-      setWinnerDate(moment(date_created).format('MMMM-Do-YYYY'));
+      setWinnerDate(moment(date_created).format('MMMM-DD-YYYY'));
       const winnerLot = [white_ball_1, white_ball_2, white_ball_3, white_ball_4, white_ball_5, red_ball];
       setArrWinner(winnerLot);
     }
@@ -131,11 +131,13 @@ const HomeScreen = React.memo(props => {
         </View>
         <View style={Styles.winnerBody}>
           <View style={Styles.prevNumber}>
-            <TouchableOpacity
-              disabled={index <= 0 ? true : false}
-              onPress={() => index > 0 ? setIndex(index - 1) : null}>
-              <Icon name='chevron-left' color='gray' size={Utils.hp(30)} />
-            </TouchableOpacity>
+            {index > 0 ?
+              <TouchableOpacity
+                disabled={index <= 0 ? true : false}
+                onPress={() => index > 0 ? setIndex(index - 1) : null}>
+                <Icon name='chevron-left' color='gray' size={Utils.hp(30)} />
+              </TouchableOpacity>
+              : null}
           </View>
           <View style={Styles.numberView}>
             <BallComponent number={arrWinner[0]} type={0} />
@@ -146,11 +148,13 @@ const HomeScreen = React.memo(props => {
             <BallComponent number={arrWinner[5]} type={1} />
           </View>
           <View style={Styles.nextNumber}>
-            <TouchableOpacity
-              disabled={index >= 9 ? true : false}
-              onPress={() => index < 9 ? setIndex(index + 1) : null}>
-              <Icon name='chevron-right' color='gray' size={Utils.hp(30)} />
-            </TouchableOpacity>
+            {index < 9 ?
+              <TouchableOpacity
+                disabled={index >= 9 ? true : false}
+                onPress={() => index < 9 ? setIndex(index + 1) : null}>
+                <Icon name='chevron-right' color='gray' size={Utils.hp(30)} />
+              </TouchableOpacity>
+              : null}
           </View>
         </View>
       </View>

@@ -14,21 +14,21 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   iconView: {
-    width: Utils.wp(50),
-    height: Utils.wp(50),
+    width: Utils.hp(50),
+    height: Utils.hp(50),
     resizeMode: 'contain'
   },
   headerText: {
     color: '#FFF',
     marginLeft: '5%',
-    fontSize: Utils.wp(28)
+    fontSize: Utils.hp(28)
   },
   titleView: {
     flex: 1.5
   },
   titleText: {
     color: '#FFF',
-    fontSize: Utils.wp(32)
+    fontSize: Utils.hp(32)
   },
   contentView: {
     flex: 5.5
@@ -40,7 +40,7 @@ export default StyleSheet.create({
   },
   messageText: {
     color: 'red',
-    fontSize: Utils.wp(14)
+    fontSize: Utils.hp(14)
   },
   actionView: {
     width: '100%',
@@ -58,7 +58,7 @@ export default StyleSheet.create({
   btnText: {
     color: '#FFF',
     fontWeight: 'bold',
-    fontSize: Utils.wp(18)
+    fontSize: Utils.hp(18)
   },
   btnDisable: {
     backgroundColor: 'gray'
@@ -72,14 +72,14 @@ export default StyleSheet.create({
   },
   footerText: {
     color: 'gray',
-    fontSize: Utils.wp(14),
+    fontSize: Utils.hp(14),
   },
   redirectBtn: {
 
   },
   redirectBtnText: {
     color: '#FFF',
-    fontSize: Utils.wp(15),
+    fontSize: Utils.hp(15),
     fontWeight: 'bold',
     marginTop: '3%'
   }

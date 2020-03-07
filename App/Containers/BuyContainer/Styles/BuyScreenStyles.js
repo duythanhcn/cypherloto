@@ -20,7 +20,7 @@ export default StyleSheet.create({
   },
   actionText: {
     color: '#137EF4',
-    fontSize: Utils.sp(24)
+    fontSize: Utils.hp(24)
   },
   addView: {
     flex: 1,
@@ -32,9 +32,9 @@ export default StyleSheet.create({
     fontWeight: 'normal'
   },
   btnAdd: {
-    width: Utils.sp(50),
-    height: Utils.sp(50),
-    borderRadius: Utils.sp(50 / 2),
+    width: Utils.hp(50),
+    height: Utils.hp(50),
+    borderRadius: Utils.hp(50 / 2),
     backgroundColor: '#FFF',
     borderColor: '#137EF4',
     justifyContent: 'center',
@@ -57,7 +57,7 @@ export default StyleSheet.create({
     backgroundColor: '#F0F1F5'
   },
   headerListText: {
-    fontSize: Utils.sp(20),
+    fontSize: Utils.hp(20),
     color: 'gray'
   },
   bodyListView: {
@@ -67,7 +67,7 @@ export default StyleSheet.create({
     flex: 1
   },
   seperatorView: {
-    height: Utils.sp(1),
+    height: Utils.hp(1),
     width: '100%',
     backgroundColor: 'gray'
   }

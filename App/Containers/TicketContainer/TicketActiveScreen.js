@@ -6,6 +6,7 @@ import Utils from '../../Common/Utils';
 import { connect } from 'react-redux';
 import { Spinner } from 'native-base';
 import EmptyState from '../../Components/StateComponent/EmptyState';
+import BallComponent from '../../Components/ItemComponent/BallComponent';
 import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
 
@@ -84,13 +85,18 @@ const TicketActiveScreen = React.memo(props => {
     return (
       <View style={[Styles.containerItem, index === 0 ? Styles.borderTop : null]}>
         <View style={Styles.leftView}>
-          <Text style={Styles.itemText}>{white1_ball}</Text>
-          <Text style={Styles.itemText}>{white2_ball}</Text>
-          <Text style={Styles.itemText}>{white3_ball}</Text>
-          <Text style={Styles.itemText}>{white4_ball}</Text>
-          <Text style={Styles.itemText}>{white5_ball}</Text>
-          <Text style={[Styles.itemText, Styles.redItem]}>{red_ball}</Text>
-          {power === 1 ? <Icon name='star' color='#FFCF20' size={Utils.hp(20)} /> : null}
+          <View style={Styles.ballView}>
+            <BallComponent number={white1_ball} size={Utils.hp(35)} type={0} />
+            <BallComponent number={white2_ball} size={Utils.hp(35)} type={0} />
+            <BallComponent number={white3_ball} size={Utils.hp(35)} type={0} />
+            <BallComponent number={white4_ball} size={Utils.hp(35)} type={0} />
+            <BallComponent number={white5_ball} size={Utils.hp(35)} type={0} />
+            <BallComponent number={red_ball} size={Utils.hp(35)} type={1} />
+          </View>
+          <View style={Styles.starView}>
+            {power === 1 ? <Icon name='star' color='#FFCF20' size={Utils.hp(20)} /> : null}
+          </View>
+
         </View>
         <View style={Styles.rightView}>
           <Text style={Styles.itemText}>{won_amount}</Text>

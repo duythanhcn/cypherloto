@@ -4,7 +4,9 @@ import { View, Text, FlatList } from 'react-native';
 import apiService from '../../Services/API';
 import { Spinner } from 'native-base';
 import moment from 'moment';
+import Utils from '../../Common/Utils';
 import EmptyState from '../../Components/StateComponent/EmptyState';
+import BallComponent from '../../Components/ItemComponent/BallComponent';
 import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
 
@@ -87,12 +89,12 @@ const DrawingScreen = React.memo(props => {
           <Text style={Styles.itemText}>{date}</Text>
         </View>
         <View style={Styles.rightView}>
-          <Text style={Styles.itemText}>{white_ball_1}</Text>
-          <Text style={Styles.itemText}>{white_ball_2}</Text>
-          <Text style={Styles.itemText}>{white_ball_3}</Text>
-          <Text style={Styles.itemText}>{white_ball_4}</Text>
-          <Text style={Styles.itemText}>{white_ball_5}</Text>
-          <Text style={[Styles.itemText, Styles.redItem]}>{red_ball}</Text>
+          <BallComponent number={white_ball_1} size={Utils.hp(35)} type={0} />
+          <BallComponent number={white_ball_2} size={Utils.hp(35)} type={0} />
+          <BallComponent number={white_ball_3} size={Utils.hp(35)} type={0} />
+          <BallComponent number={white_ball_4} size={Utils.hp(35)} type={0} />
+          <BallComponent number={white_ball_5} size={Utils.hp(35)} type={0} />
+          <BallComponent number={red_ball} size={Utils.hp(35)} type={1} />
         </View>
       </View>
     )

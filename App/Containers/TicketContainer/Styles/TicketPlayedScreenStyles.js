@@ -9,29 +9,29 @@ export default StyleSheet.create({
   },
   seperatorView: {
     width: '100%',
-    height: Utils.sp(1),
+    height: Utils.hp(1),
     backgroundColor: 'gray'
   },
   //header
   containerItem: {
     width: '100%',
-    height: Utils.sp(50),
+    height: Utils.hp(50),
     justifyContent: 'center',
     flexDirection: 'row',
     borderBottomColor: 'gray',
-    borderBottomWidth: Utils.sp(1)
+    borderBottomWidth: Utils.hp(1)
   },
   headerText: {
-    fontSize: Utils.sp(18),
+    fontSize: Utils.hp(18),
     fontWeight: 'bold'
   },
   itemText: {
-    fontSize: Utils.sp(18),
+    fontSize: Utils.hp(18),
     paddingHorizontal: '2%'
   },
   borderTop: {
     borderTopColor: 'gray',
-    borderTopWidth: Utils.sp(1)
+    borderTopWidth: Utils.hp(1)
   },
   headerStyles: {
     justifyContent: 'center',
@@ -42,13 +42,13 @@ export default StyleSheet.create({
   },
   //item
   firstView: {
-    width: '20%',
+    width: '17%',
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center'
   },
   secondView: {
-    width: '47%',
+    width: '55%',
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
@@ -62,7 +62,7 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   fourView: {
-    width: '20%',
+    width: '15%',
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
@@ -70,5 +70,16 @@ export default StyleSheet.create({
   },
   amountStyle: {
     alignItems: 'flex-end'
+  },
+  ballView: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    flex: 9,
+    alignItems: 'center'
+  },
+  starView: {
+    justifyContent: 'flex-start',
+    flex: 1,
+    alignItems: 'flex-start'
   }
 })

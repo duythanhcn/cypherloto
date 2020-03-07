@@ -4,7 +4,7 @@ import Styles from './Styles/BallComponentStyles';
 import { View, Text, TouchableOpacity } from 'react-native';
 
 const BallComponent = React.memo(props => {
-  const { number, type, onSelect, data } = props;
+  const { number, type, onSelect, data, size } = props;
   const [status, setStatus] = useState(false);
   const [total, setTotal] = useState(props.total);
 
@@ -43,10 +43,13 @@ const BallComponent = React.memo(props => {
   }
 
   return (
-    <View style={Styles.container}>
+    <View style={[Styles.container, size ? { width: size, height: size } : null]}>
       <TouchableOpacity
+        disabled={onSelect ? true : false}
         onPress={() => onChange()}>
-        <View style={[Styles.ballView, type === 0 ? Styles.whiteBall : Styles.redBall, status ? Styles.active : null]}>
+        <View style={[Styles.ballView,
+        type === 0 ? Styles.whiteBall : Styles.redBall, status ? Styles.active : null,
+        size ? { width: size * 0.9, height: size * 0.9 } : null]}>
           <Text style={Styles.numberText}>{number}</Text>
         </View>
       </TouchableOpacity>
