@@ -112,9 +112,17 @@ class API {
       tickets
     }
     const signature = Utils.hashString(data, '2WYDN0b9igPimkW');
-    console.log('data', data)
-    console.log('signature', signature)
     return await POST(API_URL.BUY, { signature: signature }, data);
+  }
+
+  async verifyQR(account, password, token) {
+    const data = {
+      account,
+      password_token: Utils.hashString({ email: account, password }, 'password_token'),
+      token
+    }
+    const res = await POST(API_URL.VERIFY_QR, {}, data);
+    return res;
   }
 }
 

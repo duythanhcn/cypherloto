@@ -5,9 +5,9 @@ import SignUpScreen from '../Containers/AuthContainer/SignUpScreen';
 
 const AuthStack = createStackNavigator(
   {
-    Auth: {
-      screen: AuthScreen
-    },
+    // Auth: {
+    //   screen: AuthScreen
+    // },
     SignIn: {
       screen: SignInScreen
     },
@@ -16,7 +16,7 @@ const AuthStack = createStackNavigator(
     }
   },
   {
-    initialRouteName: 'Auth',
+    initialRouteName: 'SignIn',
     headerMode: 'none',
     defaultNavigationOptions: () => ({
       gesturesEnabled: false

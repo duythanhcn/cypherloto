@@ -36,7 +36,9 @@ export default StyleSheet.create({
     width: '90%',
     height: Utils.hp(50),
     borderColor: 'gray',
-    borderWidth: 1
+    borderWidth: 1,
+    textAlign: 'center',
+    fontSize: Utils.sp(20)
   },
   actionView: {
     width: '100%',

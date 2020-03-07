@@ -38,6 +38,15 @@ const rules = {
     presence: {
       message: '^Please enter an address'
     }
+  },
+  token: {
+    presence: {
+      message: '^Please enter an token'
+    },
+    length: {
+      minimum: 6,
+      message: '^Your toekn must be 6 characters'
+    }
   }
 }
 

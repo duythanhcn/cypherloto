@@ -11,5 +11,6 @@ export const API_URL = {
   GET_WITHDRAW: '/account/withdraw_history',
   GET_DRAWING: '/lottery',
   WITHDRAW: '/account/withdraw',
-  BUY: '/buy_tickets'
+  BUY: '/buy_tickets',
+  VERIFY_QR: "/account/verify_2fa"
 }

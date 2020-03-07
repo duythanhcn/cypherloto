@@ -32,14 +32,13 @@ const SignInScreen = React.memo(props => {
       return;
     }
     const response = await apiService.login(email, password);
-    const { data } = response;
-    if (!data.errors) {
+    const { data, status } = response;
+    if (status === 200 && !data.errors) {
       const { enable_2fa } = data.account_info;
-      const userInfo = { ...data.account_info, email };
+      const userInfo = { ...data.account_info, email, password };
       setUser(userInfo);
       if (enable_2fa) {
-        // setBtnDisable(true);
-        navigation.navigate('App');// for test
+        setBtnDisable(true);
       } else {
         navigation.navigate('App');
       }
@@ -55,8 +54,6 @@ const SignInScreen = React.memo(props => {
       setTimeout(() => {
         navigation.navigate('App');
       }, 200)
-    } else {
-      setErrorMessage(Message.WrongCode)
     }
   }
 

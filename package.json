@@ -3,12 +3,13 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
-    "ios": "react-native run-ios --simulator='Iphone 8'",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint .",
     "post-install": "cd ios && pod install && cd ../ && npm i --save-dev tradle/rn-nodeify && ./node_modules/.bin/rn-nodeify --hack --install",
+    "ios": "react-native run-ios --simulator='Iphone 8'",
+    "ios-device": "react-native run-ios --device",
+    "android": "react-native run-android",
     "build-android": "cd android && ./gradlew bundleRelease"
   },
   "dependencies": {
