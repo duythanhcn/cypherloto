@@ -12,19 +12,36 @@ const _whiteBall = Array(69).fill(1);
 const _redBall = Array(26).fill(1);
 
 const PickNumberModal = React.memo(props => {
-  const { onChange } = props;
+  const { } = props;
   const [isVisible, setVisible] = useState(props.isVisible);
-  const [data, setData] = useState({ whiteBall: [], redBall: [], power: false })
+  const [data, setData] = useState({ whiteBall: [], redBall: [], power: false });
+  const [isRandom, setIsRandom] = useState(false);
 
   useEffect(() => {
-    setVisible(props.isVisible);
+    const func = () => {
+      setVisible(props.isVisible);
+    }
+    func();
   }, [props.isVisible])
 
-  function onSubmit() {
-    if (code) {
-      onChange(code)
+  useEffect(() => {
+    const func = () => {
+      setIsRandom(false)
     }
-  }
+    func();
+  }, [data])
+
+  useEffect(() => {
+    const func = () => {
+      if (isRandom) {
+        const whiteBall = Utils.randomNumberInList(5, 1, 69);
+        const redBall = Utils.randomNumberInList(1, 1, 26);
+        console.log({ power: false, whiteBall: whiteBall, redBall: redBall })
+        setData({ power: false, whiteBall: whiteBall, redBall: redBall });
+      }
+    }
+    func();
+  }, [isRandom])
 
   function onPower() {
     setData({ ...data, power: !data.power })
@@ -67,9 +84,8 @@ const PickNumberModal = React.memo(props => {
   }
 
   function randomNumber() {
-    const whiteBall = Utils.randomNumberInList(5, 1, 69);
-    const redBall = Utils.randomNumberInList(1, 1, 26);
-    setData({ power: false, whiteBall, redBall })
+    if (isRandom) return;
+    setIsRandom(true);
   }
 
   function onCancle() {
@@ -90,14 +106,7 @@ const PickNumberModal = React.memo(props => {
           <Text style={Styles.headerText}>Pick 1 number from 1 to 26</Text>
         </View>
         <View style={Styles.numberView}>
-          <FlatList
-            contentContainerStyle={Styles.lisContentStyle}
-            style={Styles.listView2}
-            data={_redBall}
-            numColumns={6}
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={({ item, index }) => <BallComponent data={data.redBall} total={data.redBall.length} number={index + 1} type={1} key={index} onSelect={(val, status) => setRedBall(val, status)} />}
-          />
+          {_redBall.map((item, index) => <BallComponent data={data.redBall} total={data.redBall.length} number={index + 1} type={1} key={index} onSelect={(val, status) => setRedBall(val, status)} />)}
         </View>
       </View>
     )
@@ -110,19 +119,12 @@ const PickNumberModal = React.memo(props => {
           <Text style={Styles.headerText}>Pick 5 number from 1 to 69</Text>
         </View>
         <View style={Styles.numberView}>
-          <FlatList
-            contentContainerStyle={Styles.lisContentStyle}
-            style={Styles.listView1}
-            data={_whiteBall}
-            numColumns={6}
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={({ item, index }) => <BallComponent data={data.whiteBall} total={data.whiteBall.length} number={index + 1} type={0} key={index} onSelect={(val, status) => setWhiteBall(val, status)} />}
-          />
+          {_whiteBall.map((item, index) => <BallComponent data={data.whiteBall} total={data.whiteBall.length} number={index + 1} type={0} key={index} onSelect={(val, status) => setWhiteBall(val, status)} />)}
         </View>
       </View>
     )
   }
-  const t = Array(5).fill(1)
+
   return (
     <Dialog
       visible={isVisible}
@@ -161,8 +163,10 @@ const PickNumberModal = React.memo(props => {
         </View>
         <View style={Styles.pickView}>
           <ScrollView style={Styles.scrollView}>
-            {renderNumPad1()}
-            {renderNumPad2()}
+            <View>
+              {renderNumPad1()}
+              {renderNumPad2()}
+            </View>
           </ScrollView>
         </View>
         <View style={Styles.saveView}>

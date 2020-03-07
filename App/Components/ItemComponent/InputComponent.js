@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Styles from './Styles/InputComponentStyles';
-import { View, Text, TouchableOpacity, Image, TextInput } from 'react-native';
+import { View, Text, TextInput } from 'react-native';
 import Utils from '../../Common/Utils';
 import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();

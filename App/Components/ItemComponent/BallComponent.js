@@ -4,22 +4,28 @@ import Styles from './Styles/BallComponentStyles';
 import { View, Text, TouchableOpacity } from 'react-native';
 
 const BallComponent = React.memo(props => {
-  const { number, type, onSelect, data, size } = props;
+  const { number, type, onSelect, data, size, textSize } = props;
   const [status, setStatus] = useState(false);
   const [total, setTotal] = useState(props.total);
 
   useEffect(() => {
-    setTotal(props.total);
+    const func = () => {
+      setTotal(props.total);
+    }
+    func();
   }, [props.total])
 
   useEffect(() => {
-    if (!data) return;
-    const index = data.indexOf(number);
-    if (index !== -1 && !status) {
-      setStatus(true);
-    } else {
-      setStatus(false);
+    const func = () => {
+      if (!data) return;
+      const index = data.indexOf(number);
+      if (index !== -1 && !status) {
+        setStatus(true);
+      } else {
+        setStatus(false);
+      }
     }
+    func();
   }, [data])
 
   useEffect(() => {
@@ -50,7 +56,7 @@ const BallComponent = React.memo(props => {
         <View style={[Styles.ballView,
         type === 0 ? Styles.whiteBall : Styles.redBall, status ? Styles.active : null,
         size ? { width: size * 0.9, height: size * 0.9 } : null]}>
-          <Text style={Styles.numberText}>{number}</Text>
+          <Text style={[Styles.numberText, textSize ? { fontSize: textSize } : null]}>{number}</Text>
         </View>
       </TouchableOpacity>
     </View >

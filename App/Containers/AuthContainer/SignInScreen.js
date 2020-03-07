@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Styles from './Styles/SignInScreenStyles';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TouchableOpacity, Image, KeyboardAvoidingView, Platform } from 'react-native';
 import logo from '../../Images/logo.png';
 import { connect } from 'react-redux';
 import InputComponent from '../../Components/ItemComponent/InputComponent';
@@ -17,9 +17,12 @@ const SignInScreen = React.memo(props => {
   const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
-    if (isBtnDisable) {
-      setShow2FA(true);
+    const func = () => {
+      if (isBtnDisable) {
+        setShow2FA(true);
+      }
     }
+    func();
   }, [isBtnDisable])
 
   async function signIn() {
@@ -58,49 +61,62 @@ const SignInScreen = React.memo(props => {
   }
 
   return (
-    <View style={Styles.container}>
-      <View style={Styles.headerView}>
-        <Image style={Styles.iconView} source={logo} />
-        <Text style={Styles.headerText}>CYPHER LOTTERY</Text>
-      </View>
-      <View style={Styles.titleView}>
-        <Text style={Styles.titleText}>Sign In</Text>
-      </View>
-      <View style={Styles.contentView}>
-        <InputComponent title='E-mail Address'
-          placeHolder='E-mail'
-          onChange={val => setEmail(val !== '' ? val : null)}
-          icon='envelope'
-          value={email}
-          type='emailAddress' />
-        <InputComponent title='Password'
-          placeHolder='Password'
-          onChange={val => setPassword(val !== '' ? val : null)}
-          icon='lock'
-          value={password}
-          type='password' />
-        <View style={Styles.actionView}>
+    <View style={[Styles.container]}>
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior='height'
+        keyboardVerticalOffset={0}>
+
+
+        <View style={Styles.headerView}>
+          <Image style={Styles.iconView} source={logo} />
+          <Text style={Styles.headerText}>CYPHER LOTTERY</Text>
+        </View>
+        <View style={Styles.titleView}>
+          <Text style={Styles.titleText}>Sign In</Text>
+        </View>
+
+        <View style={Styles.contentView}>
+          <InputComponent title='E-mail Address'
+            placeHolder='E-mail'
+            onChange={val => setEmail(val !== '' ? val : null)}
+            icon='envelope'
+            value={email}
+            type='emailAddress' />
+          <InputComponent title='Password'
+            placeHolder='Password'
+            onChange={val => setPassword(val !== '' ? val : null)}
+            icon='lock'
+            value={password}
+            type='password' />
+          <View style={Styles.actionView}>
+            <TouchableOpacity
+              onPress={() => !isBtnDisable ? signIn() : null}
+              style={[Styles.buttonView, isBtnDisable ? Styles.btnDisable : null]}>
+              <Text style={Styles.btnText}>SIGN IN</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={Styles.errorView}>
+            <Text style={Styles.messageText}>{errorMessage}</Text>
+          </View>
+        </View>
+
+        <View style={Styles.footerView}>
+          <Text style={Styles.footerText}>Sign up for an account</Text>
           <TouchableOpacity
-            onPress={() => !isBtnDisable ? signIn() : null}
-            style={[Styles.buttonView, isBtnDisable ? Styles.btnDisable : null]}>
-            <Text style={Styles.btnText}>SIGN IN</Text>
+            onPress={() => navigation.navigate('SignUp')}
+            style={Styles.redirectBtn}>
+            <Text style={Styles.redirectBtnText}>SIGN UP</Text>
           </TouchableOpacity>
         </View>
-        <View style={Styles.errorView}>
-          <Text style={Styles.messageText}>{errorMessage}</Text>
-        </View>
-      </View>
-      <View style={Styles.footerView}>
-        <Text style={Styles.footerText}>Sign up for an account</Text>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('SignUp')}
-          style={Styles.redirectBtn}>
-          <Text style={Styles.redirectBtnText}>SIGN UP</Text>
-        </TouchableOpacity>
-      </View>
-      <TwoFAModel
-        isVisible={isShow2FA}
-        onChange={(status) => onSignInSuccess(status)} />
+
+
+
+
+        <TwoFAModel
+          isVisible={isShow2FA}
+          onChange={(status) => onSignInSuccess(status)} />
+      </KeyboardAvoidingView>
     </View>
   )
 });

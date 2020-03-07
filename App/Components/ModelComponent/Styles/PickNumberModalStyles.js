@@ -72,19 +72,18 @@ export default StyleSheet.create({
     paddingHorizontal: '3%'
   },
   pickerLayer1: {
-    height: Utils.hp(750),
     width: '100%'
   },
   pickerLayer2: {
-    height: Utils.hp(365),
     width: '100%'
   },
   numberView: {
     alignItems: 'center',
     alignSelf: 'center',
-    alignContent: 'center',
     justifyContent: 'center',
-    marginVertical: Utils.hp(10)
+    marginVertical: Utils.hp(10),
+    flexDirection:'row',
+    flexWrap:'wrap'
   },
   scrollView: {
     width: '100%'

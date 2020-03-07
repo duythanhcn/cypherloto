@@ -6,6 +6,7 @@ import moment from 'moment';
 import { Spinner } from 'native-base';
 import { connect } from 'react-redux';
 import apiService from '../../Services/API';
+import { STATUS_ICON } from '../../Common/constants';
 import EmptyState from '../../Components/StateComponent/EmptyState';
 import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
@@ -89,15 +90,7 @@ const DepositScreen = React.memo(props => {
   function renderItem(item, index) {
     const { address, amount, status, date } = item;
     const _date = moment(date).format('DD/MM/YY');
-    let icon = 'times';
-    let color = 'red';
-    if (status === 'Completed') {
-      icon = 'check';
-      color = 'green';
-    } else if (status == 'Pending') {
-      icon = 'stop-circle';
-      color = '#FFCF20';
-    }
+    const statusGroup = STATUS_ICON[status.toUpperCase()];
     return (
       <View style={[Styles.containerItem, index === 0 ? Styles.borderTop : null]}>
         <View style={Styles.firstView}>
@@ -111,7 +104,7 @@ const DepositScreen = React.memo(props => {
         </View>
         <View style={[Styles.fourView, Styles.amountStyle]}>
           <Text style={Styles.itemText}>
-            <Icon name={icon} color={color} size={Utils.hp(25)} />
+            <Icon name={statusGroup.icon} color={statusGroup.color} size={Utils.hp(25)} />
           </Text>
         </View>
       </View>

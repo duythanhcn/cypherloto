@@ -89,12 +89,12 @@ const DrawingScreen = React.memo(props => {
           <Text style={Styles.itemText}>{date}</Text>
         </View>
         <View style={Styles.rightView}>
-          <BallComponent number={white_ball_1} size={Utils.hp(35)} type={0} />
-          <BallComponent number={white_ball_2} size={Utils.hp(35)} type={0} />
-          <BallComponent number={white_ball_3} size={Utils.hp(35)} type={0} />
-          <BallComponent number={white_ball_4} size={Utils.hp(35)} type={0} />
-          <BallComponent number={white_ball_5} size={Utils.hp(35)} type={0} />
-          <BallComponent number={red_ball} size={Utils.hp(35)} type={1} />
+          <BallComponent number={white_ball_1} size={Utils.hp(35)} type={0} textSize={Utils.hp(16)} />
+          <BallComponent number={white_ball_2} size={Utils.hp(35)} type={0} textSize={Utils.hp(16)} />
+          <BallComponent number={white_ball_3} size={Utils.hp(35)} type={0} textSize={Utils.hp(16)} />
+          <BallComponent number={white_ball_4} size={Utils.hp(35)} type={0} textSize={Utils.hp(16)} />
+          <BallComponent number={white_ball_5} size={Utils.hp(35)} type={0} textSize={Utils.hp(16)} />
+          <BallComponent number={red_ball} size={Utils.hp(35)} type={1}  textSize={Utils.hp(16)} />
         </View>
       </View>
     )
