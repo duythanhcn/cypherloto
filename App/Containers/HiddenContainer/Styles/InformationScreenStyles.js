@@ -40,5 +40,8 @@ export default StyleSheet.create({
   itemText: {
     fontSize: Utils.hp(14),
     textAlign: 'center'
+  },
+  odView: {
+    backgroundColor: '#f2f2f2'
   }
 })

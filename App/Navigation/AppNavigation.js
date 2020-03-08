@@ -16,7 +16,7 @@ const PrimaryNavigation = createSwitchNavigator(
     headerMode: 'screen',
     defaultNavigationOptions: {
       headerBackTitle: null,
-      cardStyle: { backgroundColor: '#202832' },
+      cardStyle: { backgroundColor: '#13161D' },
     }
   })
 

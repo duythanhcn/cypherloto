@@ -36,7 +36,7 @@ const InformationScreen = React.memo(props => {
             <BallComponent number={data[0]} size={Utils.wp(35)} type={1} textSize={Utils.wp(16)} /> : null}
         </View>
         {item.map((it, i) =>
-          <View style={Styles.view2}>
+          <View style={[Styles.view2, i % 2 == 0 ? Styles.odView : null]}>
             <Text style={Styles.itemText}>{it}</Text>
           </View>)}
       </View>
@@ -49,19 +49,19 @@ const InformationScreen = React.memo(props => {
           <View style={[Styles.view1, Styles.headerView]}>
             <Text style={Styles.headerText}>Match</Text>
           </View>
-          <View style={Styles.view2}>
+          <View style={[Styles.view2, Styles.odView]}>
             <Text style={Styles.headerText}>Price</Text>
           </View>
           <View style={Styles.view2}>
             <Text style={Styles.headerText}>Mega Play 2X</Text>
           </View>
-          <View style={Styles.view2}>
+          <View style={[Styles.view2, Styles.odView]}>
             <Text style={Styles.headerText}>Mega Play 3X</Text>
           </View>
           <View style={Styles.view2}>
             <Text style={Styles.headerText}>Mega Play 4X</Text>
           </View>
-          <View style={Styles.view2}>
+          <View style={[Styles.view2, Styles.odView]}>
             <Text style={Styles.headerText}>Mega Play 5X</Text>
           </View>
           <View style={Styles.view2}>
