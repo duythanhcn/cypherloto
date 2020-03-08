@@ -82,7 +82,7 @@ const DrawingScreen = React.memo(props => {
   function renderItem(item, index) {
     const { white_ball_1, white_ball_2, white_ball_3, white_ball_4,
       white_ball_5, red_ball, date_created } = item;
-    const date = moment(date_created).format('DD/MM/YY')
+    const date = moment(date_created).format('MM/DD/YY')
     return (
       <View style={[Styles.containerItem, index === 0 ? Styles.borderTop : null]}>
         <View style={Styles.leftView}>

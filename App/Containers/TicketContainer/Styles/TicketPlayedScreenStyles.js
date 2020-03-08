@@ -48,7 +48,7 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   secondView: {
-    width: '53%',
+    width: '52%',
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
@@ -62,7 +62,7 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   fourView: {
-    width: '16%',
+    width: '17%',
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',

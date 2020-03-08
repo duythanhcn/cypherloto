@@ -153,7 +153,7 @@ const WithdrawScreen = React.memo(props => {
 
   function renderItem(item, index) {
     const { address_to, amount, status, date } = item;
-    const _date = moment(date).format('DD/MM/YY');
+    const _date = moment(date).format('MM/DD/YY');
     const statusGroup = STATUS_ICON[status.toUpperCase()];
     return (
       <View style={[Styles.containerItem, index === 0 ? Styles.borderTop : null]}>

@@ -90,7 +90,7 @@ const TicketPlayedScreen = React.memo(props => {
   function renderItem(item, index) {
     const { white1_ball, white2_ball, white3_ball, created_at, power,
       white4_ball, white5_ball, red_ball, won_amount, is_win } = item;
-    const date = moment(created_at).format('DD/MM/YY')
+    const date = moment(created_at).format('MM/DD/YY')
     return (
       <View style={[Styles.containerItem, index === 0 ? Styles.borderTop : null]}>
         <View style={Styles.firstView}>

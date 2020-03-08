@@ -96,7 +96,7 @@ export default StyleSheet.create({
   //input
   inputView: {
     width: '100%',
-    height: Utils.hp(40),
+    height: Utils.hp(38),
     borderWidth: Utils.hp(1),
     borderColor: 'gray',
     justifyContent: 'center',
@@ -111,7 +111,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     height: Utils.hp(40),
-    paddingTop: '3%'
+    paddingTop: '2%'
   },
   btnSubmit: {
     backgroundColor: 'rebeccapurple',
