@@ -4,57 +4,27 @@ import Styles from './Styles/BallComponentStyles';
 import { View, Text, TouchableOpacity } from 'react-native';
 
 const BallComponent = React.memo(props => {
-  const { number, type, onSelect, data, size, textSize } = props;
-  const [status, setStatus] = useState(false);
-  const [total, setTotal] = useState(props.total);
+  const { number, type, onSelect, size, textSize, isAction } = props;
+  const [data, setData] = useState(props.data ? props.data : []);
 
   useEffect(() => {
     const func = () => {
-      setTotal(props.total);
+      setData(props.data ? props.data : []);
     }
     func();
-  }, [props.total])
-
-  useEffect(() => {
-    const func = () => {
-      if (!data) return;
-      const index = data.indexOf(number);
-      if (index !== -1 && !status) {
-        setStatus(true);
-      } else {
-        setStatus(false);
-      }
-    }
-    func();
-  }, [data])
-
-  useEffect(() => {
-    onSelect(number, status);
-  }, [status])
+  }, [props.data])
 
   function onChange() {
-    if (type === 0) {
-      if (total < 5) {
-        setStatus(!status);
-      } else {
-        setStatus(false);
-      }
-    } else {
-      if (total < 1) {
-        setStatus(!status);
-      } else {
-        setStatus(false);
-      }
-    }
+    onSelect(number);
   }
 
   return (
     <View style={[Styles.container, size ? { width: size, height: size } : null]}>
       <TouchableOpacity
-        disabled={onSelect ? true : false}
+        disabled={!isAction}
         onPress={() => onChange()}>
         <View style={[Styles.ballView,
-        type === 0 ? Styles.whiteBall : Styles.redBall, status ? Styles.active : null,
+        type === 0 ? Styles.whiteBall : Styles.redBall, data.indexOf(number) !== -1 ? Styles.active : null,
         size ? { width: size * 0.95, height: size * 0.95 } : null]}>
           <Text style={[Styles.numberText, textSize ? { fontSize: textSize } : null]}>{number}</Text>
         </View>

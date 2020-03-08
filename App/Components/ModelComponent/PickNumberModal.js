@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Styles from './Styles/PickNumberModalStyles';
-import { View, Text, TouchableOpacity, ScrollView, FlatList } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
 import Dialog from 'react-native-popup-dialog';
 import BallComponent from '../ItemComponent/BallComponent';
@@ -26,7 +26,9 @@ const PickNumberModal = React.memo(props => {
 
   useEffect(() => {
     const func = () => {
-      setIsRandom(false)
+      setTimeout(() => {
+        setIsRandom(false);
+      }, 1)
     }
     func();
   }, [data])
@@ -36,8 +38,7 @@ const PickNumberModal = React.memo(props => {
       if (isRandom) {
         const whiteBall = Utils.randomNumberInList(5, 1, 69);
         const redBall = Utils.randomNumberInList(1, 1, 26);
-        console.log({ power: false, whiteBall: whiteBall, redBall: redBall })
-        setData({ power: false, whiteBall: whiteBall, redBall: redBall });
+        setData({ power: false, whiteBall, redBall });
       }
     }
     func();
@@ -47,36 +48,26 @@ const PickNumberModal = React.memo(props => {
     setData({ ...data, power: !data.power })
   }
 
-  function setWhiteBall(value, status) {
+  function setWhiteBall(value) {
     let newBall = [...data.whiteBall];
     const index = newBall.indexOf(value);
-    if (status) {
-      if (data.whiteBall.length < 5) {
-        newBall.push(value);
-        setData({ ...data, whiteBall: newBall });
-      }
-    } else {
-      if (index !== -1) {
-        newBall.splice(index, 1);
-        setData({ ...data, whiteBall: newBall });
-      }
+    if (index === -1 && data.whiteBall.length < 5) {
+      newBall.push(value);
+    } else if (index !== -1) {
+      newBall.splice(index, 1);
     }
+    setData({ ...data, whiteBall: newBall });
   }
 
-  function setRedBall(value, status) {
+  function setRedBall(value) {
     let newBall = [...data.redBall];
     const index = newBall.indexOf(value);
-    if (status) {
-      if (data.redBall.length < 1) {
-        newBall.push(value);
-        setData({ ...data, redBall: newBall });
-      }
-    } else {
-      if (index !== -1) {
-        newBall.splice(index, 1);
-        setData({ ...data, redBall: newBall });
-      }
+    if (index === -1 && data.redBall.length < 1) {
+      newBall.push(value);
+    } else if (index !== -1) {
+      newBall.splice(index, 1);
     }
+    setData({ ...data, redBall: newBall });
   }
 
   function clearNumber() {
@@ -109,7 +100,7 @@ const PickNumberModal = React.memo(props => {
           <Text style={Styles.headerText}>Pick 1 number from 1 to 26</Text>
         </View>
         <View style={Styles.numberView}>
-          {_redBall.map((item, index) => <BallComponent data={data.redBall} total={data.redBall.length} number={index + 1} type={1} key={index} onSelect={(val, status) => setRedBall(val, status)} />)}
+          {_redBall.map((item, index) => <BallComponent data={data.redBall} number={index + 1} type={1} key={index} onSelect={(val) => setRedBall(val)} isAction={true} />)}
         </View>
       </View>
     )
@@ -122,7 +113,7 @@ const PickNumberModal = React.memo(props => {
           <Text style={Styles.headerText}>Pick 5 number from 1 to 69</Text>
         </View>
         <View style={Styles.numberView}>
-          {_whiteBall.map((item, index) => <BallComponent data={data.whiteBall} total={data.whiteBall.length} number={index + 1} type={0} key={index} onSelect={(val, status) => setWhiteBall(val, status)} />)}
+          {_whiteBall.map((item, index) => <BallComponent data={data.whiteBall} number={index + 1} type={0} key={index} onSelect={(val) => setWhiteBall(val)} isAction={true} />)}
         </View>
       </View>
     )
@@ -148,6 +139,7 @@ const PickNumberModal = React.memo(props => {
           </View>
           <View style={Styles.actionView}>
             <TouchableOpacity
+              disabled={isRandom}
               onPress={() => randomNumber()}
               style={Styles.btnAction}>
               <Text style={Styles.actionText}>Quick Pick</Text>
