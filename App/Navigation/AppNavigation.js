@@ -1,9 +1,13 @@
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import AuthStack from './AuthStack';
 import DrawMenuStack from './DrawMenuStack';
+import HomeWithoutAccountScreen from '../Containers/HiddenContainer/HomeWithoutAccountScreen';
 
 const PrimaryNavigation = createSwitchNavigator(
   {
+    Init: {
+      screen: HomeWithoutAccountScreen
+    },
     Auth: {
       screen: AuthStack
     },
@@ -12,7 +16,7 @@ const PrimaryNavigation = createSwitchNavigator(
     }
   },
   {
-    initialRouteName: 'Auth',
+    initialRouteName: 'Init',
     headerMode: 'screen',
     defaultNavigationOptions: {
       headerBackTitle: null,

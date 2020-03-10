@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Styles from './Styles/HomeScreenStyles';
-import { connect } from 'react-redux';
-import { View, Text, Image, TouchableOpacity } from 'react-native';
-import coin from '../../Images/Icons/coin.png';
+import Styles from './Styles/HomeWithoutAccountScreenStyles';
+import { View, Text, TouchableOpacity } from 'react-native';
 import BallComponent from '../../Components/ItemComponent/BallComponent';
 import Utils from '../../Common/Utils';
 import apiService from '../../Services/API';
@@ -11,9 +9,8 @@ import CountDown from 'react-native-countdown-component';
 import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
 
-const HomeScreen = React.memo(props => {
-  const { user, setUser } = props;
-  const [balance, setBalance] = useState(0);
+const HomeWithoutAccountScreen = React.memo(props => {
+  const { navigation } = props;
   const [nextDraw, setNextDraw] = useState(0);
   const [estValue, setESTValue] = useState(0);
   const [winnerDate, setWinnerDate] = useState('');
@@ -28,22 +25,8 @@ const HomeScreen = React.memo(props => {
   }, [])
 
   useEffect(() => {
-    getBalance(user.email);
-  }, [user])
-
-  useEffect(() => {
     setWinnerBall(index);
   }, [index])
-
-  async function getBalance(email) {
-    const res = await apiService.getUserBalance(email);
-    const { data } = res;
-    if (!data.errors) {
-      const { address, balance } = data;
-      setUser({ address, balance })
-      setBalance(balance);
-    }
-  }
 
   async function getCurrentLot() {
     const res = await apiService.getCurrentLot();
@@ -86,17 +69,15 @@ const HomeScreen = React.memo(props => {
   return (
     <View style={Styles.container}>
       <View style={Styles.headerView}>
-        <Text style={Styles.headerText}>YOUR BALANCE</Text>
+        <Text style={Styles.headerText}>TRY YOUR GAME</Text>
       </View>
       <View style={Styles.balanceView}>
-        <View style={Styles.iconView}>
-          <Image style={Styles.img} source={coin} resizeMode='contain' />
-        </View>
-        <View style={Styles.coinView}>
-          <Text style={Styles.cointText}>{balance} USDT</Text>
-        </View>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('SignIn')}
+          style={Styles.buttonView}>
+          <Text style={Styles.btnText}>SIGN IN</Text>
+        </TouchableOpacity>
       </View>
-
       <View style={Styles.headerView}>
         <Text style={Styles.headerText}>ESTIMATED JACKPOT</Text>
       </View>
@@ -161,12 +142,4 @@ const HomeScreen = React.memo(props => {
     </View>);
 })
 
-const mapStateToProps = state => {
-  return { user: state.user }
-}
-
-const mapDispatchToProps = dispatch => {
-  return { setUser: (data) => dispatch({ data, type: 'SET_USER' }) }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
+export default HomeWithoutAccountScreen;
