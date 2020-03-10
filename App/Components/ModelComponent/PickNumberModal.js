@@ -39,10 +39,10 @@ const PickNumberModal = React.memo(props => {
   }, [data])
 
   useEffect(() => {
-    const func = () => {
+    const func = async () => {
       if (isRandom) {
-        const whiteBall = Utils.randomNumberInList(5, 1, 69);
-        const redBall = Utils.randomNumberInList(1, 1, 26);
+        let whiteBall = await Utils.randomNumberInList(5, 1, 69);
+        const redBall = await Utils.randomNumberInList(1, 1, 26);
         setData({ power: false, whiteBall, redBall });
       }
     }
@@ -61,7 +61,7 @@ const PickNumberModal = React.memo(props => {
     } else if (index !== -1) {
       newBall.splice(index, 1);
     }
-    setData({ ...data, whiteBall: newBall });
+    setData({ ...data, whiteBall: newBall.sort() });
   }
 
   function setRedBall(value) {
@@ -90,12 +90,14 @@ const PickNumberModal = React.memo(props => {
   }
 
   function onSave() {
-    if (data.whiteBall.length < 5) {
+    if (data.whiteBall.length < 5 || data.redBall.length < 1) {
       setMessage('Please pick 5 white ball and 1 red ball');
       setShowAlert(true);
       return;
     }
-    const newData = { ball: [...data.whiteBall, ...data.redBall], power: data.power };
+    let newWhiteBall = [...data.whiteBall];
+    newWhiteBall.sort(function (a, b) { return a - b });
+    const newData = { ball: [...newWhiteBall, ...data.redBall], power: data.power };
     props.onSave(newData);
     onCancle();
   }

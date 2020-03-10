@@ -32,16 +32,16 @@ const BuyScreen = React.memo(props => {
 
   async function onBuy() {
     const { email, balance } = user;
-    if (balance <= 0) {
-      setMessage('The balance is not enough to make a transaction');
-      setShowAlert(true);
-      return;
-    }
     const _tickets = await processData();
     const amount = _tickets.amount;
     const tickets = _tickets.tickets;
     if (tickets.length <= 0) {
       setMessage('Please pickup your number');
+      setShowAlert(true);
+      return;
+    }
+    if (balance <= 0) {
+      setMessage('The balance is not enough to make a transaction');
       setShowAlert(true);
       return;
     }

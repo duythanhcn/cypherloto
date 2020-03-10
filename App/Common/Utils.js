@@ -65,13 +65,16 @@ class Utils {
     return hmac.digest('hex');
   }
 
-  randomNumberInList(num, start, end) {
+  async randomNumberInList(num, start, end) {
     let arr = [];
-    while (arr.length < num) {
-      let r = Math.floor(Math.random() * end) + start;
-      if (arr.indexOf(r) === -1) arr.push(r);
-    }
-    return arr
+    await new Promise((resolve) => {
+      while (arr.length < num) {
+        let r = Math.floor(Math.random() * end) + start;
+        if (arr.indexOf(r) === -1) arr.push(r);
+        if (arr.length == num) resolve();
+      }
+    });
+    return arr;
   }
 }
 export default new Utils()
