@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Styles from './Styles/PickNumberModalStyles';
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
-import PropTypes from 'prop-types';
 import Dialog from 'react-native-popup-dialog';
 import BallComponent from '../ItemComponent/BallComponent';
 import Utils from '../../Common/Utils';
+import AlertModal from '../../Components/ModelComponent/AlertModal';
 import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
 
@@ -16,6 +16,11 @@ const PickNumberModal = React.memo(props => {
   const [isVisible, setVisible] = useState(props.isVisible);
   const [data, setData] = useState({ whiteBall: [], redBall: [], power: false });
   const [isRandom, setIsRandom] = useState(false);
+  const [isShowAlert, setShowAlert] = useState(false);
+  const [message, setMessage] = useState('');
+  const actions = [
+    { btnText: 'OK', btnAction: () => { setShowAlert(false), setMessage('') } }
+  ]
 
   useEffect(() => {
     const func = () => {
@@ -85,7 +90,9 @@ const PickNumberModal = React.memo(props => {
   }
 
   function onSave() {
-    if (data.whiteBall.length <= 0) {
+    if (data.whiteBall.length < 5) {
+      setMessage('Please pick 5 white ball and 1 red ball');
+      setShowAlert(true);
       return;
     }
     const newData = { ball: [...data.whiteBall, ...data.redBall], power: data.power };
@@ -177,6 +184,11 @@ const PickNumberModal = React.memo(props => {
           </TouchableOpacity>
         </View>
       </View>
+      <AlertModal
+        isVisible={isShowAlert}
+        message={message}
+        title='Inform'
+        actions={actions} />
     </Dialog>
   );
 })

@@ -14,7 +14,7 @@ const BuyScreen = React.memo(props => {
   const { user } = props;
   const [showPicker, setShowPicker] = useState(false);
   const [data, setData] = useState({ list: [], timestamp: Date.now() });
-  const [isShowAlert, setShowAlert] = useState(false)
+  const [isShowAlert, setShowAlert] = useState(false);
   const [message, setMessage] = useState('');
   const actions = [
     { btnText: 'OK', btnAction: () => { setShowAlert(false), setMessage('') } }
@@ -23,22 +23,28 @@ const BuyScreen = React.memo(props => {
   function onRemove(index) {
     let newData = [...data.list]
     newData.splice(index, 1)
-    setData(newData)
     setData({ list: newData, timestamp: Date.now() });
   }
 
   function oncancel() {
-    setData([])
+    setData({ list: [], timestamp: Date.now() })
   }
 
   async function onBuy() {
     const { email, balance } = user;
     if (balance <= 0) {
-      setMessage('The balance is not enough to make a transaction')
+      setMessage('The balance is not enough to make a transaction');
+      setShowAlert(true);
+      return;
     }
     const _tickets = await processData();
     const amount = _tickets.amount;
     const tickets = _tickets.tickets;
+    if (tickets.length <= 0) {
+      setMessage('Please pickup your number');
+      setShowAlert(true);
+      return;
+    }
     const response = await apiService.buyTicket(email, amount, tickets);
     const { data } = response;
     if (!data.errors) {

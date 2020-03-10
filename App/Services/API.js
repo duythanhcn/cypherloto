@@ -36,7 +36,6 @@ class API {
       email,
       password_token: Utils.hashString({ email, password }, 'password_token')
     }
-    console.log(data)
     const res = await POST(API_URL.LOGIN, {}, data);
     return res;
   }

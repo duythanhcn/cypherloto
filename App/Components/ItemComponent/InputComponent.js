@@ -27,7 +27,8 @@ const InputComponent = React.memo(props => {
           onChangeText={val => setValue(val)}
           numberOfLines={1}
           secureTextEntry={type === 'password'}
-          onSubmitEditing={()=>Keyboard.dismiss()}
+          onSubmitEditing={() => Keyboard.dismiss()}
+          autoCapitalize='none'
         />
         <View style={Styles.inputIcon}>
           <Icon name={icon} color='#FFF' size={Utils.hp(15)} />

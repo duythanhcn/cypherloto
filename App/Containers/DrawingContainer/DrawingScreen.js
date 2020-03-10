@@ -94,7 +94,7 @@ const DrawingScreen = React.memo(props => {
           <BallComponent number={white_ball_3} size={Utils.hp(28)} type={0} textSize={Utils.hp(14)} />
           <BallComponent number={white_ball_4} size={Utils.hp(28)} type={0} textSize={Utils.hp(14)} />
           <BallComponent number={white_ball_5} size={Utils.hp(28)} type={0} textSize={Utils.hp(14)} />
-          <BallComponent number={red_ball} size={Utils.hp(28)} type={1}  textSize={Utils.hp(14)} />
+          <BallComponent number={red_ball} size={Utils.hp(28)} type={1} textSize={Utils.hp(14)} />
         </View>
       </View>
     )

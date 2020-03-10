@@ -18,13 +18,13 @@ export default StyleSheet.create({
   },
   //balance
   balanceView: {
-    flex: 2,
+    flex: 1.5,
     alignItems: 'center',
     justifyContent: 'center'
   },
   iconView: {
-    width: Utils.hp(40),
-    height: Utils.hp(40),
+    width: Utils.hp(35),
+    height: Utils.hp(35),
     paddingRight: '1%'
   },
   img: {
@@ -32,7 +32,7 @@ export default StyleSheet.create({
     height: '100%'
   },
   cointText: {
-    fontSize: Utils.hp(40),
+    fontSize: Utils.hp(30),
     color: '#424169'
   },
   coinView: {
@@ -40,7 +40,7 @@ export default StyleSheet.create({
   },
   //est
   estView: {
-    flex: 3
+    flex: 3.5
   },
   estValueView: {
     alignItems: 'center',
@@ -53,7 +53,7 @@ export default StyleSheet.create({
     color: 'gray'
   },
   estValue: {
-    fontSize: Utils.hp(30),
+    fontSize: Utils.hp(35),
     color: '#000'
   },
   nextDrawView: {

@@ -83,8 +83,8 @@ const WithdrawScreen = React.memo(props => {
   async function validateWithdraw() {
     const amountError = validation('amount', amount);
     let addressError = validation('address', address);
-    if (amountError || addressError) {
-      setMessage(amountError || addressError);
+    if (addressError || amountError) {
+      setMessage(addressError || amountError);
       setShowAlert(true);
       return;
     }

@@ -5,6 +5,7 @@ import apiService from '../../Services/API';
 import Utils from '../../Common/Utils';
 import { connect } from 'react-redux';
 import { Spinner } from 'native-base';
+import moment from 'moment';
 import EmptyState from '../../Components/StateComponent/EmptyState';
 import BallComponent from '../../Components/ItemComponent/BallComponent';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -70,20 +71,23 @@ const TicketActiveScreen = React.memo(props => {
   function renderHeader() {
     return (
       <View style={Styles.containerItem}>
+        <View style={[Styles.rightView, Styles.headerStyles]}>
+          <Text style={Styles.headerText}>Date</Text>
+        </View>
         <View style={Styles.leftView}>
           <Text style={Styles.headerText}>Picked Number</Text>
-        </View>
-        <View style={[Styles.rightView, Styles.headerStyles]}>
-          <Text style={Styles.headerText}>Amount</Text>
         </View>
       </View>)
   }
 
   function renderItem(item, index) {
     const { white1_ball, white2_ball, white3_ball, white4_ball,
-      white5_ball, red_ball, won_amount, power } = item;
+      white5_ball, red_ball, won_amount, power, created_at } = item;
     return (
       <View style={[Styles.containerItem, index === 0 ? Styles.borderTop : null]}>
+        <View style={Styles.rightView}>
+          <Text style={Styles.itemText}>{moment(created_at).format('MM/DD/YY')}</Text>
+        </View>
         <View style={Styles.leftView}>
           <View style={Styles.ballView}>
             <BallComponent number={white1_ball} size={Utils.hp(28)} type={0} textSize={Utils.hp(14)} />
@@ -96,10 +100,6 @@ const TicketActiveScreen = React.memo(props => {
           <View style={Styles.starView}>
             {power === 1 ? <Icon name='star' color='#FFCF20' size={Utils.hp(20)} /> : null}
           </View>
-
-        </View>
-        <View style={Styles.rightView}>
-          <Text style={Styles.itemText}>{won_amount}</Text>
         </View>
       </View>
     )
