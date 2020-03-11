@@ -7,8 +7,6 @@ import moment from 'moment';
 import Utils from '../../Common/Utils';
 import EmptyState from '../../Components/StateComponent/EmptyState';
 import BallComponent from '../../Components/ItemComponent/BallComponent';
-import Icon from 'react-native-vector-icons/FontAwesome';
-Icon.loadFont();
 
 let timerLoad = null;
 const DrawingScreen = React.memo(props => {
@@ -67,42 +65,34 @@ const DrawingScreen = React.memo(props => {
     setNext(true);
   }
 
-  function renderHeader() {
-    return (
-      <View style={Styles.containerItem}>
-        <View style={Styles.leftView}>
-          <Text style={Styles.headerText}>Date</Text>
-        </View>
-        <View style={[Styles.rightView, Styles.headerStyles]}>
-          <Text style={Styles.headerText}>Result</Text>
-        </View>
-      </View>)
+  function renderSeparator() {
+    return (<View style={Styles.seperatorView}></View>)
   }
 
   function renderItem(item, index) {
     const { white_ball_1, white_ball_2, white_ball_3, white_ball_4,
-      white_ball_5, red_ball, date_created } = item;
-    const date = moment(date_created).format('MM/DD/YY')
+      white_ball_5, red_ball, date_created, multiplier_value } = item;
+    const arrBall = [white_ball_1, white_ball_2, white_ball_3, white_ball_4, white_ball_5];
+    arrBall.sort(function (a, b) { return a - b });
+    const date = moment(date_created).format('MMM-DD-YYYY')
     return (
-      <View style={[Styles.containerItem, index === 0 ? Styles.borderTop : null]}>
-        <View style={Styles.leftView}>
-          <Text style={Styles.itemText}>{date}</Text>
+      <View style={Styles.containerItem} key={index}>
+        <Text style={Styles.timeText}>{date}</Text>
+        <View style={Styles.ballView}>
+          <BallComponent number={arrBall[0]} size={Utils.hp(40)} type={0} textSize={Utils.hp(16)} />
+          <BallComponent number={arrBall[1]} size={Utils.hp(40)} type={0} textSize={Utils.hp(16)} />
+          <BallComponent number={arrBall[2]} size={Utils.hp(40)} type={0} textSize={Utils.hp(16)} />
+          <BallComponent number={arrBall[3]} size={Utils.hp(40)} type={0} textSize={Utils.hp(16)} />
+          <BallComponent number={arrBall[4]} size={Utils.hp(40)} type={0} textSize={Utils.hp(16)} />
+          <BallComponent number={red_ball} size={Utils.hp(40)} type={1} textSize={Utils.hp(16)} />
         </View>
-        <View style={Styles.rightView}>
-          <BallComponent number={white_ball_1} size={Utils.hp(28)} type={0} textSize={Utils.hp(14)} />
-          <BallComponent number={white_ball_2} size={Utils.hp(28)} type={0} textSize={Utils.hp(14)} />
-          <BallComponent number={white_ball_3} size={Utils.hp(28)} type={0} textSize={Utils.hp(14)} />
-          <BallComponent number={white_ball_4} size={Utils.hp(28)} type={0} textSize={Utils.hp(14)} />
-          <BallComponent number={white_ball_5} size={Utils.hp(28)} type={0} textSize={Utils.hp(14)} />
-          <BallComponent number={red_ball} size={Utils.hp(28)} type={1} textSize={Utils.hp(14)} />
-        </View>
+        {multiplier_value > 0 ? <Text style={Styles.powerText}>Power Play X{multiplier_value}</Text> : null}
       </View>
     )
   }
 
   return (
     <View style={Styles.container}>
-      {renderHeader()}
       <FlatList
         refreshing={isRefresh}
         style={Styles.listView}
@@ -114,6 +104,7 @@ const DrawingScreen = React.memo(props => {
         onRefresh={() => onRefresh()}
         ListEmptyComponent={isFirstLoad ? null : <EmptyState />}
         ListFooterComponent={isLoad ? Spinner : null}
+        ItemSeparatorComponent={renderSeparator}
         onEndReachedThreshold={1}
       />
     </View>

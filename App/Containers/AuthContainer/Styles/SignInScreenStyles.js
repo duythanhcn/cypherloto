@@ -37,6 +37,13 @@ export default StyleSheet.create({
     flex: 6,
     justifyContent: 'center'
   },
+  backView: {
+    marginTop: '3%'
+  },
+  backText: {
+    color: '#FFF',
+    fontSize: Utils.hp(13)
+  },
   errorView: {
     width: '100%',
     justifyContent: 'flex-start',

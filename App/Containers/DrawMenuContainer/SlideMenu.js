@@ -8,7 +8,7 @@ const SideMenu = React.memo(props => {
 
   function signOut() {
     clearUser({});
-    navigation.navigate('SignIn');
+    navigation.navigate('Init');
   }
 
   return (

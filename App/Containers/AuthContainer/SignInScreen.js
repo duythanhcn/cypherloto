@@ -94,6 +94,11 @@ const SignInScreen = React.memo(props => {
               style={[Styles.buttonView, isBtnDisable ? Styles.btnDisable : null]}>
               <Text style={Styles.btnText}>SIGN IN</Text>
             </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => { navigation.navigate('Init') }}
+              style={Styles.backView}>
+              <Text style={Styles.backText}>Go Back</Text>
+            </TouchableOpacity>
           </View>
           <View style={Styles.errorView}>
             <Text style={Styles.messageText}>{errorMessage}</Text>

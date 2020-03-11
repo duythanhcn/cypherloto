@@ -16,7 +16,7 @@ const AuthStack = createStackNavigator(
     initialRouteName: 'SignIn',
     headerMode: 'none',
     defaultNavigationOptions: () => ({
-      gesturesEnabled: false
+      gesturesEnabled: true
     })
   })
 

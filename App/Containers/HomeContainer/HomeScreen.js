@@ -17,6 +17,7 @@ const HomeScreen = React.memo(props => {
   const [nextDraw, setNextDraw] = useState(0);
   const [estValue, setESTValue] = useState(0);
   const [winnerDate, setWinnerDate] = useState('');
+  const [powerX, setPowerX] = useState(0);
   const [arrWinner, setArrWinner] = useState([0, 0, 0, 0, 0, 0]);
   const [dataWinner, setDataWinner] = useState([]);
   const [index, setIndex] = useState(-1);
@@ -76,10 +77,11 @@ const HomeScreen = React.memo(props => {
   function setWinnerBall(index) {
     const data = dataWinner[index];
     if (data) {
-      const { date_created, white_ball_1, white_ball_2, white_ball_3, white_ball_4, white_ball_5, red_ball } = data;
+      const { date_created, white_ball_1, white_ball_2, white_ball_3, white_ball_4, white_ball_5, red_ball, multiplier_value } = data;
       setWinnerDate(moment(date_created).format('MMMM-DD-YYYY'));
       const winnerLot = [white_ball_1, white_ball_2, white_ball_3, white_ball_4, white_ball_5, red_ball];
-      setArrWinner(winnerLot);
+      setArrWinner(winnerLot.sort(function (a, b) { return a - b }));
+      setPowerX(multiplier_value);
     }
   }
 
@@ -140,12 +142,12 @@ const HomeScreen = React.memo(props => {
               : null}
           </View>
           <View style={Styles.numberView}>
-            <BallComponent number={arrWinner[0]} type={0} />
-            <BallComponent number={arrWinner[1]} type={0} />
-            <BallComponent number={arrWinner[2]} type={0} />
-            <BallComponent number={arrWinner[3]} type={0} />
-            <BallComponent number={arrWinner[4]} type={0} />
-            <BallComponent number={arrWinner[5]} type={1} />
+            <BallComponent number={arrWinner[0]} type={0} size={Utils.hp(40)} textSize={Utils.hp(16)} />
+            <BallComponent number={arrWinner[1]} type={0} size={Utils.hp(40)} textSize={Utils.hp(16)} />
+            <BallComponent number={arrWinner[2]} type={0} size={Utils.hp(40)} textSize={Utils.hp(16)} />
+            <BallComponent number={arrWinner[3]} type={0} size={Utils.hp(40)} textSize={Utils.hp(16)} />
+            <BallComponent number={arrWinner[4]} type={0} size={Utils.hp(40)} textSize={Utils.hp(16)} />
+            <BallComponent number={arrWinner[5]} type={1} size={Utils.hp(40)} textSize={Utils.hp(16)} />
           </View>
           <View style={Styles.nextNumber}>
             {index < 9 ?
@@ -157,6 +159,7 @@ const HomeScreen = React.memo(props => {
               : null}
           </View>
         </View>
+        {powerX > 0 ? <Text style={Styles.powerText}>Power Play X{powerX}</Text> : null}
       </View>
     </View>);
 })

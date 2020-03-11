@@ -20,7 +20,7 @@ const InformationScreen = React.memo(props => {
 
   function renderItem(item, index) {
     return (
-      <View style={Styles.itemView}>
+      <View style={Styles.itemView} key={'ball' + index}>
         <View style={[Styles.view1, Styles.SpecialView]}>
           {[0, 1, 2, 3, 4, 5, 6, 7].indexOf(index) !== -1 ?
             <BallComponent number={data[0]} size={Utils.wp(35)} type={0} textSize={Utils.wp(16)} /> : null}
@@ -36,7 +36,7 @@ const InformationScreen = React.memo(props => {
             <BallComponent number={data[0]} size={Utils.wp(35)} type={1} textSize={Utils.wp(16)} /> : null}
         </View>
         {item.map((it, i) =>
-          <View style={[Styles.view2, i % 2 == 0 ? Styles.odView : null]}>
+          <View style={[Styles.view2, i % 2 == 0 ? Styles.odView : null]} key={'price' + i}>
             <Text style={Styles.itemText}>{it}</Text>
           </View>)}
       </View>

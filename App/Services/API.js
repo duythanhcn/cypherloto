@@ -129,8 +129,16 @@ class API {
       hash,
       currency: 'USDT'
     }
-    const res = await POST('http://95.216.25.89:9001/validate_address', {}, data);
-    return res;
+    return new Promise((resolve, reject) => {
+      axios.post('http://95.216.25.89:9001/validate_address', data, {
+        headers: { 'Content-Type': 'application/json' }
+      }).then(({ data, status, statusText }) => {
+        resolve({ data, status, statusText });
+      }).catch(ex => {
+        console.log('ex', ex)
+        resolve({ data: null, status: 500, statusText: Message.ServiceError })
+      })
+    })
   }
 }
 

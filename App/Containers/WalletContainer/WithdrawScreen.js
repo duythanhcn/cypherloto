@@ -22,7 +22,7 @@ const WithdrawScreen = React.memo(props => {
   const [isNext, setNext] = useState(true);
   const [isRefresh, setRefresh] = useState(false);
   const [address, setAddress] = useState(null);
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState('');
   const [isFirstLoad, setFirstLoad] = useState(true);
   const [isLoad, setLoad] = useState(false);
   const [isShowAlert, setShowAlert] = useState(false)
@@ -120,16 +120,16 @@ const WithdrawScreen = React.memo(props => {
     }
     setShowAlert(true);
     setAddress('');
-    setAmount(0);
+    setAmount('');
   }
 
   async function checkAddress(address) {
-    const response = await apiService.doWithdraw(address);
+    const response = await apiService.verifyAddress(address);
     const { data, status } = response;
-    if (status === 200 && !data.errors) {
+    if (status === 200 && data.valid) {
       return null;
     } else {
-      return data.errors.message;
+      return 'Invalid Address';
     }
   }
 

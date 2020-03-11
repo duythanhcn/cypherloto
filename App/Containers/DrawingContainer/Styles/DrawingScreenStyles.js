@@ -3,57 +3,34 @@ import Utils from '../../../Common/Utils'
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    flex: 1
   },
   seperatorView: {
     width: '100%',
-    height: Utils.hp(1),
-    backgroundColor: 'gray'
+    height: Utils.hp(30),
+    backgroundColor: '#F0F1F5'
   },
   //header
   containerItem: {
     width: '100%',
-    height: Utils.hp(45),
-    justifyContent: 'center',
-    flexDirection: 'row',
-    borderBottomColor: 'gray',
-    borderBottomWidth: Utils.hp(1)
-
-  },
-  leftView: {
-    height: '100%',
-    width: '35%',
-    justifyContent: 'center',
+    height: Utils.hp(120),
+    justifyContent: 'space-around',
     alignItems: 'center'
   },
-  rightView: {
-    height: '100%',
-    width: '65%',
-    justifyContent: 'center',
+  listView: {
+    flex: 1
+  },
+  ballView: {
+    width: '70%',
+    justifyContent: 'space-around',
     alignItems: 'center',
-    flexDirection: 'row',
-    backgroundColor: '#f2f2f2'
+    flexDirection: 'row'
   },
-  headerText: {
-    fontSize: Utils.hp(18),
-    fontWeight: 'bold'
+  powerText: {
+    fontSize: Utils.hp(20),
+    color: '#ffb00b'
   },
-  itemText: {
-    fontSize: Utils.hp(16),
-    paddingHorizontal: '2%'
-  },
-  borderTop: {
-    borderTopColor: 'gray',
-    borderTopWidth: Utils.hp(1)
-  },
-  headerStyles: {
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  redItem: {
-    color: 'red'
+  timeText: {
+    fontSize: Utils.hp(22)
   }
-  //item
 })

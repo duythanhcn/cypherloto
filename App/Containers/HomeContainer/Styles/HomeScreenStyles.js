@@ -87,10 +87,11 @@ export default StyleSheet.create({
   },
   //winner
   winnerView: {
-    flex: 2
+    flex: 2,
+    justifyContent: 'space-around',
+    alignItems: 'center'
   },
   winnerHeader: {
-    flex: 3,
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -98,16 +99,19 @@ export default StyleSheet.create({
     fontSize: Utils.hp(20)
   },
   winnerBody: {
-    flex: 7,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center'
   },
   numberView: {
-    flex: 8,
-    justifyContent: 'center',
+    width: '70%',
+    justifyContent: 'space-around',
     alignItems: 'center',
     flexDirection: 'row'
+  },
+  powerText: {
+    fontSize: Utils.hp(18),
+    color: '#ffb00b'
   },
   nextNumber: {
     flex: 1,
