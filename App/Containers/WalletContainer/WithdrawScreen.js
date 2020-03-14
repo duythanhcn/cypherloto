@@ -114,7 +114,8 @@ const WithdrawScreen = React.memo(props => {
     const response = await apiService.doWithdraw(user.email, amount, address);
     const { data, status } = response;
     if (status === 200 && !data.errors) {
-      setMessage('Withdraw Success');
+      setMessage('Please confirm withdrawal by email');
+      onRefresh();
     } else {
       setMessage(data.errors.message);
     }
@@ -222,7 +223,7 @@ const WithdrawScreen = React.memo(props => {
             renderItem={({ item, index }) => renderItem(item, index)}
             onEndReached={() => isNext ? setPage(page + 1) : null}
             onRefresh={() => onRefresh()}
-            ListEmptyComponent={isFirstLoad ? null : <EmptyState />}
+            ListEmptyComponent={isFirstLoad || isRefresh ? null : <EmptyState />}
             ListFooterComponent={isLoad ? Spinner : null}
             onEndReachedThreshold={1}
           />

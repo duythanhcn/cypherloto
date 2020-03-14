@@ -146,7 +146,7 @@ const DepositScreen = React.memo(props => {
             renderItem={({ item, index }) => renderItem(item, index)}
             onEndReached={() => isNext ? setPage(page + 1) : null}
             onRefresh={() => onRefresh()}
-            ListEmptyComponent={isFirstLoad ? null : <EmptyState />}
+            ListEmptyComponent={isFirstLoad || isRefresh ? null : <EmptyState />}
             ListFooterComponent={isLoad ? Spinner : null}
             onEndReachedThreshold={1}
           />
