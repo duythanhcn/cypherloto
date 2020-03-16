@@ -12,7 +12,8 @@ export const API_URL = {
   GET_DRAWING: '/lottery',
   WITHDRAW: '/account/withdraw',
   BUY: '/buy_tickets',
-  VERIFY_QR: "/account/verify_2fa"
+  VERIFY_QR: '/account/verify_2fa',
+  CREATE_QR: '/account/get_2fa_key'
 };
 
 export const STATUS_ICON = {

@@ -8,7 +8,15 @@ export default StyleSheet.create({
   },
   headerView: {
     width: '100%',
-    height: Utils.hp(78),
+    height: Utils.hp(60),
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderBottomColor: 'gray',
+    borderBottomWidth: Utils.hp(1)
+  },
+  itemView: {
+    width: '100%',
+    height: Utils.hp(50),
     justifyContent: 'center',
     borderBottomColor: 'gray',
     borderBottomWidth: Utils.hp(1),

@@ -124,6 +124,15 @@ class API {
     return res;
   }
 
+  async createQR(account, password) {
+    const data = {
+      account,
+      password_token: Utils.hashString({ email: account, password }, 'password_token')
+    }
+    const res = await POST(API_URL.CREATE_QR, {}, data);
+    return res;
+  }
+
   async verifyAddress(hash) {
     const data = {
       hash,

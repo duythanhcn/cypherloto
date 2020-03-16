@@ -14,6 +14,21 @@ const SideMenu = React.memo(props => {
   return (
     <View style={Styles.container}>
       <View style={Styles.headerView}>
+        <Text style={Styles.headerText}>Account</Text>
+      </View>
+      <View style={Styles.itemView}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('ChangePassword')}>
+          <Text style={Styles.headerText}>Change Password</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={Styles.itemView}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('TwoFA')}>
+          <Text style={Styles.headerText}>2FA</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={Styles.itemView}>
         <TouchableOpacity
           onPress={() => signOut()}>
           <Text style={Styles.headerText}>Sign Out</Text>
