@@ -13,9 +13,9 @@ const InputComponent = React.memo(props => {
     setValue(value)
   }, [value])
 
-  useEffect(() => {
-    onChange(_value)
-  }, [_value])
+  // useEffect(() => {
+  //   onChange(_value)
+  // }, [_value])
 
   return (
     <View style={Styles.inputView}>
@@ -27,7 +27,7 @@ const InputComponent = React.memo(props => {
           placeholder={placeHolder}
           placeholderTextColor='gray'
           textContentType={type}
-          onChangeText={val => setValue(val)}
+          onChangeText={val => onChange(val)}
           numberOfLines={1}
           secureTextEntry={type === 'password'}
           onSubmitEditing={() => Keyboard.dismiss()}

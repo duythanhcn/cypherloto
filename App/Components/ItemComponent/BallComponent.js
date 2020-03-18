@@ -26,7 +26,7 @@ const BallComponent = React.memo(props => {
         <View style={[Styles.ballView,
         type === 0 ? Styles.whiteBall : Styles.redBall, data.indexOf(number) !== -1 ? Styles.active : null,
         size ? { width: size * 0.95, height: size * 0.95 } : null]}>
-          <Text style={[Styles.numberText, textSize ? { fontSize: textSize } : null]}>{number}</Text>
+          <Text style={[Styles.numberText, textSize ? { fontSize: textSize } : null, type === 0 ? Styles.whiteText : null]}>{number}</Text>
         </View>
       </TouchableOpacity>
     </View >

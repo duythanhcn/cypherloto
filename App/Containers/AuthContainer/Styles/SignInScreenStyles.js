@@ -34,7 +34,7 @@ export default StyleSheet.create({
     fontSize: Utils.hp(20)
   },
   contentView: {
-    flex: 6,
+    flex: 5,
     justifyContent: 'center'
   },
   backView: {
@@ -90,9 +90,25 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  forgotBtn: {
+    height: Utils.hp(50),
+    width: Utils.hp(150),
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   redirectBtnText: {
     color: '#FFF',
     fontSize: Utils.hp(15),
+    fontWeight: 'bold'
+  },
+  fogotView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  forgotText: {
+    color: '#FFF',
+    fontSize: Utils.hp(14),
     fontWeight: 'bold'
   }
 })

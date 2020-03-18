@@ -32,7 +32,7 @@ export default StyleSheet.create({
     height: '100%',
     width: '35%',
     justifyContent: 'center',
-    alignItems: 'flex-end',
+    alignItems: 'center',
     backgroundColor: '#f2f2f2'
   },
   headerText: {

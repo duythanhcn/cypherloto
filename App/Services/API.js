@@ -76,6 +76,7 @@ class API {
   }
 
   async getUserPlayedTicket(email, limit, page) {
+    email='xxx'
     const url = `${API_URL.GET_USER_TICKET}?buyer=${email}&status=Played&limit=${limit}&page=${page}`
     return await GET(url, {}, {});
   }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Styles from './Styles/HomeWithoutAccountScreenStyles';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import BallComponent from '../../Components/ItemComponent/BallComponent';
 import Utils from '../../Common/Utils';
 import apiService from '../../Services/API';
@@ -18,6 +18,8 @@ const HomeWithoutAccountScreen = React.memo(props => {
   const [dataWinner, setDataWinner] = useState([]);
   const [index, setIndex] = useState(-1);
   const [powerX, setPowerX] = useState(0);
+  const [payoutValue, setPayoutValue] = useState(0);
+  const [winner, setWinner] = useState(0);
 
   useEffect(() => {
     getCurrentLot();
@@ -61,7 +63,7 @@ const HomeWithoutAccountScreen = React.memo(props => {
     const data = dataWinner[index];
     if (data) {
       const { date_created, white_ball_1, white_ball_2, white_ball_3, white_ball_4, white_ball_5, red_ball, multiplier_value } = data;
-      setWinnerDate(moment(date_created).format('MMMM-DD-YYYY'));
+      setWinnerDate(moment(date_created).format('dddd, MMMM DD, YYYY'));
       const winnerLot = [white_ball_1, white_ball_2, white_ball_3, white_ball_4, white_ball_5, red_ball];
       setArrWinner(winnerLot.sort(function (a, b) { return a - b }));
       setPowerX(multiplier_value);
@@ -70,78 +72,84 @@ const HomeWithoutAccountScreen = React.memo(props => {
 
   return (
     <View style={Styles.container}>
-      <View style={Styles.headerView}>
-        <Text style={Styles.headerText}>TRY YOUR GAME</Text>
-      </View>
-      <View style={Styles.balanceView}>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('SignIn')}
-          style={Styles.buttonView}>
-          <Text style={Styles.btnText}>SIGN IN</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={Styles.headerView}>
-        <Text style={Styles.headerText}>ESTIMATED JACKPOT</Text>
-      </View>
-      <View style={Styles.estView}>
-        <View style={Styles.estValueView}>
-          <Text style={Styles.esttitle}>ESTIMATED JACKPOT</Text>
-          <Text style={Styles.estValue}>{estValue} USDT</Text>
+      <ScrollView>
+        <View style={Styles.headerView}>
+          <Text style={Styles.headerText}>TRY YOUR GAME</Text>
         </View>
-        <View style={Styles.nextDrawView}>
-          <Text style={Styles.esttitle}>NEXT DRAWING</Text>
-          <View style={Styles.timeDrawView}>
-            <CountDown
-              until={nextDraw}
-              size={30}
-              onFinish={() => { }}
-              style={Styles.timeView}
-              digitStyle={Styles.hour}
-              digitTxtStyle={Styles.hourText}
-              timeToShow={['H', 'M', 'S']}
-              timeLabels={{ h: 'Hours', m: 'Minutes', s: 'Seconds' }}
-              timeLabelStyle={Styles.hourDesc} />
+        <View style={Styles.signinView}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('SignIn')}
+            style={Styles.buttonView}>
+            <Text style={Styles.btnText}>SIGN IN</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={Styles.headerView}>
+          <Text style={Styles.headerText}>ESTIMATED JACKPOT</Text>
+        </View>
+        <View style={Styles.estView}>
+          <View style={Styles.estValueView}>
+            <Text style={Styles.esttitle}>ESTIMATED JACKPOT</Text>
+            <Text style={Styles.estValue}>{estValue} USDT</Text>
+          </View>
+          <View style={Styles.nextDrawView}>
+            <Text style={Styles.esttitle}>NEXT DRAWING</Text>
+            <View style={Styles.timeDrawView}>
+              <CountDown
+                until={nextDraw}
+                size={Utils.hp(20)}
+                onFinish={() => { }}
+                style={Styles.timeView}
+                digitStyle={Styles.hour}
+                digitTxtStyle={Styles.hourText}
+                timeToShow={['H', 'M', 'S']}
+                timeLabels={{ h: 'Hours', m: 'Minutes', s: 'Seconds' }}
+                timeLabelStyle={Styles.hourDesc} />
+            </View>
           </View>
         </View>
-      </View>
 
-      <View style={Styles.headerView}>
-        <Text style={Styles.headerText}>WINNER NUMBERS</Text>
-      </View>
-      <View style={Styles.winnerView}>
-        <View style={Styles.winnerHeader}>
-          <Text style={Styles.winnerDate}>{winnerDate}</Text>
+        <View style={Styles.headerView}>
+          <Text style={Styles.headerText}>WINNER NUMBERS</Text>
         </View>
-        <View style={Styles.winnerBody}>
+        <View style={Styles.winnerView}>
           <View style={Styles.prevNumber}>
             {index > 0 ?
               <TouchableOpacity
                 disabled={index <= 0 ? true : false}
                 onPress={() => index > 0 ? setIndex(index - 1) : null}>
-                <Icon name='chevron-left' color='gray' size={Utils.hp(25)} />
+                <Icon name='chevron-left' color='gray' size={Utils.hp(20)} />
               </TouchableOpacity>
               : null}
           </View>
-          <View style={Styles.numberView}>
-            <BallComponent number={arrWinner[0]} type={0} size={Utils.hp(40)} textSize={Utils.hp(16)} />
-            <BallComponent number={arrWinner[1]} type={0} size={Utils.hp(40)} textSize={Utils.hp(16)} />
-            <BallComponent number={arrWinner[2]} type={0} size={Utils.hp(40)} textSize={Utils.hp(16)} />
-            <BallComponent number={arrWinner[3]} type={0} size={Utils.hp(40)} textSize={Utils.hp(16)} />
-            <BallComponent number={arrWinner[4]} type={0} size={Utils.hp(40)} textSize={Utils.hp(16)} />
-            <BallComponent number={arrWinner[5]} type={1} size={Utils.hp(40)} textSize={Utils.hp(16)} />
+          <View style={Styles.winnerBody}>
+            <View style={Styles.winnerHeader}>
+              <Text style={Styles.winnerDate}>{winnerDate.toUpperCase()}</Text>
+            </View>
+            <View style={Styles.numberView}>
+              <BallComponent number={arrWinner[0]} type={0} size={Utils.hp(40)} textSize={Utils.hp(16)} />
+              <BallComponent number={arrWinner[1]} type={0} size={Utils.hp(40)} textSize={Utils.hp(16)} />
+              <BallComponent number={arrWinner[2]} type={0} size={Utils.hp(40)} textSize={Utils.hp(16)} />
+              <BallComponent number={arrWinner[3]} type={0} size={Utils.hp(40)} textSize={Utils.hp(16)} />
+              <BallComponent number={arrWinner[4]} type={0} size={Utils.hp(40)} textSize={Utils.hp(16)} />
+              <BallComponent number={arrWinner[5]} type={1} size={Utils.hp(40)} textSize={Utils.hp(16)} />
+            </View>
+            <Text style={Styles.powerText}>POWER PLAY: {powerX}</Text>
+            <Text style={Styles.payoutValue}>{payoutValue} USDT</Text>
+            <Text style={Styles.winner}>{winner === 0 ? 'NO' : winner} JACKPOT WINNER</Text>
           </View>
+
           <View style={Styles.nextNumber}>
             {index < 9 ?
               <TouchableOpacity
                 disabled={index >= 9 ? true : false}
                 onPress={() => index < 9 ? setIndex(index + 1) : null}>
-                <Icon name='chevron-right' color='gray' size={Utils.hp(25)} />
+                <Icon name='chevron-right' color='gray' size={Utils.hp(20)} />
               </TouchableOpacity>
               : null}
           </View>
         </View>
-        {powerX > 0 ? <Text style={Styles.powerText}>Power Play X{powerX}</Text> : null}
-      </View>
+      </ScrollView>
     </View>);
 })
 

@@ -104,6 +104,13 @@ const SignInScreen = React.memo(props => {
             <Text style={Styles.messageText}>{errorMessage}</Text>
           </View>
         </View>
+        <View style={Styles.fogotView}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('SignUp')}
+            style={Styles.forgotBtn}>
+            <Text style={Styles.forgotText}>Forgot Password</Text>
+          </TouchableOpacity>
+        </View>
         <View style={Styles.footerView}>
           <Text style={Styles.footerText}>Sign up for an account</Text>
           <TouchableOpacity

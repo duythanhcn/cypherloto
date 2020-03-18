@@ -14,10 +14,10 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   whiteBall: {
-    backgroundColor: '#424169'
+    backgroundColor: '#dddddd'
   },
   redBall: {
-    backgroundColor: 'red'
+    backgroundColor: '#f92f2f'
   },
   numberText: {
     fontSize: Utils.hp(20),
@@ -26,5 +26,8 @@ export default StyleSheet.create({
   },
   active: {
     backgroundColor: '#FFCF20'
+  },
+  whiteText: {
+    color: '#000'
   }
 })

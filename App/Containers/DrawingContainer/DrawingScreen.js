@@ -70,14 +70,15 @@ const DrawingScreen = React.memo(props => {
   }
 
   function renderItem(item, index) {
+    console.log(item);
     const { white_ball_1, white_ball_2, white_ball_3, white_ball_4,
-      white_ball_5, red_ball, date_created, multiplier_value } = item;
+      white_ball_5, red_ball, date_created, multiplier_value, total_jackpot, jackpot_value } = item;
     const arrBall = [white_ball_1, white_ball_2, white_ball_3, white_ball_4, white_ball_5];
     arrBall.sort(function (a, b) { return a - b });
-    const date = moment(date_created).format('MMM-DD-YYYY')
+    const date = moment(date_created).format('dddd, MMMM DD, YYYY')
     return (
       <View style={Styles.containerItem} key={index}>
-        <Text style={Styles.timeText}>{date}</Text>
+        <Text style={Styles.timeText}>{date.toUpperCase()}</Text>
         <View style={Styles.ballView}>
           <BallComponent number={arrBall[0]} size={Utils.hp(40)} type={0} textSize={Utils.hp(16)} />
           <BallComponent number={arrBall[1]} size={Utils.hp(40)} type={0} textSize={Utils.hp(16)} />
@@ -86,7 +87,9 @@ const DrawingScreen = React.memo(props => {
           <BallComponent number={arrBall[4]} size={Utils.hp(40)} type={0} textSize={Utils.hp(16)} />
           <BallComponent number={red_ball} size={Utils.hp(40)} type={1} textSize={Utils.hp(16)} />
         </View>
-        {multiplier_value > 0 ? <Text style={Styles.powerText}>Power Play X{multiplier_value}</Text> : null}
+        <Text style={Styles.powerText}>POWER PLAY: {multiplier_value}</Text>
+        <Text style={Styles.payoutValue}>{jackpot_value} USDT</Text>
+        <Text style={Styles.winner}>{total_jackpot === 0 ? 'NO' : total_jackpot} JACKPOT WINNER</Text>
       </View>
     )
   }

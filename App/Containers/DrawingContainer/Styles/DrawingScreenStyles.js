@@ -13,7 +13,7 @@ export default StyleSheet.create({
   //header
   containerItem: {
     width: '100%',
-    height: Utils.hp(120),
+    height: Utils.hp(160),
     justifyContent: 'space-around',
     alignItems: 'center'
   },
@@ -28,7 +28,14 @@ export default StyleSheet.create({
   },
   powerText: {
     fontSize: Utils.hp(20),
-    color: '#ffb00b'
+    fontWeight: 'bold'
+  },
+  payoutValue: {
+    fontSize: Utils.hp(14),
+    fontWeight: 'bold'
+  },
+  winner: {
+    fontSize: Utils.hp(14),
   },
   timeText: {
     fontSize: Utils.hp(22)
