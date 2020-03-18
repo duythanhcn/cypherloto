@@ -9,6 +9,9 @@ const InputComponent = React.memo(props => {
   const { navigation, icon, placeHolder, onChange, title, value, type } = props;
   const [_value, setValue] = useState(value);
 
+  useEffect(() => {
+    setValue(value)
+  }, [value])
 
   useEffect(() => {
     onChange(_value)

@@ -13,7 +13,11 @@ export const API_URL = {
   WITHDRAW: '/account/withdraw',
   BUY: '/buy_tickets',
   VERIFY_QR: '/account/verify_2fa',
-  CREATE_QR: '/account/get_2fa_key'
+  CREATE_QR: '/account/get_2fa_key',
+  CHANGE_PASSWORD: '/account/change_password',
+  FORGOT_PASSWORD: '/account/forgot_password',
+  ENABLE_2FA: '/account/enable_2fa',
+  DISABLE_2FA: '/account/disable_2fa'
 };
 
 export const STATUS_ICON = {

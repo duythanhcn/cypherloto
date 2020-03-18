@@ -1,5 +1,5 @@
 import React from 'react'
-import { createStackNavigator, HeaderBackButton } from 'react-navigation';
+import { createStackNavigator, HeaderBackButton, StackActions, NavigationActions } from 'react-navigation';
 import { Button } from 'native-base';
 import LogoTitle from '../Components/ItemComponent/LogoTitle';
 import ChangePasswordScreen from '../Containers/AccountContainer/ChangePasswordScreen';
@@ -25,7 +25,9 @@ const AccountStack = createStackNavigator(
       headerTitle: () => <LogoTitle />,
       headerBackTitle: null,
       gesturesEnabled: true,
-      headerLeft: <HeaderBackButton onPress={ect => navigation.goBack()} />,
+      headerLeft: <HeaderBackButton onPress={() => {
+        navigation.navigate('App')
+      }} />,
       headerRight: (
         <Button transparent onPress={() => { }} />
       )

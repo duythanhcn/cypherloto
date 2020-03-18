@@ -9,7 +9,6 @@ import DrawingStack from './DrawingStack';
 import WalletStack from './WalletStack';
 import HiddenStack from './HiddenStack';
 import TabBarBottomIcon from '../Components/ItemComponent/TabBarBottomIcon';
-import AccountStack from './AccountStack';
 
 const TabNavigation = createBottomTabNavigator(
   {
@@ -30,9 +29,6 @@ const TabNavigation = createBottomTabNavigator(
     },
     HiddenTab: {
       screen: HiddenStack
-    },
-    AccountTab: {
-      screen: AccountStack
     }
   },
   {
@@ -57,7 +53,7 @@ const TabNavigation = createBottomTabNavigator(
         {...props}
         getButtonComponent={({ route }) => {
           // Custom TabBar to hide TabItem
-          if (route.key === 'HiddenTab' || route.key === 'AccountTab') {
+          if (route.key === 'HiddenTab') {
             return () => <View />
           } else {
             return null

@@ -36,6 +36,7 @@ class API {
       email,
       password_token: Utils.hashString({ email, password }, 'password_token')
     }
+    console.log(data);
     const res = await POST(API_URL.LOGIN, {}, data);
     return res;
   }
@@ -131,6 +132,41 @@ class API {
     }
     const res = await POST(API_URL.CREATE_QR, {}, data);
     return res;
+  }
+
+  async enable2FA(account, password, token) {
+    const data = {
+      account,
+      password_token: Utils.hashString({ email: account, password }, 'password_token'),
+      token
+    }
+    const res = await POST(API_URL.ENABLE_2FA, {}, data);
+    return res;
+  }
+
+  async disable2FA(account, password, token) {
+    const data = {
+      account,
+      password_token: Utils.hashString({ email: account, password }, 'password_token'),
+      token
+    }
+    const res = await POST(API_URL.DISABLE_2FA, {}, data);
+    return res;
+  }
+
+  async changePassword(email, oldPassword, newPassword) {
+    const data = {
+      email,
+      old_password_token: Utils.hashString({ email, password: oldPassword }, 'password_token'),
+      new_password_token: Utils.hashString({ email, password: newPassword }, 'password_token')
+    }
+    const res = await POST(API_URL.CHANGE_PASSWORD, {}, data);
+    return res;
+  }
+
+  async forgotPassword(email) {
+    const url = `${API_URL.FORGOT_PASSWORD}?account=${email}`
+    return await GET(url, {}, {});
   }
 
   async verifyAddress(hash) {

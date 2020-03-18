@@ -4,16 +4,40 @@ import { View, Text, TouchableOpacity, Image, KeyboardAvoidingView, Platform } f
 import InputComponent from '../../Components/ItemComponent/InputComponent';
 import { connect } from 'react-redux';
 import validation from '../../Common/validation';
+import apiService from '../../Services/API';
+import AlertModal from '../../Components/ModelComponent/AlertModal';
+import { withNavigationFocus } from 'react-navigation';
 
 const ChangePasswordScreen = React.memo(props => {
-  const { navigation, user, setUser } = props;
+  const { navigation, user, setUser, isFocused } = props;
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [isShowAlert, setShowAlert] = useState(false)
+  const [message, setMessage] = useState('');
+  const actions = [
+    {
+      btnText: 'OK', btnAction: () => {
+        setShowAlert(false);
+        setMessage('');
+        setOldPassword('');
+        setNewPassword('');
+        setConfirmPassword('');
+      }
+    }
+  ]
 
-  function onChange() {
-    console.log(user);
+  useEffect(() => {
+    if (!isFocused) {
+      setMessage('');
+      setOldPassword('');
+      setNewPassword('');
+      setConfirmPassword('');
+    }
+  }, [isFocused])
+
+  async function onChange() {
     setErrorMessage('');
     let oldPasswordError = validation('password', oldPassword);
     const newPasswordError = validation('password', newPassword);
@@ -22,6 +46,15 @@ const ChangePasswordScreen = React.memo(props => {
     if (oldPasswordError || newPasswordError || confirmPasswordError || confirmOldPasswordError) {
       setErrorMessage(oldPasswordError || newPasswordError || confirmPasswordError || confirmOldPasswordError);
       return;
+    }
+    const response = await apiService.changePassword(user.email, oldPassword, newPassword);
+    const { data, status } = response;
+    if (status === 200 && !data.errors) {
+      setMessage('Change password success');
+      setShowAlert(true);
+      setUser({ password: newPassword });
+    } else {
+      setErrorMessage(data.errors.message);
     }
   }
 
@@ -51,7 +84,7 @@ const ChangePasswordScreen = React.memo(props => {
             onChange={val => setConfirmPassword(val !== '' ? val : null)}
             icon='lock'
             value={confirmPassword}
-            type='confirmPassword' />
+            type='password' />
           <View style={Styles.actionView}>
             <TouchableOpacity
               onPress={() => onChange()}
@@ -64,6 +97,11 @@ const ChangePasswordScreen = React.memo(props => {
           </View>
         </View>
       </KeyboardAvoidingView>
+      <AlertModal
+        isVisible={isShowAlert}
+        message={message}
+        title='Inform'
+        actions={actions} />
     </View>)
 });
 
@@ -75,4 +113,4 @@ const mapDispatchToProps = dispatch => {
   return { setUser: (data) => dispatch({ data, type: 'SET_USER' }) }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChangePasswordScreen);
+export default withNavigationFocus(connect(mapStateToProps, mapDispatchToProps)(ChangePasswordScreen));

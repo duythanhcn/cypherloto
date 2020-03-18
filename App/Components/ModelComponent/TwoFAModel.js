@@ -34,7 +34,8 @@ const TwoFAModel = React.memo(props => {
     const { data, status } = response;
     if (status === 200 && !data.errors) {
       setErrorMessage('');
-      onChange(true);
+      onChange(true, token);
+      setCode(null);
     } else {
       setErrorMessage(data.errors.message);
     }
@@ -49,6 +50,7 @@ const TwoFAModel = React.memo(props => {
       onTouchOutside={() => {
         setErrorMessage('');
         onChange(false);
+        setCode(null);
       }}
       dialogStyle={[Styles.dialogStyle, isKeyboard ? Styles.marginFocus : null]}>
       <View style={Styles.container}>

@@ -63,9 +63,25 @@ export default StyleSheet.create({
     alignSelf: 'center',
     borderTopWidth: Utils.hp(1),
     borderTopColor: '#FFF',
-    paddingVertical: '2%',
+    paddingVertical: '3%',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between'
   },
+  qrView: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: '5%'
+  },
+  qrString: {
+    fontSize: Utils.hp(22),
+    fontWeight: 'bold',
+    paddingVertical: '5%'
+  },
+  qrImage: {
+    paddingVertical: '5%'
+  },
+  orText: {
+    fontSize: Utils.hp(16)
+  }
 })

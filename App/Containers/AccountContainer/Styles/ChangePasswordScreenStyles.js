@@ -33,7 +33,8 @@ export default StyleSheet.create({
   errorView: {
     width: '100%',
     justifyContent: 'flex-start',
-    alignItems: 'center'
+    alignItems: 'center',
+    height: Utils.hp(100)
   },
   messageText: {
     color: 'red',

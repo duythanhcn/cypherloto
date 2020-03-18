@@ -2,6 +2,7 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import AuthStack from './AuthStack';
 import DrawMenuStack from './DrawMenuStack';
 import HomeWithoutAccountScreen from '../Containers/HiddenContainer/HomeWithoutAccountScreen';
+import AccountStack from './AccountStack';
 
 const PrimaryNavigation = createSwitchNavigator(
   {
@@ -10,6 +11,9 @@ const PrimaryNavigation = createSwitchNavigator(
     },
     Auth: {
       screen: AuthStack
+    },
+    Account: {
+      screen: AccountStack
     },
     App: {
       screen: DrawMenuStack
