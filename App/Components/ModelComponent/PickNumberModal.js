@@ -6,6 +6,7 @@ import BallComponent from '../ItemComponent/BallComponent';
 import Utils from '../../Common/Utils';
 import AlertModal from '../../Components/ModelComponent/AlertModal';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import SwitchToggle from '@dooboo-ui/native-switch-toggle';
 Icon.loadFont();
 
 const _whiteBall = Array(69).fill(1);
@@ -106,7 +107,7 @@ const PickNumberModal = React.memo(props => {
     return (
       <View style={Styles.pickerLayer2}>
         <View style={Styles.headerPicker}>
-          <Text style={Styles.headerText}>Pick 1 number from 1 to 26</Text>
+          <Text style={Styles.headerText}>PICK 1 POWERBALL FROM 1 TO 26</Text>
         </View>
         <View style={Styles.numberView}>
           {_redBall.map((item, index) => <BallComponent data={data.redBall} number={index + 1} type={1} key={index} onSelect={(val) => setRedBall(val)} isAction={true} />)}
@@ -119,7 +120,7 @@ const PickNumberModal = React.memo(props => {
     return (
       <View style={Styles.pickerLayer1}>
         <View style={Styles.headerPicker}>
-          <Text style={Styles.headerText}>Pick 5 number from 1 to 69</Text>
+          <Text style={Styles.headerText}>PICK 5 POWERBALL FROM 1 TO 69</Text>
         </View>
         <View style={Styles.numberView}>
           {_whiteBall.map((item, index) => <BallComponent data={data.whiteBall} number={index + 1} type={0} key={index} onSelect={(val) => setWhiteBall(val)} isAction={true} />)}
@@ -153,16 +154,40 @@ const PickNumberModal = React.memo(props => {
               style={Styles.btnAction}>
               <Text style={Styles.actionText}>Quick Pick</Text>
             </TouchableOpacity>
-            <TouchableOpacity
+            {/* <TouchableOpacity
               style={Styles.btnAction}
               onPress={() => onPower()}>
               <Icon name='star' color={data.power ? '#FFCF20' : 'gray'} size={Utils.hp(40)} />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <TouchableOpacity
               onPress={() => clearNumber()}
               style={Styles.btnAction}>
               <Text style={Styles.actionText}>Clear Number</Text>
             </TouchableOpacity>
+          </View>
+          <View style={Styles.powerView}>
+            <Text style={Styles.powerText}>Power Play:</Text>
+            <View style={Styles.radioInnerView}>
+              <SwitchToggle
+                backTextRight={data.power ? '' : 'ON'}
+                backTextLeft={data.power ? 'OFF' : ''}
+                type={1}
+                buttonStyle={Styles.toggleButtonStyle}
+                rightContainerStyle={Styles.toggleRightContainerStyle}
+                leftContainerStyle={Styles.toggleLeftContainerStyle}
+                textRightStyle={Styles.toggleTextRightStyle}
+                textLeftStyle={Styles.toggleTextLeftStyle}
+                containerStyle={Styles.toggleContainerStyle}
+                backgroundColorOn="#FFF"
+                backgroundColorOff="#004E79"
+                circleStyle={Styles.toggleCircleStyle}
+                switchOn={data.power}
+                onPress={() => onPower()}
+                circleColorOff="#FFF"
+                circleColorOn="#004E79"
+                duration={300}
+              />
+            </View>
           </View>
         </View>
         <View style={Styles.pickView}>

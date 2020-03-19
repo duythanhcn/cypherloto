@@ -4,7 +4,7 @@ import Utils from '../../../Common/Utils'
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFF',
+    backgroundColor: '#13161D',
     justifyContent: 'center',
     alignItems: 'center'
   },

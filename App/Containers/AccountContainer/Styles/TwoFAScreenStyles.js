@@ -4,16 +4,14 @@ import Utils from '../../../Common/Utils'
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFF',
-    // justifyContent: 'center',
-    // alignItems: 'center'
+    backgroundColor: '#13161D'
   },
   radioInnerView: {
     justifyContent: 'center',
     alignItems: 'center',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    height: '100%',
   },
-
   toggleButtonStyle: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -56,32 +54,39 @@ export default StyleSheet.create({
   },
   radioText: {
     fontSize: Utils.hp(16),
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#FFF'
   },
   radioBtnView: {
-    width: '90%',
-    alignSelf: 'center',
-    borderTopWidth: Utils.hp(1),
-    borderTopColor: '#FFF',
-    paddingVertical: '3%',
+    width: '100%',
     flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    height: Utils.hp(50),
+    paddingHorizontal: '3%',
+    alignItems: 'center'
+
   },
   qrView: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: '5%'
+    marginTop: '30%'
   },
   qrString: {
     fontSize: Utils.hp(22),
     fontWeight: 'bold',
-    paddingVertical: '5%'
+    color: '#FFF'
   },
   qrImage: {
-    paddingVertical: '5%'
+    height: Utils.hp(170),
+    width: Utils.hp(170),
+    backgroundColor: '#FFF',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   orText: {
-    fontSize: Utils.hp(16)
+    fontSize: Utils.hp(16),
+    marginVertical: '5%',
+    color: '#FFF'
   }
 })

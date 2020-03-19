@@ -62,11 +62,14 @@ const HomeWithoutAccountScreen = React.memo(props => {
   function setWinnerBall(index) {
     const data = dataWinner[index];
     if (data) {
-      const { date_created, white_ball_1, white_ball_2, white_ball_3, white_ball_4, white_ball_5, red_ball, multiplier_value } = data;
+      const { date_created, white_ball_1, white_ball_2, white_ball_3, white_ball_4,
+        white_ball_5, red_ball, multiplier_value, total_jackpot, jackpot_value } = data;
       setWinnerDate(moment(date_created).format('dddd, MMMM DD, YYYY'));
       const winnerLot = [white_ball_1, white_ball_2, white_ball_3, white_ball_4, white_ball_5, red_ball];
       setArrWinner(winnerLot.sort(function (a, b) { return a - b }));
       setPowerX(multiplier_value);
+      setPayoutValue(jackpot_value);
+      setWinner(total_jackpot);
     }
   }
 

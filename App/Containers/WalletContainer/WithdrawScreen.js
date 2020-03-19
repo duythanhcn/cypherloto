@@ -25,7 +25,7 @@ const WithdrawScreen = React.memo(props => {
   const [amount, setAmount] = useState('');
   const [isFirstLoad, setFirstLoad] = useState(true);
   const [isLoad, setLoad] = useState(false);
-  const [isShowAlert, setShowAlert] = useState(false)
+  const [isShowAlert, setShowAlert] = useState(false);
   const [message, setMessage] = useState('');
   const [isShow2FA, setShow2FA] = useState(false);
   const actions = [

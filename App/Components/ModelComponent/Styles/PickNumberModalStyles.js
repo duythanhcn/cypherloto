@@ -14,13 +14,13 @@ export default StyleSheet.create({
   },
   currentView: {
     width: '100%',
-    height: '20%',
+    height: '30%',
     justifyContent: 'center',
     alignItems: 'center',
   },
   pickView: {
     width: '100%',
-    height: '70%',
+    height: '60%',
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column'
@@ -44,7 +44,7 @@ export default StyleSheet.create({
     paddingTop: '3%'
   },
   btnAction: {
-    flex:1,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -82,8 +82,8 @@ export default StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'center',
     marginVertical: Utils.hp(10),
-    flexDirection:'row',
-    flexWrap:'wrap'
+    flexDirection: 'row',
+    flexWrap: 'wrap'
   },
   scrollView: {
     width: '100%'
@@ -93,7 +93,66 @@ export default StyleSheet.create({
     alignContent: 'center'
   },
   headerText: {
-    fontSize: Utils.hp(20),
+    fontSize: Utils.hp(16),
     color: 'gray'
+  },
+  powerView: {
+    flexDirection: 'row',
+    width: '100%',
+    height: Utils.hp(50),
+    alignItems: 'center',
+    paddingTop: '5%',
+    paddingHorizontal: '3%'
+  },
+  radioInnerView: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    height: '100%',
+    paddingLeft: '5%'
+  },
+  toggleButtonStyle: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'absolute'
+  },
+  toggleRightContainerStyle: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  toggleLeftContainerStyle: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'flex-start'
+  },
+  toggleTextRightStyle: {
+    fontSize: Utils.hp(14),
+    fontWeight: 'bold',
+    color: '#FFF'
+  },
+  toggleTextLeftStyle: {
+    fontSize: Utils.hp(14),
+    fontWeight: 'bold',
+    color: '#004E79'
+  },
+  toggleContainerStyle: {
+    marginTop: 0,
+    width: Utils.hp(70),
+    height: Utils.hp(30),
+    borderRadius: Utils.hp(30 / 2),
+    padding: Utils.hp(2),
+    borderColor: '#004E79',
+    borderWidth: Utils.hp(1),
+  },
+  toggleCircleStyle: {
+    width: Utils.hp(24),
+    height: Utils.hp(24),
+    borderRadius: Utils.hp(24 / 2),
+    backgroundColor: 'blue'
+  },
+  powerText: {
+    fontSize: Utils.hp(16),
+    fontWeight: 'bold'
   }
 })

@@ -2,6 +2,7 @@ import React from 'react';
 import { createStackNavigator, HeaderBackButton, } from 'react-navigation-stack';
 import SignInScreen from '../Containers/AuthContainer/SignInScreen';
 import SignUpScreen from '../Containers/AuthContainer/SignUpScreen';
+import ForgotPasswordScreen from '../Containers/AuthContainer/ForgotPasswordScreen';
 
 const AuthStack = createStackNavigator(
   {
@@ -10,6 +11,9 @@ const AuthStack = createStackNavigator(
     },
     SignUp: {
       screen: SignUpScreen
+    },
+    Forgot: {
+      screen: ForgotPasswordScreen
     }
   },
   {

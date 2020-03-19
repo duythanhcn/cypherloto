@@ -106,7 +106,7 @@ const SignInScreen = React.memo(props => {
         </View>
         <View style={Styles.fogotView}>
           <TouchableOpacity
-            onPress={() => navigation.navigate('SignUp')}
+            onPress={() => navigation.navigate('Forgot')}
             style={Styles.forgotBtn}>
             <Text style={Styles.forgotText}>Forgot Password</Text>
           </TouchableOpacity>

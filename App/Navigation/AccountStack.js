@@ -22,7 +22,6 @@ const AccountStack = createStackNavigator(
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
-      headerTitle: () => <LogoTitle />,
       headerBackTitle: null,
       gesturesEnabled: true,
       headerLeft: <HeaderBackButton onPress={() => {

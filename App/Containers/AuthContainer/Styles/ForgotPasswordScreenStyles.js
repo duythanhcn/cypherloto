@@ -34,8 +34,7 @@ export default StyleSheet.create({
     fontSize: Utils.hp(20)
   },
   contentView: {
-    flex: 5,
-    justifyContent: 'center'
+    flex: 4
   },
   backView: {
     marginTop: '3%'
@@ -108,7 +107,7 @@ export default StyleSheet.create({
   },
   forgotText: {
     color: '#FFF',
-    fontSize: Utils.hp(13),
+    fontSize: Utils.hp(14),
     fontWeight: 'bold'
   }
 })
