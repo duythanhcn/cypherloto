@@ -88,7 +88,7 @@ const DrawingScreen = React.memo(props => {
           <BallComponent number={red_ball} size={Utils.hp(40)} type={1} textSize={Utils.hp(16)} />
         </View>
         <Text style={Styles.powerText}>POWER PLAY: {multiplier_value}</Text>
-        <Text style={Styles.payoutValue}>{jackpot_value} USDT</Text>
+        <Text style={Styles.payoutValue}>{Utils.formatter.format(jackpot_value / 1000000)} Millions</Text>
         <Text style={Styles.winner}>{total_jackpot === 0 ? 'NO' : total_jackpot} JACKPOT WINNER</Text>
       </View>
     )

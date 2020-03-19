@@ -14,7 +14,7 @@ Icon.loadFont();
 const payout = [
   ['5 + 1', '', ''],
   ['5 + 0', '1 Millions', '2 Millions'],
-  ['4 + 1', '50,000', '200,000'],
+  ['4 + 1', '50000', '200,000'],
   ['4 + 0', '100', '400'],
   ['3 + 1', '100', '400'],
   ['3 + 0', '7', '28'],
@@ -82,7 +82,7 @@ const HomeScreen = React.memo(props => {
     const { data } = res;
     if (!data.errors) {
       const { balance } = data;
-      setESTValue(balance);
+      setESTValue(balance / 1000000);
     }
   }
 
@@ -95,7 +95,7 @@ const HomeScreen = React.memo(props => {
       const winnerLot = [white_ball_1, white_ball_2, white_ball_3, white_ball_4, white_ball_5, red_ball];
       setArrWinner(winnerLot.sort(function (a, b) { return a - b }));
       setPowerX(multiplier_value);
-      setPayoutValue(jackpot_value);
+      setPayoutValue(jackpot_value / 1000000);
       setWinner(total_jackpot);
     }
   }
@@ -126,7 +126,7 @@ const HomeScreen = React.memo(props => {
         <View style={Styles.estView}>
           <View style={Styles.estValueView}>
             <Text style={Styles.esttitle}>ESTIMATED JACKPOT</Text>
-            <Text style={Styles.estValue}>{estValue} USDT</Text>
+            <Text style={Styles.estValue}>{Utils.formatter.format(estValue)} Millions</Text>
           </View>
           <View style={Styles.nextDrawView}>
             <Text style={Styles.esttitle}>NEXT DRAWING</Text>
@@ -171,7 +171,7 @@ const HomeScreen = React.memo(props => {
               <BallComponent number={arrWinner[5]} type={1} size={Utils.hp(40)} textSize={Utils.hp(16)} />
             </View>
             <Text style={Styles.powerText}>POWER PLAY: {powerX}</Text>
-            <Text style={Styles.payoutValue}>{payoutValue} USDT</Text>
+            <Text style={Styles.payoutValue}>{Utils.formatter.format(payoutValue)} Millions</Text>
             <Text style={Styles.winner}>{winner === 0 ? 'NO' : winner} JACKPOT WINNER</Text>
           </View>
 
@@ -188,9 +188,17 @@ const HomeScreen = React.memo(props => {
         <View style={Styles.headerView}>
           <Text style={Styles.headerText}>PAYOUTS</Text>
         </View>
-        {renderPayout(true, 'Match', 'Prize', '4X Prize')}
+        {renderPayout(true, 'Match', 'Prize', `${powerX}X Prize`)}
         {payout.map((item, index) => {
-          return renderPayout(false, item[0], index === 0 ? payoutValue + ' Millions' : item[1], index === 0 ? payoutValue + ' Millions' : item[2]);
+          let value1 = item[1];
+          let value2 = item[2];
+          if (index > 1) value2 = value1 * powerX;
+          if (index === 1) {
+            return renderPayout(false, item[0], value1, value2);
+          }
+          return renderPayout(false, item[0],
+            index === 0 ? Utils.formatter.format(payoutValue) + ' Millions' : Utils.formatter.format(value1),
+            index === 0 ? Utils.formatter.format(payoutValue) + ' Millions' : Utils.formatter.format(value2));
         })}
       </ScrollView>
     </View>);

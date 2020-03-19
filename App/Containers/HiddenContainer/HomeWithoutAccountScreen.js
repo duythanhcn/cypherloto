@@ -55,7 +55,7 @@ const HomeWithoutAccountScreen = React.memo(props => {
     const { data } = res;
     if (!data.errors) {
       const { balance } = data;
-      setESTValue(balance);
+      setESTValue(balance / 1000000);
     }
   }
 
@@ -68,7 +68,7 @@ const HomeWithoutAccountScreen = React.memo(props => {
       const winnerLot = [white_ball_1, white_ball_2, white_ball_3, white_ball_4, white_ball_5, red_ball];
       setArrWinner(winnerLot.sort(function (a, b) { return a - b }));
       setPowerX(multiplier_value);
-      setPayoutValue(jackpot_value);
+      setPayoutValue(jackpot_value / 1000000);
       setWinner(total_jackpot);
     }
   }
@@ -93,7 +93,7 @@ const HomeWithoutAccountScreen = React.memo(props => {
         <View style={Styles.estView}>
           <View style={Styles.estValueView}>
             <Text style={Styles.esttitle}>ESTIMATED JACKPOT</Text>
-            <Text style={Styles.estValue}>{estValue} USDT</Text>
+            <Text style={Styles.estValue}>{Utils.formatter.format(estValue)} Millions</Text>
           </View>
           <View style={Styles.nextDrawView}>
             <Text style={Styles.esttitle}>NEXT DRAWING</Text>
@@ -138,7 +138,7 @@ const HomeWithoutAccountScreen = React.memo(props => {
               <BallComponent number={arrWinner[5]} type={1} size={Utils.hp(40)} textSize={Utils.hp(16)} />
             </View>
             <Text style={Styles.powerText}>POWER PLAY: {powerX}</Text>
-            <Text style={Styles.payoutValue}>{payoutValue} USDT</Text>
+            <Text style={Styles.payoutValue}>{Utils.formatter.format(payoutValue)} Millions</Text>
             <Text style={Styles.winner}>{winner === 0 ? 'NO' : winner} JACKPOT WINNER</Text>
           </View>
 

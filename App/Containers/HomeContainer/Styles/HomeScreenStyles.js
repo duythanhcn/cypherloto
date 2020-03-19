@@ -126,7 +126,8 @@ export default StyleSheet.create({
     paddingHorizontal: '2%'
   },
   payoutText: {
-    fontSize: Utils.hp(16)
+    fontSize: Utils.hp(16),
+    textAlign: 'center'
   },
   view1: {
     height: '100%',
