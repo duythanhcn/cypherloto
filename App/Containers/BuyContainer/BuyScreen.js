@@ -11,7 +11,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
 
 const BuyScreen = React.memo(props => {
-  const { user } = props;
+  const { user, setBuy } = props;
   const [showPicker, setShowPicker] = useState(false);
   const [data, setData] = useState({ list: [], timestamp: Date.now() });
   const [isShowAlert, setShowAlert] = useState(false);
@@ -49,6 +49,7 @@ const BuyScreen = React.memo(props => {
     const { data } = response;
     if (!data.errors) {
       setMessage('Transaction Success');
+      setBuy({ isBuy: true });
     } else {
       setMessage(data.errors.message)
     }
@@ -139,7 +140,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-  return {}
+  return { setBuy: (data) => dispatch({ data, type: 'SET_BUY' }) }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(BuyScreen);

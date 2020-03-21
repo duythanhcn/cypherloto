@@ -116,7 +116,7 @@ const TicketPlayedScreen = React.memo(props => {
         onRefresh={() => onRefresh()}
         ListEmptyComponent={isFirstLoad ? null : <EmptyState />}
         ListFooterComponent={isLoad ? Spinner : null}
-        ItemSeparatorComponent={() => (<View style={{ width: '100%', height: 1, backgroundColor: 'gray' }}></View>)}
+        ItemSeparatorComponent={() => (<View style={Styles.seperatorView}></View>)}
       />
     </View>
   );

@@ -13,7 +13,7 @@ Icon.loadFont();
 
 let timerLoad = null;
 const TicketActiveScreen = React.memo(props => {
-  const { user } = props;
+  const { user, setBuy, buy } = props;
   const [dataList, setDataList] = useState([]);
   const [page, setPage] = useState(0);
   const [isNext, setNext] = useState(true);
@@ -30,10 +30,18 @@ const TicketActiveScreen = React.memo(props => {
   }, [page])
 
   useEffect(() => {
+    if (buy.isBuy) {
+      onRefresh();
+      setBuy({ isBuy: false });
+    }
+  }, [buy])
+
+  useEffect(() => {
     if (isRefresh) {
       setPage(0)
     }
   }, [isRefresh])
+
   async function getData() {
     if (isLoad) return;
     clearTimeout(timerLoad);
@@ -74,7 +82,7 @@ const TicketActiveScreen = React.memo(props => {
     return (
       <View style={Styles.containerItem} key={index}>
         <View style={Styles.rightView}>
-          <Text style={Styles.itemText}>{moment(created_at).format('MM/DD/YY')}</Text>
+          <Text style={Styles.itemText}>{moment(created_at).format('MM/DD/YYYY')}</Text>
         </View>
         <View style={Styles.secondView}>
           <BallComponent number={white1_ball} size={Utils.hp(45)} type={0} textSize={Utils.hp(16)} />
@@ -111,11 +119,13 @@ const TicketActiveScreen = React.memo(props => {
 })
 
 const mapStateToProps = state => {
-  return { user: state.user }
+  return { user: state.user, buy: state.buy }
 }
 
 const mapDispatchToProps = dispatch => {
-  return { setUser: (data) => dispatch({ data, type: 'SET_USER' }) }
+  return {
+    setBuy: (data) => dispatch({ data, type: 'SET_BUY' })
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(TicketActiveScreen);
