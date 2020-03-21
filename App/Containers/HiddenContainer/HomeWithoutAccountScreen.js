@@ -130,12 +130,12 @@ const HomeWithoutAccountScreen = React.memo(props => {
               <Text style={Styles.winnerDate}>{winnerDate.toUpperCase()}</Text>
             </View>
             <View style={Styles.numberView}>
-              <BallComponent number={arrWinner[0]} type={0} size={Utils.hp(40)} textSize={Utils.hp(16)} />
-              <BallComponent number={arrWinner[1]} type={0} size={Utils.hp(40)} textSize={Utils.hp(16)} />
-              <BallComponent number={arrWinner[2]} type={0} size={Utils.hp(40)} textSize={Utils.hp(16)} />
-              <BallComponent number={arrWinner[3]} type={0} size={Utils.hp(40)} textSize={Utils.hp(16)} />
-              <BallComponent number={arrWinner[4]} type={0} size={Utils.hp(40)} textSize={Utils.hp(16)} />
-              <BallComponent number={arrWinner[5]} type={1} size={Utils.hp(40)} textSize={Utils.hp(16)} />
+              <BallComponent number={arrWinner[0]} type={0} size={Utils.hp(45)} textSize={Utils.hp(16)} />
+              <BallComponent number={arrWinner[1]} type={0} size={Utils.hp(45)} textSize={Utils.hp(16)} />
+              <BallComponent number={arrWinner[2]} type={0} size={Utils.hp(45)} textSize={Utils.hp(16)} />
+              <BallComponent number={arrWinner[3]} type={0} size={Utils.hp(45)} textSize={Utils.hp(16)} />
+              <BallComponent number={arrWinner[4]} type={0} size={Utils.hp(45)} textSize={Utils.hp(16)} />
+              <BallComponent number={arrWinner[5]} type={1} size={Utils.hp(45)} textSize={Utils.hp(16)} />
             </View>
             <Text style={Styles.powerText}>POWER PLAY: {powerX}</Text>
             <Text style={Styles.payoutValue}>{Utils.formatter.format(payoutValue)} Millions</Text>

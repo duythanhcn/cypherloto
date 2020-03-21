@@ -20,7 +20,12 @@ const PickNumberModal = React.memo(props => {
   const [isShowAlert, setShowAlert] = useState(false);
   const [message, setMessage] = useState('');
   const actions = [
-    { btnText: 'OK', btnAction: () => { setShowAlert(false), setMessage('') } }
+    {
+      btnText: 'OK', btnAction: () => {
+        setShowAlert(false);
+        setMessage('');
+      }
+    }
   ]
 
   useEffect(() => {
@@ -110,7 +115,7 @@ const PickNumberModal = React.memo(props => {
           <Text style={Styles.headerText}>PICK 1 POWERBALL FROM 1 TO 26</Text>
         </View>
         <View style={Styles.numberView}>
-          {_redBall.map((item, index) => <BallComponent data={data.redBall} number={index + 1} type={1} key={index} onSelect={(val) => setRedBall(val)} isAction={true} />)}
+          {_redBall.map((item, index) => <BallComponent data={data.redBall} number={index + 1} type={1} key={index} onSelect={(val) => setRedBall(val)} isAction={true} size={Utils.hp(45)} textSize={Utils.hp(16)} />)}
         </View>
       </View>
     )
@@ -123,7 +128,7 @@ const PickNumberModal = React.memo(props => {
           <Text style={Styles.headerText}>PICK 5 POWERBALL FROM 1 TO 69</Text>
         </View>
         <View style={Styles.numberView}>
-          {_whiteBall.map((item, index) => <BallComponent data={data.whiteBall} number={index + 1} type={0} key={index} onSelect={(val) => setWhiteBall(val)} isAction={true} />)}
+          {_whiteBall.map((item, index) => <BallComponent data={data.whiteBall} number={index + 1} type={0} key={index} onSelect={(val) => setWhiteBall(val)} isAction={true} size={Utils.hp(45)} textSize={Utils.hp(16)} />)}
         </View>
       </View>
     )
@@ -140,12 +145,12 @@ const PickNumberModal = React.memo(props => {
       <View style={Styles.container}>
         <View style={Styles.currentView}>
           <View style={Styles.pickedNumber}>
-            <BallComponent number={data.whiteBall[0]} type={0} />
-            <BallComponent number={data.whiteBall[1]} type={0} />
-            <BallComponent number={data.whiteBall[2]} type={0} />
-            <BallComponent number={data.whiteBall[3]} type={0} />
-            <BallComponent number={data.whiteBall[4]} type={0} />
-            <BallComponent number={data.redBall[0]} type={1} />
+            <BallComponent number={data.whiteBall[0]} type={0} size={Utils.hp(50)} textSize={Utils.hp(16)} />
+            <BallComponent number={data.whiteBall[1]} type={0} size={Utils.hp(50)} textSize={Utils.hp(16)} />
+            <BallComponent number={data.whiteBall[2]} type={0} size={Utils.hp(50)} textSize={Utils.hp(16)} />
+            <BallComponent number={data.whiteBall[3]} type={0} size={Utils.hp(50)} textSize={Utils.hp(16)} />
+            <BallComponent number={data.whiteBall[4]} type={0} size={Utils.hp(50)} textSize={Utils.hp(16)} />
+            <BallComponent number={data.redBall[0]} type={1} size={Utils.hp(50)} textSize={Utils.hp(16)} />
           </View>
           <View style={Styles.actionView}>
             <TouchableOpacity
@@ -154,11 +159,6 @@ const PickNumberModal = React.memo(props => {
               style={Styles.btnAction}>
               <Text style={Styles.actionText}>Quick Pick</Text>
             </TouchableOpacity>
-            {/* <TouchableOpacity
-              style={Styles.btnAction}
-              onPress={() => onPower()}>
-              <Icon name='star' color={data.power ? '#FFCF20' : 'gray'} size={Utils.hp(40)} />
-            </TouchableOpacity> */}
             <TouchableOpacity
               onPress={() => clearNumber()}
               style={Styles.btnAction}>

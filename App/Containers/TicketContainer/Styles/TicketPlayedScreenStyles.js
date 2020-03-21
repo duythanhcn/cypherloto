@@ -1,5 +1,7 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native'
 import Utils from '../../../Common/Utils'
+
+const { width } = Dimensions.get('screen');
 
 export default StyleSheet.create({
   container: {
@@ -14,12 +16,11 @@ export default StyleSheet.create({
   },
   //header
   containerItem: {
-    width: '100%',
-    height: Utils.hp(45),
-    justifyContent: 'center',
-    flexDirection: 'row',
-    borderBottomColor: 'gray',
-    borderBottomWidth: Utils.hp(1)
+    width: width,
+    height: Utils.hp(100),
+    paddingHorizontal: '2%',
+    alignItems: 'center',
+    backgroundColor: '#FFF'
   },
   headerText: {
     fontSize: Utils.hp(16),
@@ -27,7 +28,7 @@ export default StyleSheet.create({
   },
   itemText: {
     fontSize: Utils.hp(14),
-    paddingHorizontal: '2%'
+    fontWeight: 'bold'
   },
   borderTop: {
     borderTopColor: 'gray',
@@ -42,44 +43,32 @@ export default StyleSheet.create({
   },
   //item
   firstView: {
-    width: '17%',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center'
+    width: '100%',
+    height: '25%',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row'
   },
   secondView: {
-    width: '52%',
-    height: '100%',
-    justifyContent: 'center',
+    width: '70%%',
+    height: '50%',
+    justifyContent: 'space-around',
     alignItems: 'center',
-    flexDirection: 'row',
-    backgroundColor: '#f2f2f2'
+    flexDirection: 'row'
   },
   thirdView: {
-    width: '14%',
-    height: '100%',
+    width: '100%',
+    height: '25%%',
     justifyContent: 'center',
     alignItems: 'center'
-  },
-  fourView: {
-    width: '17%',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f2f2f2'
   },
   amountStyle: {
     alignItems: 'flex-end'
   },
-  ballView: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    flex: 9,
-    alignItems: 'center'
+  listView: {
+    flex: 1
   },
-  starView: {
-    justifyContent: 'center',
-    flex: 1,
-    alignItems: 'flex-start'
+  powerText: {
+    fontSize: Utils.hp(16)
   }
 })

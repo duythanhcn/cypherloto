@@ -68,38 +68,24 @@ const TicketActiveScreen = React.memo(props => {
     setNext(true);
   }
 
-  function renderHeader() {
-    return (
-      <View style={Styles.containerItem}>
-        <View style={[Styles.rightView, Styles.headerStyles]}>
-          <Text style={Styles.headerText}>Date</Text>
-        </View>
-        <View style={Styles.leftView}>
-          <Text style={Styles.headerText}>Picked Number</Text>
-        </View>
-      </View>)
-  }
-
   function renderItem(item, index) {
     const { white1_ball, white2_ball, white3_ball, white4_ball,
-      white5_ball, red_ball, won_amount, power, created_at } = item;
+      white5_ball, red_ball, power, created_at } = item;
     return (
-      <View style={[Styles.containerItem, index === 0 ? Styles.borderTop : null]}>
+      <View style={Styles.containerItem} key={index}>
         <View style={Styles.rightView}>
           <Text style={Styles.itemText}>{moment(created_at).format('MM/DD/YY')}</Text>
         </View>
-        <View style={Styles.leftView}>
-          <View style={Styles.ballView}>
-            <BallComponent number={white1_ball} size={Utils.hp(28)} type={0} textSize={Utils.hp(14)} />
-            <BallComponent number={white2_ball} size={Utils.hp(28)} type={0} textSize={Utils.hp(14)} />
-            <BallComponent number={white3_ball} size={Utils.hp(28)} type={0} textSize={Utils.hp(14)} />
-            <BallComponent number={white4_ball} size={Utils.hp(28)} type={0} textSize={Utils.hp(14)} />
-            <BallComponent number={white5_ball} size={Utils.hp(28)} type={0} textSize={Utils.hp(14)} />
-            <BallComponent number={red_ball} size={Utils.hp(28)} type={1} textSize={Utils.hp(14)} />
-          </View>
-          <View style={Styles.starView}>
-            {power === 1 ? <Icon name='star' color='#FFCF20' size={Utils.hp(20)} /> : null}
-          </View>
+        <View style={Styles.secondView}>
+          <BallComponent number={white1_ball} size={Utils.hp(45)} type={0} textSize={Utils.hp(16)} />
+          <BallComponent number={white2_ball} size={Utils.hp(45)} type={0} textSize={Utils.hp(16)} />
+          <BallComponent number={white3_ball} size={Utils.hp(45)} type={0} textSize={Utils.hp(16)} />
+          <BallComponent number={white4_ball} size={Utils.hp(45)} type={0} textSize={Utils.hp(16)} />
+          <BallComponent number={white5_ball} size={Utils.hp(45)} type={0} textSize={Utils.hp(16)} />
+          <BallComponent number={red_ball} size={Utils.hp(45)} type={1} textSize={Utils.hp(16)} />
+        </View>
+        <View style={Styles.thirdView}>
+          <Text style={Styles.powerText}>POWER PLAY: {power ? 'YES' : 'NO'}</Text>
         </View>
       </View>
     )
@@ -107,7 +93,6 @@ const TicketActiveScreen = React.memo(props => {
 
   return (
     <View style={Styles.container}>
-      {renderHeader()}
       <FlatList
         refreshing={isRefresh}
         style={Styles.listView}
@@ -119,6 +104,7 @@ const TicketActiveScreen = React.memo(props => {
         onRefresh={() => onRefresh()}
         ListEmptyComponent={isFirstLoad ? null : <EmptyState />}
         ListFooterComponent={isLoad ? Spinner : null}
+        ItemSeparatorComponent={() => <View style={Styles.seperatorView}></View>}
       />
     </View>
   );

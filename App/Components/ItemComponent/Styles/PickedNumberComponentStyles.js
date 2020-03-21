@@ -6,19 +6,26 @@ export default StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    height: Utils.hp(55),
+    height: Utils.hp(80),
     flexDirection: 'row'
   },
   innerView: {
-    flexDirection: 'row',
-    flex: 8,
+    flex: 9,
     justifyContent: 'center',
+    alignItems: 'center'
+  },
+  ballView: {
+    flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center'
   },
   powerView: {
-    flex: 1,
     justifyContent: 'center',
-    alignItems: 'flex-start'
+    alignItems: 'center',
+    flex: 1
+  },
+  powerText: {
+    fontSize: Utils.hp(16)
   },
   actionView: {
     justifyContent: 'center',

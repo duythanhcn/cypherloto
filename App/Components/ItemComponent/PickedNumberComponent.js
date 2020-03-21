@@ -10,6 +10,7 @@ Icon.loadFont();
 const PickedNumberComponent = React.memo(props => {
   const { index, key } = props;
   const [data, setData] = useState(props.data);
+
   useEffect(() => {
     setData(props.data)
   }, [props.data])
@@ -21,20 +22,22 @@ const PickedNumberComponent = React.memo(props => {
   return (
     <View style={Styles.container} key={key}>
       <View style={Styles.innerView}>
-        {data.ball.map((item, index) => {
-          let type = 0;
-          if (index >= 5) type = 1;
-          return (<BallComponent number={item} key={index} type={type} size={Utils.hp(45)}/>)
-        })}
-      </View>
-      <View style={Styles.powerView}>
-        {data.power ? <Icon name='star' color='#FFCF20' size={Utils.hp(30)} /> : null}
+        <View style={Styles.ballView}>
+          {data.ball.map((item, index) => {
+            let type = 0;
+            if (index >= 5) type = 1;
+            return (<BallComponent number={item} key={index} type={type} size={Utils.hp(45)} textSize={Utils.hp(16)} />)
+          })}
+        </View>
+        <View style={Styles.powerView}>
+          <Text Styles={Styles.powerText}>POWER PLAY: {data.power ? 'YES' : 'NO'}</Text>
+        </View>
       </View>
       <View style={Styles.actionView}>
         <TouchableOpacity
           onPress={() => onRemove()}
           style={Styles.btnRemove}>
-          <Icon name='minus' color='#137EF4' size={Utils.hp(20)} />
+          <Icon name='minus' color='#137EF4' size={Utils.hp(10)} />
         </TouchableOpacity>
       </View>
     </View>

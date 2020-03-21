@@ -70,7 +70,6 @@ const DrawingScreen = React.memo(props => {
   }
 
   function renderItem(item, index) {
-    console.log(item);
     const { white_ball_1, white_ball_2, white_ball_3, white_ball_4,
       white_ball_5, red_ball, date_created, multiplier_value, total_jackpot, jackpot_value } = item;
     const arrBall = [white_ball_1, white_ball_2, white_ball_3, white_ball_4, white_ball_5];
@@ -80,12 +79,12 @@ const DrawingScreen = React.memo(props => {
       <View style={Styles.containerItem} key={index}>
         <Text style={Styles.timeText}>{date.toUpperCase()}</Text>
         <View style={Styles.ballView}>
-          <BallComponent number={arrBall[0]} size={Utils.hp(40)} type={0} textSize={Utils.hp(16)} />
-          <BallComponent number={arrBall[1]} size={Utils.hp(40)} type={0} textSize={Utils.hp(16)} />
-          <BallComponent number={arrBall[2]} size={Utils.hp(40)} type={0} textSize={Utils.hp(16)} />
-          <BallComponent number={arrBall[3]} size={Utils.hp(40)} type={0} textSize={Utils.hp(16)} />
-          <BallComponent number={arrBall[4]} size={Utils.hp(40)} type={0} textSize={Utils.hp(16)} />
-          <BallComponent number={red_ball} size={Utils.hp(40)} type={1} textSize={Utils.hp(16)} />
+          <BallComponent number={arrBall[0]} size={Utils.hp(45)} type={0} textSize={Utils.hp(16)} />
+          <BallComponent number={arrBall[1]} size={Utils.hp(45)} type={0} textSize={Utils.hp(16)} />
+          <BallComponent number={arrBall[2]} size={Utils.hp(45)} type={0} textSize={Utils.hp(16)} />
+          <BallComponent number={arrBall[3]} size={Utils.hp(45)} type={0} textSize={Utils.hp(16)} />
+          <BallComponent number={arrBall[4]} size={Utils.hp(45)} type={0} textSize={Utils.hp(16)} />
+          <BallComponent number={red_ball} size={Utils.hp(45)} type={1} textSize={Utils.hp(16)} />
         </View>
         <Text style={Styles.powerText}>POWER PLAY: {multiplier_value}</Text>
         <Text style={Styles.payoutValue}>{Utils.formatter.format(jackpot_value / 1000000)} Millions</Text>

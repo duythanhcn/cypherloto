@@ -1,5 +1,7 @@
-import { StyleSheet } from 'react-native'
-import Utils from '../../../Common/Utils'
+import { StyleSheet, Dimensions } from 'react-native';
+import Utils from '../../../Common/Utils';
+
+const { width } = Dimensions.get('screen')
 
 export default StyleSheet.create({
   container: {
@@ -14,26 +16,29 @@ export default StyleSheet.create({
   },
   //header
   containerItem: {
-    width: '100%',
-    height: Utils.hp(45),
+    width: width,
+    height: Utils.hp(100),
     justifyContent: 'center',
-    flexDirection: 'row',
-    borderBottomColor: 'gray',
-    borderBottomWidth: Utils.hp(1)
+    alignItems: 'center'
   },
-  leftView: {
-    height: '100%',
-    width: '65%',
-    justifyContent: 'center',
+  secondView: {
+    width: '70%%',
+    height: '50%',
+    justifyContent: 'space-around',
     alignItems: 'center',
     flexDirection: 'row'
   },
-  rightView: {
+  firstView: {
     height: '100%',
-    width: '35%',
+    width: '25%',
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f2f2f2'
+    alignItems: 'center'
+  },
+  thirdView: {
+    height: '25%',
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   headerText: {
     fontSize: Utils.hp(16),
@@ -41,7 +46,7 @@ export default StyleSheet.create({
   },
   itemText: {
     fontSize: Utils.hp(14),
-    paddingHorizontal: '2%'
+    fontWeight: 'bold'
   },
   borderTop: {
     borderTopColor: 'gray',
@@ -64,5 +69,8 @@ export default StyleSheet.create({
     justifyContent: 'flex-start',
     flex: 1.5,
     alignItems: 'center'
+  },
+  powerText: {
+    fontSize: Utils.hp(16)
   }
 })

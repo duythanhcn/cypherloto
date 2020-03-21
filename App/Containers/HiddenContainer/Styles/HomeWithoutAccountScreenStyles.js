@@ -88,7 +88,7 @@ export default StyleSheet.create({
     height: '100%'
   },
   numberView: {
-    width: '100%',
+    width: '90%',
     justifyContent: 'space-around',
     alignItems: 'center',
     flexDirection: 'row'

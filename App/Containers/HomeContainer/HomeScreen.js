@@ -39,11 +39,8 @@ const HomeScreen = React.memo(props => {
     getCurrentLot();
     nextWinnerNumber();
     getCurLotReport();
-  }, [])
-
-  useEffect(() => {
     getBalance(user.email);
-  }, [user])
+  }, [])
 
   useEffect(() => {
     setWinnerBall(index);
@@ -104,7 +101,7 @@ const HomeScreen = React.memo(props => {
     let header = null;
     if (isHeader) header = Styles.payoutHeader;
     return (
-      <View style={Styles.payoutView}>
+      <View style={Styles.payoutView} key={value1}>
         <View style={Styles.view1}>
           <Text style={[Styles.payoutText, header]}>{value1}</Text>
         </View>
@@ -163,12 +160,12 @@ const HomeScreen = React.memo(props => {
               <Text style={Styles.winnerDate}>{winnerDate.toUpperCase()}</Text>
             </View>
             <View style={Styles.numberView}>
-              <BallComponent number={arrWinner[0]} type={0} size={Utils.hp(40)} textSize={Utils.hp(16)} />
-              <BallComponent number={arrWinner[1]} type={0} size={Utils.hp(40)} textSize={Utils.hp(16)} />
-              <BallComponent number={arrWinner[2]} type={0} size={Utils.hp(40)} textSize={Utils.hp(16)} />
-              <BallComponent number={arrWinner[3]} type={0} size={Utils.hp(40)} textSize={Utils.hp(16)} />
-              <BallComponent number={arrWinner[4]} type={0} size={Utils.hp(40)} textSize={Utils.hp(16)} />
-              <BallComponent number={arrWinner[5]} type={1} size={Utils.hp(40)} textSize={Utils.hp(16)} />
+              <BallComponent number={arrWinner[0]} type={0} size={Utils.hp(45)} textSize={Utils.hp(16)} />
+              <BallComponent number={arrWinner[1]} type={0} size={Utils.hp(45)} textSize={Utils.hp(16)} />
+              <BallComponent number={arrWinner[2]} type={0} size={Utils.hp(45)} textSize={Utils.hp(16)} />
+              <BallComponent number={arrWinner[3]} type={0} size={Utils.hp(45)} textSize={Utils.hp(16)} />
+              <BallComponent number={arrWinner[4]} type={0} size={Utils.hp(45)} textSize={Utils.hp(16)} />
+              <BallComponent number={arrWinner[5]} type={1} size={Utils.hp(45)} textSize={Utils.hp(16)} />
             </View>
             <Text style={Styles.powerText}>POWER PLAY: {powerX}</Text>
             <Text style={Styles.payoutValue}>{Utils.formatter.format(payoutValue)} Millions</Text>

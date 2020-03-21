@@ -69,51 +69,35 @@ const TicketPlayedScreen = React.memo(props => {
     setNext(true);
   }
 
-  function renderHeader() {
+  function renderItem(item, index) {
+    const { white1_ball, white2_ball, white3_ball, created_at, power,
+      white4_ball, white5_ball, red_ball, won_amount, is_win,
+      white1_ball_checked, white2_ball_checked, white3_ball_checked,
+      white4_ball_checked, white5_ball_checked, red_ball_checked } = item;
+    const date = moment(created_at).format('MM/DD/YYYY');
+    const numRedBall = red_ball_checked ? 1 : 0;
+    let numWhiteBall = 0;
+    numWhiteBall += white1_ball_checked ? 1 : 0
+    numWhiteBall += white2_ball_checked ? 1 : 0
+    numWhiteBall += white3_ball_checked ? 1 : 0
+    numWhiteBall += white4_ball_checked ? 1 : 0
+    numWhiteBall += white5_ball_checked ? 1 : 0
     return (
       <View style={Styles.containerItem}>
         <View style={Styles.firstView}>
-          <Text style={Styles.headerText}>Date</Text>
-        </View>
-        <View style={Styles.secondView}>
-          <Text style={Styles.headerText}>Picked Number</Text>
-        </View>
-        <View style={Styles.thirdView}>
-          <Text style={Styles.headerText}>Result</Text>
-        </View>
-        <View style={Styles.fourView}>
-          <Text style={Styles.headerText}>Amount</Text>
-        </View>
-      </View>)
-  }
-
-  function renderItem(item, index) {
-    const { white1_ball, white2_ball, white3_ball, created_at, power,
-      white4_ball, white5_ball, red_ball, won_amount, is_win } = item;
-    const date = moment(created_at).format('MM/DD/YY')
-    return (
-      <View style={[Styles.containerItem, index === 0 ? Styles.borderTop : null]}>
-        <View style={Styles.firstView}>
+          <Text style={Styles.itemText}>Matched {numWhiteBall} + {numRedBall} = {won_amount}$</Text>
           <Text style={Styles.itemText}>{date}</Text>
         </View>
         <View style={Styles.secondView}>
-          <View style={Styles.ballView}>
-            <BallComponent number={white1_ball} size={Utils.hp(28)} type={0} textSize={Utils.hp(14)} />
-            <BallComponent number={white2_ball} size={Utils.hp(28)} type={0} textSize={Utils.hp(14)} />
-            <BallComponent number={white3_ball} size={Utils.hp(28)} type={0} textSize={Utils.hp(14)} />
-            <BallComponent number={white4_ball} size={Utils.hp(28)} type={0} textSize={Utils.hp(14)} />
-            <BallComponent number={white5_ball} size={Utils.hp(28)} type={0} textSize={Utils.hp(14)} />
-            <BallComponent number={red_ball} size={Utils.hp(28)} type={1} textSize={Utils.hp(14)} />
-          </View>
-          <View style={Styles.starView}>
-            {power === 1 ? <Icon name='star' color='#FFCF20' size={Utils.hp(15)} /> : null}
-          </View>
+          <BallComponent number={white1_ball} size={Utils.hp(45)} type={0} textSize={Utils.hp(16)} isActive={white1_ball_checked} />
+          <BallComponent number={white2_ball} size={Utils.hp(45)} type={0} textSize={Utils.hp(16)} isActive={white2_ball_checked} />
+          <BallComponent number={white3_ball} size={Utils.hp(45)} type={0} textSize={Utils.hp(16)} isActive={white3_ball_checked} />
+          <BallComponent number={white4_ball} size={Utils.hp(45)} type={0} textSize={Utils.hp(16)} isActive={white4_ball_checked} />
+          <BallComponent number={white5_ball} size={Utils.hp(45)} type={0} textSize={Utils.hp(16)} isActive={white5_ball_checked} />
+          <BallComponent number={red_ball} size={Utils.hp(45)} type={1} textSize={Utils.hp(16)} isActive={red_ball_checked} />
         </View>
         <View style={Styles.thirdView}>
-          <Text style={Styles.itemText}>{is_win === 0 ? 'Lost' : 'Win'}</Text>
-        </View>
-        <View style={[Styles.fourView, Styles.amountStyle]}>
-          <Text style={Styles.itemText}>{won_amount}</Text>
+          <Text style={Styles.powerText}>POWER PLAY: {power ? 'YES' : 'NO'}</Text>
         </View>
       </View>
     )
@@ -121,7 +105,6 @@ const TicketPlayedScreen = React.memo(props => {
 
   return (
     <View style={Styles.container}>
-      {renderHeader()}
       <FlatList
         refreshing={isRefresh}
         style={Styles.listView}
@@ -133,6 +116,7 @@ const TicketPlayedScreen = React.memo(props => {
         onRefresh={() => onRefresh()}
         ListEmptyComponent={isFirstLoad ? null : <EmptyState />}
         ListFooterComponent={isLoad ? Spinner : null}
+        ItemSeparatorComponent={() => (<View style={{ width: '100%', height: 1, backgroundColor: 'gray' }}></View>)}
       />
     </View>
   );
