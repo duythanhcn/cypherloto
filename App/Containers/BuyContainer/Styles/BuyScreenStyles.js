@@ -67,8 +67,8 @@ export default StyleSheet.create({
     flex: 1
   },
   seperatorView: {
-    height: Utils.hp(1),
     width: '100%',
-    backgroundColor: 'gray'
+    height: Utils.hp(20),
+    backgroundColor: '#F0F1F5'
   }
 })

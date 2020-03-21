@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Styles from './Styles/HomeScreenStyles';
 import { connect } from 'react-redux';
-import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
-import coin from '../../Images/Icons/coin.png';
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import BallComponent from '../../Components/ItemComponent/BallComponent';
 import Utils from '../../Common/Utils';
 import apiService from '../../Services/API';

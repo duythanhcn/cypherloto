@@ -7,7 +7,7 @@ export default StyleSheet.create({
   },
   seperatorView: {
     width: '100%',
-    height: Utils.hp(30),
+    height: Utils.hp(20),
     backgroundColor: '#F0F1F5'
   },
   //header
@@ -27,7 +27,7 @@ export default StyleSheet.create({
     flexDirection: 'row'
   },
   powerText: {
-    fontSize: Utils.hp(20),
+    fontSize: Utils.hp(16),
     fontWeight: 'bold'
   },
   payoutValue: {
@@ -38,6 +38,7 @@ export default StyleSheet.create({
     fontSize: Utils.hp(14),
   },
   timeText: {
-    fontSize: Utils.hp(22)
+    fontSize: Utils.hp(16),
+    fontWeight: 'bold'
   }
 })

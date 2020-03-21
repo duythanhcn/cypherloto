@@ -78,7 +78,7 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   winnerDate: {
-    fontSize: Utils.hp(18),
+    fontSize: Utils.hp(16),
     fontWeight: 'bold'
   },
   winnerBody: {
@@ -132,7 +132,8 @@ export default StyleSheet.create({
   view1: {
     height: '100%',
     width: '33.33%',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    alignItems: 'flex-start'
   },
   view2: {
     height: '100%',

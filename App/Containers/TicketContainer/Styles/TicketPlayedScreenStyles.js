@@ -11,8 +11,8 @@ export default StyleSheet.create({
   },
   seperatorView: {
     width: '100%',
-    height: Utils.hp(1),
-    backgroundColor: 'gray'
+    height: Utils.hp(20),
+    backgroundColor: '#F0F1F5'
   },
   //header
   containerItem: {

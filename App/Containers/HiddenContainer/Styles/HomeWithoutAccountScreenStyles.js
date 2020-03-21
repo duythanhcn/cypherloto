@@ -78,7 +78,7 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   winnerDate: {
-    fontSize: Utils.hp(18),
+    fontSize: Utils.hp(16),
     fontWeight: 'bold'
   },
   winnerBody: {
