@@ -67,19 +67,19 @@ const ChangePasswordScreen = React.memo(props => {
         keyboardVerticalOffset={0}
         enabled>
         <View style={Styles.contentView}>
-          <InputComponent title=''
+          <InputComponent title='Old Password'
             placeHolder='Old Password'
             onChange={val => setOldPassword(val !== '' ? val : null)}
             icon='lock'
             value={oldPassword}
             type='password' />
-          <InputComponent title=''
+          <InputComponent title='New Password'
             placeHolder='Password'
             onChange={val => setNewPassword(val !== '' ? val : null)}
             icon='lock'
             value={newPassword}
             type='password' />
-          <InputComponent title=''
+          <InputComponent title='Confirn New Password'
             placeHolder='Confirn New Password'
             onChange={val => setConfirmPassword(val !== '' ? val : null)}
             icon='lock'
