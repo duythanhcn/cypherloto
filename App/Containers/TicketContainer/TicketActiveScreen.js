@@ -102,6 +102,7 @@ const TicketActiveScreen = React.memo(props => {
   return (
     <View style={Styles.container}>
       <FlatList
+        showsVerticalScrollIndicator={false}
         refreshing={isRefresh}
         style={Styles.listView}
         data={dataList}

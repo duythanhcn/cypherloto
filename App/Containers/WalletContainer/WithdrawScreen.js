@@ -215,6 +215,7 @@ const WithdrawScreen = React.memo(props => {
         <View style={Styles.historyList}>
           {renderHeader()}
           <FlatList
+            showsVerticalScrollIndicator={false}
             refreshing={isRefresh}
             style={Styles.listView}
             data={dataList}

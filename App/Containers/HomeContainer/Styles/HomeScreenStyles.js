@@ -84,11 +84,12 @@ export default StyleSheet.create({
   winnerBody: {
     justifyContent: 'space-around',
     alignItems: 'center',
-    width: '80%',
-    height: '100%'
+    // width: '100%',
+    // height: '100%'
+    flex:1
   },
   numberView: {
-    width: '90%',
+    width: '70%',
     justifyContent: 'space-around',
     alignItems: 'center',
     flexDirection: 'row'
@@ -103,18 +104,6 @@ export default StyleSheet.create({
   },
   winner: {
     fontSize: Utils.hp(14),
-  },
-  nextNumber: {
-    width: '10%',
-    height: '100%',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  prevNumber: {
-    width: '10%',
-    height: '100%',
-    alignItems: 'center',
-    justifyContent: 'center'
   },
   payoutView: {
     width: '100%',
@@ -149,5 +138,22 @@ export default StyleSheet.create({
   },
   payoutHeader: {
     fontWeight: 'bold'
+  },
+  swipper: {
+  },
+  prevView: {
+    zIndex: 9,
+    position: 'absolute',
+    left: '3%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  nextView: {
+    zIndex: 9,
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
+    right: '3%', height: '100%'
   }
 })
