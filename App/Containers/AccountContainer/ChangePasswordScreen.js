@@ -9,7 +9,7 @@ import AlertModal from '../../Components/ModelComponent/AlertModal';
 import { withNavigationFocus } from 'react-navigation';
 
 const ChangePasswordScreen = React.memo(props => {
-  const { navigation, user, setUser, isFocused } = props;
+  const { user, setUser, isFocused } = props;
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -52,7 +52,8 @@ const ChangePasswordScreen = React.memo(props => {
     if (status === 200 && !data.errors) {
       setMessage('Change password success');
       setShowAlert(true);
-      setUser({ password: newPassword });
+      const _password = Utils.hashString({ email, password }, 'password_token');
+      setUser({ password: _password });
     } else {
       setErrorMessage(data.errors.message);
     }

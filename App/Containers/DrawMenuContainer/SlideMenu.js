@@ -2,12 +2,14 @@ import React from 'react';
 import Styles from './Styles/SlideMenuStyles';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
+import Storage from '../../Common/Storage';
 
 const SideMenu = React.memo(props => {
   const { clearUser, navigation } = props;
 
   function signOut() {
     clearUser({});
+    Storage.setLoginSession(null);
     navigation.navigate('Init');
   }
 

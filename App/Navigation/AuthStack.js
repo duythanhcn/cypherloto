@@ -1,5 +1,4 @@
-import React from 'react';
-import { createStackNavigator, HeaderBackButton, } from 'react-navigation-stack';
+import { createStackNavigator } from 'react-navigation-stack';
 import SignInScreen from '../Containers/AuthContainer/SignInScreen';
 import SignUpScreen from '../Containers/AuthContainer/SignUpScreen';
 import ForgotPasswordScreen from '../Containers/AuthContainer/ForgotPasswordScreen';

@@ -7,6 +7,8 @@ import InputComponent from '../../Components/ItemComponent/InputComponent';
 import TwoFAModel from '../../Components/ModelComponent/TwoFAModel';
 import apiService from '../../Services/API';
 import validation from '../../Common/validation';
+import Utils from '../../Common/Utils';
+import Storage from '../../Common/Storage';
 
 const SignInScreen = React.memo(props => {
   const { navigation, setUser } = props;
@@ -37,8 +39,10 @@ const SignInScreen = React.memo(props => {
     const { data, status } = response;
     if (status === 200 && !data.errors) {
       const { enable_2fa } = data.account_info;
-      const userInfo = { ...data.account_info, email, password };
+      const _password = Utils.hashString({ email, password }, 'password_token');
+      const userInfo = { ...data.account_info, email, password: _password };
       setUser(userInfo);
+      Storage.setLoginSession(userInfo);
       if (enable_2fa) {
         setBtnDisable(true);
       } else {

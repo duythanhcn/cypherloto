@@ -117,7 +117,7 @@ class API {
   async verifyQR(account, password, token) {
     const data = {
       account,
-      password_token: Utils.hashString({ email: account, password }, 'password_token'),
+      password_token: password,
       token
     }
     const res = await POST(API_URL.VERIFY_QR, {}, data);
@@ -127,7 +127,7 @@ class API {
   async createQR(account, password) {
     const data = {
       account,
-      password_token: Utils.hashString({ email: account, password }, 'password_token')
+      password_token: password
     }
     const res = await POST(API_URL.CREATE_QR, {}, data);
     return res;
@@ -136,7 +136,7 @@ class API {
   async enable2FA(account, password, token) {
     const data = {
       account,
-      password_token: Utils.hashString({ email: account, password }, 'password_token'),
+      password_token: password,
       token
     }
     const res = await POST(API_URL.ENABLE_2FA, {}, data);
@@ -146,7 +146,7 @@ class API {
   async disable2FA(account, password, token) {
     const data = {
       account,
-      password_token: Utils.hashString({ email: account, password }, 'password_token'),
+      password_token: password,
       token
     }
     const res = await POST(API_URL.DISABLE_2FA, {}, data);
