@@ -16,33 +16,15 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  whiteBall: {
-    backgroundColor: '#dddddd'
-  },
-  redBall: {
-    backgroundColor: '#f92f2f'
-  },
   numberText: {
     fontSize: Utils.hp(20),
     color: '#FFF',
-    fontWeight: 'bold'
-  },
-  active: {
-    backgroundColor: '#FFCF20'
+    fontWeight: 'bold',
+    position: 'absolute'
   },
   whiteText: {
     color: '#000'
   },
-  tickView: {
-    width: '100%',
-    height: '100%',
-    position: 'absolute',
-    alignItems: 'center'
-  },
-  tick: {
-    textAlign: 'center',
-    color: '#197BFF',
-    fontSize: Utils.hp(16),
-    paddingBottom: Utils.hp(16)
+  ballItem: {
   }
 })
