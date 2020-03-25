@@ -32,10 +32,6 @@ const TabNavigation = createBottomTabNavigator(
     }
   },
   {
-    backBehavior: 'history',
-    tabBarOptions: {
-      showLabel: false
-    },
     defaultNavigationOptions: ({ navigation }) => ({
       headerBackTitle: null,
       tabBarIcon: ({ focused, horizontal, tintColor }) => {

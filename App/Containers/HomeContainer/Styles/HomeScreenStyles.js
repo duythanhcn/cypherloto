@@ -73,38 +73,6 @@ export default StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row'
   },
-  winnerHeader: {
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  winnerDate: {
-    fontSize: Utils.hp(16),
-    fontWeight: 'bold'
-  },
-  winnerBody: {
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    // width: '100%',
-    // height: '100%'
-    flex:1
-  },
-  numberView: {
-    width: '70%',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    flexDirection: 'row'
-  },
-  powerText: {
-    fontSize: Utils.hp(16),
-    fontWeight: 'bold'
-  },
-  payoutValue: {
-    fontSize: Utils.hp(14),
-    fontWeight: 'bold'
-  },
-  winner: {
-    fontSize: Utils.hp(14),
-  },
   payoutView: {
     width: '100%',
     height: Utils.hp(40),
@@ -138,22 +106,5 @@ export default StyleSheet.create({
   },
   payoutHeader: {
     fontWeight: 'bold'
-  },
-  swipper: {
-  },
-  prevView: {
-    zIndex: 9,
-    position: 'absolute',
-    left: '3%',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  nextView: {
-    zIndex: 9,
-    position: 'absolute',
-    justifyContent: 'center',
-    alignItems: 'center',
-    right: '3%', height: '100%'
   }
 })

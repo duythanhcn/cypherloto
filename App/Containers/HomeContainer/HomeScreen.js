@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react';
 import Styles from './Styles/HomeScreenStyles';
 import { connect } from 'react-redux';
 import { View, Text, ScrollView } from 'react-native';
-import BallComponent from '../../Components/ItemComponent/BallComponent';
 import Utils from '../../Common/Utils';
 import apiService from '../../Services/API';
 import moment from 'moment';
-import Swiper from 'react-native-swiper';
 import CountDown from 'react-native-countdown-component';
+import SwippeBallComponent from '../../Components/ItemComponent/SwippeBallComponent';
 import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
 
@@ -29,12 +28,9 @@ const HomeScreen = React.memo(props => {
   const [nextDraw, setNextDraw] = useState(0);
   const [estValue, setESTValue] = useState(0);
   const [powerX, setPowerX] = useState(0);
-  const [dataWinner, setDataWinner] = useState([]);
-  const [index, setIndex] = useState(0);
 
   useEffect(() => {
     getCurrentLot();
-    nextWinnerNumber();
     getCurLotReport();
     getBalance(user.email);
   }, [])
@@ -55,17 +51,6 @@ const HomeScreen = React.memo(props => {
       const { next_lottery_date } = data;
       const diff = moment(next_lottery_date).diff(moment.now());
       setNextDraw(diff / 1000);
-    }
-  }
-
-  async function nextWinnerNumber() {
-    const res = await apiService.getWinnerLot(10);
-    const { data } = res;
-    if (!data.errors) {
-      setDataWinner(data);
-      const { multiplier_value, jackpot_value } = data[0];
-      setPowerX(multiplier_value);
-      setPayoutValue(jackpot_value / 1000000);
     }
   }
 
@@ -95,39 +80,10 @@ const HomeScreen = React.memo(props => {
       </View>)
   }
 
-  function _onChangeIndex(index) {
-    console.log(index)
-    const data = dataWinner[index];
+  function onIndexChange(data) {
     const { multiplier_value, jackpot_value } = data;
     setPowerX(multiplier_value);
     setPayoutValue(jackpot_value / 1000000);
-    setIndex(index);
-  }
-
-  function renderWinner(data, index) {
-    const { date_created, white_ball_1, white_ball_2, white_ball_3, white_ball_4,
-      white_ball_5, red_ball, multiplier_value, total_jackpot, jackpot_value } = data;
-    const date = moment(date_created).format('dddd, MMMM DD, YYYY');
-    const winnerLot = [white_ball_1, white_ball_2, white_ball_3, white_ball_4, white_ball_5, red_ball];
-    winnerLot.sort(function (a, b) { return a - b });
-    return (
-      <View style={Styles.winnerBody} key={index}>
-        <View style={Styles.winnerHeader}>
-          <Text style={Styles.winnerDate}>{date.toUpperCase()}</Text>
-        </View>
-        <View style={Styles.numberView}>
-          <BallComponent number={winnerLot[0]} type={0} size={Utils.hp(45)} textSize={Utils.hp(16)} />
-          <BallComponent number={winnerLot[1]} type={0} size={Utils.hp(45)} textSize={Utils.hp(16)} />
-          <BallComponent number={winnerLot[2]} type={0} size={Utils.hp(45)} textSize={Utils.hp(16)} />
-          <BallComponent number={winnerLot[3]} type={0} size={Utils.hp(45)} textSize={Utils.hp(16)} />
-          <BallComponent number={winnerLot[4]} type={0} size={Utils.hp(45)} textSize={Utils.hp(16)} />
-          <BallComponent number={winnerLot[5]} type={1} size={Utils.hp(45)} textSize={Utils.hp(16)} />
-        </View>
-        <Text style={Styles.powerText}>POWER PLAY: {multiplier_value}</Text>
-        <Text style={Styles.payoutValue}>{Utils.formatter.format(jackpot_value / 1000000)} Millions</Text>
-        <Text style={Styles.winner}>{total_jackpot === 0 ? 'NO' : total_jackpot} JACKPOT WINNER</Text>
-      </View>
-    )
   }
 
   return (
@@ -162,23 +118,7 @@ const HomeScreen = React.memo(props => {
           <Text style={Styles.headerText}>WINNER NUMBERS</Text>
         </View>
         <View style={Styles.winnerView}>
-          <View style={Styles.prevView}>
-            {index > 0 ? <Icon name='chevron-left' color='gray' size={Utils.hp(20)} /> : null}
-          </View>
-          <View style={{ width: '100%', height: '100%' }}>
-            <Swiper
-              index={0}
-              autoplay={false}
-              showsPagination={false}
-              loop={false}
-              showsButtons={false}
-              onIndexChanged={(index) => _onChangeIndex(index)}>
-              {dataWinner.map((data, index) => renderWinner(data, index))}
-            </Swiper>
-            <View style={Styles.nextView}>
-              {index < 9 ? <Icon name='chevron-right' color='gray' size={Utils.hp(20)} /> : null}
-            </View>
-          </View>
+          <SwippeBallComponent onIndexChange={(data) => onIndexChange(data)} />
         </View>
         <View style={Styles.headerView}>
           <Text style={Styles.headerText}>PAYOUTS</Text>
