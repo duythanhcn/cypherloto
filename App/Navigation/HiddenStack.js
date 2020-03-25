@@ -3,6 +3,7 @@ import { createStackNavigator, HeaderBackButton } from 'react-navigation';
 import { Button } from 'native-base';
 import LogoTitle from '../Components/ItemComponent/LogoTitle';
 import InformationScreen from '../Containers/HiddenContainer/InformationScreen';
+import DataStorage from '../Services/DataStorage';
 
 const HiddenStack = createStackNavigator(
   {
@@ -15,7 +16,7 @@ const HiddenStack = createStackNavigator(
       headerTitle: () => <LogoTitle />,
       headerBackTitle: null,
       gesturesEnabled: false,
-      headerLeft: <HeaderBackButton onPress={ect => navigation.goBack()} />,
+      headerLeft: <HeaderBackButton onPress={ect => navigation.navigate(DataStorage.CURRENT_TAB)} />,
       headerRight: (
         <Button transparent onPress={() => { }} />
       )

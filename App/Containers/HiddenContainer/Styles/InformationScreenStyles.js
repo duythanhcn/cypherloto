@@ -15,9 +15,9 @@ export default StyleSheet.create({
   },
   view1: {
     height: '100%',
-    width: Utils.wp(260),
+    width: Utils.wp(280),
     flexDirection: 'row',
-    paddingHorizontal: '2%',
+    paddingHorizontal: '1%',
     alignItems: 'center'
   },
   headerView: {

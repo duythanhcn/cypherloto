@@ -9,6 +9,7 @@ import DrawingStack from './DrawingStack';
 import WalletStack from './WalletStack';
 import HiddenStack from './HiddenStack';
 import TabBarBottomIcon from '../Components/ItemComponent/TabBarBottomIcon';
+import DataStorage from '../Services/DataStorage';
 
 const TabNavigation = createBottomTabNavigator(
   {
@@ -32,12 +33,21 @@ const TabNavigation = createBottomTabNavigator(
     }
   },
   {
+    backBehavior: 'history',
+    tabBarOptions: {
+      showLabel: false,
+    },
     defaultNavigationOptions: ({ navigation }) => ({
       headerBackTitle: null,
       tabBarIcon: ({ focused, horizontal, tintColor }) => {
         const { routeName } = navigation.state;
         return <TabBarBottomIcon focused={focused} routeName={routeName} />;
       },
+      tabBarOnPress: ({ navigation, defaultHandler }) => {
+        const { routeName } = navigation.state;
+        DataStorage.CURRENT_TAB = routeName;
+        defaultHandler();
+      }
     }),
     tabBarOptions: {
       tabStyle: { backgroundColor: '#13161D' },

@@ -88,7 +88,9 @@ const HomeScreen = React.memo(props => {
 
   return (
     <View style={Styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}>
         <View style={Styles.headerView}>
           <Text style={Styles.headerText}>ESTIMATED JACKPOT</Text>
         </View>

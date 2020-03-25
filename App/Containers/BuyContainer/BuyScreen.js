@@ -114,6 +114,7 @@ const BuyScreen = React.memo(props => {
         <View style={Styles.bodyListView}>
           <FlatList
             showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}
             style={Styles.listView}
             data={data.list}
             extraData={data.timestamp}

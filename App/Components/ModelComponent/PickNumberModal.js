@@ -193,6 +193,7 @@ const PickNumberModal = React.memo(props => {
         <View style={Styles.pickView}>
           <ScrollView
             showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}
             style={Styles.scrollView}>
             <View>
               {renderNumPad1()}

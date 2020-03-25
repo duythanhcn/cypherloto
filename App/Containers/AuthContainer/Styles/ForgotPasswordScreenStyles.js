@@ -14,7 +14,8 @@ export default StyleSheet.create({
   headerView: {
     flex: 2,
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingTop: '7%'
   },
   iconView: {
     width: Utils.hp(45),
@@ -34,7 +35,8 @@ export default StyleSheet.create({
     fontSize: Utils.hp(20)
   },
   contentView: {
-    flex: 4
+    flex: 6,
+    paddingTop: '30%'
   },
   backView: {
     marginTop: '3%'

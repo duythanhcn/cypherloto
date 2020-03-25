@@ -23,17 +23,17 @@ const InformationScreen = React.memo(props => {
       <View style={Styles.itemView} key={'ball' + index}>
         <View style={[Styles.view1, Styles.SpecialView]}>
           {[0, 1, 2, 3, 4, 5, 6, 7].indexOf(index) !== -1 ?
-            <BallComponent number={data[0]} size={Utils.wp(35)} type={0} textSize={Utils.wp(16)} /> : null}
+            <BallComponent number={data[0]} size={Utils.wp(40)} type={0} textSize={Utils.wp(14)} /> : null}
           {[0, 1, 2, 3, 4, 5, 6].indexOf(index) !== -1 ?
-            <BallComponent number={data[0]} size={Utils.wp(35)} type={0} textSize={Utils.wp(16)} /> : null}
+            <BallComponent number={data[0]} size={Utils.wp(40)} type={0} textSize={Utils.wp(14)} /> : null}
           {[0, 1, 2, 3, 4, 5].indexOf(index) !== -1 ?
-            <BallComponent number={data[0]} size={Utils.wp(35)} type={0} textSize={Utils.wp(16)} /> : null}
+            <BallComponent number={data[0]} size={Utils.wp(40)} type={0} textSize={Utils.wp(14)} /> : null}
           {[0, 1, 2, 3].indexOf(index) !== -1 ?
-            <BallComponent number={data[0]} size={Utils.wp(35)} type={0} textSize={Utils.wp(16)} /> : null}
+            <BallComponent number={data[0]} size={Utils.wp(40)} type={0} textSize={Utils.wp(14)} /> : null}
           {[0, 1].indexOf(index) !== -1 ?
-            <BallComponent number={data[0]} size={Utils.wp(35)} type={0} textSize={Utils.wp(16)} /> : null}
+            <BallComponent number={data[0]} size={Utils.wp(40)} type={0} textSize={Utils.wp(14)} /> : null}
           {[0, 2, 4, 6, 7, 8].indexOf(index) !== -1 ?
-            <BallComponent number={data[0]} size={Utils.wp(35)} type={1} textSize={Utils.wp(16)} /> : null}
+            <BallComponent number={data[0]} size={Utils.wp(40)} type={1} textSize={Utils.wp(14)} /> : null}
         </View>
         {item.map((it, i) =>
           <View style={[Styles.view2, i % 2 == 0 ? Styles.odView : null]} key={'price' + i}>
@@ -44,7 +44,9 @@ const InformationScreen = React.memo(props => {
   }
   return (
     <View style={Styles.container}>
-      <ScrollView>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}>
         <View style={Styles.itemView}>
           <View style={[Styles.view1, Styles.headerView]}>
             <Text style={Styles.headerText}>Match</Text>
