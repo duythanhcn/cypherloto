@@ -79,17 +79,19 @@ const TicketActiveScreen = React.memo(props => {
   function renderItem(item, index) {
     const { white1_ball, white2_ball, white3_ball, white4_ball,
       white5_ball, red_ball, power, created_at } = item;
+    const arrBall = [white1_ball, white2_ball, white3_ball, white4_ball, white5_ball];
+    arrBall.sort(function (a, b) { return a - b });
     return (
       <View style={Styles.containerItem} key={index}>
         <View style={Styles.rightView}>
           <Text style={Styles.itemText}>{moment(created_at).format('MM/DD/YYYY')}</Text>
         </View>
         <View style={Styles.secondView}>
-          <BallComponent number={white1_ball} size={Utils.hp(45)} type={0} textSize={Utils.hp(16)} />
-          <BallComponent number={white2_ball} size={Utils.hp(45)} type={0} textSize={Utils.hp(16)} />
-          <BallComponent number={white3_ball} size={Utils.hp(45)} type={0} textSize={Utils.hp(16)} />
-          <BallComponent number={white4_ball} size={Utils.hp(45)} type={0} textSize={Utils.hp(16)} />
-          <BallComponent number={white5_ball} size={Utils.hp(45)} type={0} textSize={Utils.hp(16)} />
+          <BallComponent number={arrBall[0]} size={Utils.hp(45)} type={0} textSize={Utils.hp(16)} />
+          <BallComponent number={arrBall[1]} size={Utils.hp(45)} type={0} textSize={Utils.hp(16)} />
+          <BallComponent number={arrBall[2]} size={Utils.hp(45)} type={0} textSize={Utils.hp(16)} />
+          <BallComponent number={arrBall[3]} size={Utils.hp(45)} type={0} textSize={Utils.hp(16)} />
+          <BallComponent number={arrBall[4]} size={Utils.hp(45)} type={0} textSize={Utils.hp(16)} />
           <BallComponent number={red_ball} size={Utils.hp(45)} type={1} textSize={Utils.hp(16)} />
         </View>
         <View style={Styles.thirdView}>
