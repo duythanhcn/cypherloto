@@ -88,19 +88,19 @@ export default StyleSheet.create({
   },
   view1: {
     height: '100%',
-    width: '33.33%',
+    width: '20%',
     justifyContent: 'center',
     alignItems: 'flex-start'
   },
   view2: {
     height: '100%',
-    width: '33.33%',
+    width: '40%',
     justifyContent: 'center',
     alignItems: 'center'
   },
   view3: {
     height: '100%',
-    width: '33.33%',
+    width: '40%',
     justifyContent: 'center',
     alignItems: 'flex-end'
   },

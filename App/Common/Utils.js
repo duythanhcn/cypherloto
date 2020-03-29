@@ -77,9 +77,18 @@ class Utils {
     return arr;
   }
 
-  formatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-  });
+  usdtFormat(_value) {
+    let isMillions = '';
+    if (_value >= 1000000) {
+      _value /= 1000000;
+      isMillions = ' Millions '
+    }
+    ;
+    const value = parseFloat(_value).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+    const arrValue = value.split('.')
+    if (parseInt(arrValue[1]) <= 0) return arrValue[0] + ' USDT';
+
+    return value + isMillions + ' USDT';
+  }
 }
 export default new Utils()

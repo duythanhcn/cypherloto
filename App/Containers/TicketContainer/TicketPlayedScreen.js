@@ -71,7 +71,7 @@ const TicketPlayedScreen = React.memo(props => {
 
   function renderItem(item, index) {
     const { white1_ball, white2_ball, white3_ball, created_at, power,
-      white4_ball, white5_ball, red_ball, won_amount, is_win,
+      white4_ball, white5_ball, red_ball, won_amount,
       white1_ball_checked, white2_ball_checked, white3_ball_checked,
       white4_ball_checked, white5_ball_checked, red_ball_checked } = item;
     const arrBall = [white1_ball, white2_ball, white3_ball, white4_ball, white5_ball];

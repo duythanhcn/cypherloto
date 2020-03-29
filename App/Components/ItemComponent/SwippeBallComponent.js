@@ -45,7 +45,7 @@ const SwippeBallComponent = React.memo(props => {
           <BallComponent number={winnerLot[5]} type={1} size={Utils.hp(45)} textSize={Utils.hp(16)} />
         </View>
         <Text style={Styles.powerText}>POWER PLAY: {multiplier_value}</Text>
-        <Text style={Styles.payoutValue}>{Utils.formatter.format(jackpot_value / 1000000)} Millions</Text>
+        <Text style={Styles.payoutValue}>{Utils.usdtFormat(jackpot_value)}</Text>
         <Text style={Styles.winner}>{total_jackpot === 0 ? 'NO' : total_jackpot} JACKPOT WINNER</Text>
       </View>
     )

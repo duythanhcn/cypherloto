@@ -1,14 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Styles from './Styles/BalanceComponentStyles';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
+import Utils from '../../Common/Utils';
 
 const BalanceComponent = React.memo(props => {
   const { user } = props;
   return (
     <View style={Styles.container}>
-      <Text style={Styles.titleText}>Your Balance: {user.balance}</Text>
+      <Text style={Styles.titleText}>Your Balance: {Utils.usdtFormat(user.balance)}</Text>
     </View>
   )
 })

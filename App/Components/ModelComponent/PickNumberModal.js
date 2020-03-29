@@ -112,7 +112,7 @@ const PickNumberModal = React.memo(props => {
     return (
       <View style={Styles.pickerLayer2}>
         <View style={Styles.headerPicker}>
-          <Text style={Styles.headerText}>PICK 1 POWERBALL FROM 1 TO 26</Text>
+          <Text style={Styles.headerText}>PICK 1 CYPHERBALL FROM 1 TO 26</Text>
         </View>
         <View style={Styles.numberView}>
           {_redBall.map((item, index) => <BallComponent data={data.redBall} number={index + 1} type={1} key={index} onSelect={(val) => setRedBall(val)} isAction={true} size={Utils.hp(45)} textSize={Utils.hp(16)} />)}
@@ -125,7 +125,7 @@ const PickNumberModal = React.memo(props => {
     return (
       <View style={Styles.pickerLayer1}>
         <View style={Styles.headerPicker}>
-          <Text style={Styles.headerText}>PICK 5 POWERBALL FROM 1 TO 69</Text>
+          <Text style={Styles.headerText}>PICK 5 NUMBERS FROM 1 TO 69</Text>
         </View>
         <View style={Styles.numberView}>
           {_whiteBall.map((item, index) => <BallComponent data={data.whiteBall} number={index + 1} type={0} key={index} onSelect={(val) => setWhiteBall(val)} isAction={true} size={Utils.hp(45)} textSize={Utils.hp(16)} />)}

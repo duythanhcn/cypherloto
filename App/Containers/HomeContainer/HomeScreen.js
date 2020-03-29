@@ -12,7 +12,7 @@ Icon.loadFont();
 
 const payout = [
   ['5 + 1', '', ''],
-  ['5 + 0', '$1 Millions', '$2 Millions'],
+  ['5 + 0', '1 Millions USDT', '2 Millions USDT'],
   ['4 + 1', '50000', '200,000'],
   ['4 + 0', '100', '400'],
   ['3 + 1', '100', '400'],
@@ -24,10 +24,11 @@ const payout = [
 
 const HomeScreen = React.memo(props => {
   const { user, setUser } = props;
-  const [payoutValue, setPayoutValue] = useState(0);
+  const [payoutValue, setPayoutValue] = useState([{ amount: 0 }, { amount: 0 }, { amount: 0 }, { amount: 0 }, { amount: 0 }, { amount: 0 }, { amount: 0 }, { amount: 0 }, { amount: 0 }]);
   const [nextDraw, setNextDraw] = useState(0);
   const [estValue, setESTValue] = useState(0);
   const [powerX, setPowerX] = useState(0);
+  const [totalPayout, setTotalPayout] = useState(0);
 
   useEffect(() => {
     getCurrentLot();
@@ -59,7 +60,7 @@ const HomeScreen = React.memo(props => {
     const { data } = res;
     if (!data.errors) {
       const { balance } = data;
-      setESTValue(balance / 1000000);
+      setESTValue(balance);
     }
   }
 
@@ -81,9 +82,10 @@ const HomeScreen = React.memo(props => {
   }
 
   function onIndexChange(data) {
-    const { multiplier_value, jackpot_value } = data;
+    const { multiplier_value, jackpot_value, total_payout } = data;
     setPowerX(multiplier_value);
-    setPayoutValue(jackpot_value / 1000000);
+    setPayoutValue(total_payout);
+    setTotalPayout(jackpot_value);
   }
 
   return (
@@ -97,7 +99,7 @@ const HomeScreen = React.memo(props => {
         <View style={Styles.estView}>
           <View style={Styles.estValueView}>
             <Text style={Styles.esttitle}>ESTIMATED JACKPOT</Text>
-            <Text style={Styles.estValue}>{Utils.formatter.format(estValue)} Millions</Text>
+            <Text style={Styles.estValue}>{Utils.usdtFormat(estValue)}</Text>
           </View>
           <View style={Styles.nextDrawView}>
             <Text style={Styles.esttitle}>NEXT DRAWING</Text>
@@ -128,14 +130,12 @@ const HomeScreen = React.memo(props => {
         {renderPayout(true, 'Match', 'Prize', `${powerX}X Prize`)}
         {payout.map((item, index) => {
           let value1 = item[1];
-          let value2 = item[2];
-          if (index > 1) value2 = value1 * powerX;
+          if (index === 0) value1 = totalPayout;
+          let value2 = payoutValue[8 - index].amount;
           if (index === 1) {
-            return renderPayout(false, item[0], value1, value2);
+            return renderPayout(false, item[0], value1, Utils.usdtFormat(value2));
           }
-          return renderPayout(false, item[0],
-            index === 0 ? Utils.formatter.format(payoutValue) + ' Millions' : Utils.formatter.format(value1),
-            index === 0 ? Utils.formatter.format(payoutValue) + ' Millions' : Utils.formatter.format(value2));
+          return renderPayout(false, item[0], Utils.usdtFormat(value1), Utils.usdtFormat(value2));
         })}
       </ScrollView>
     </View>);
