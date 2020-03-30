@@ -81,7 +81,7 @@ class Utils {
     let isMillions = '';
     if (_value >= 1000000) {
       _value /= 1000000;
-      isMillions = ' Millions '
+      isMillions = ' M';
     }
     ;
     const value = parseFloat(_value).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");

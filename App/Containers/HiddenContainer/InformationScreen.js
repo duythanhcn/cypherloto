@@ -7,8 +7,8 @@ import BallComponent from '../../Components/ItemComponent/BallComponent';
 const data = []
 const price = [
   ['Grandprize', 'Grandprize', 'Grandprize', 'Grandprize', 'Grandprize', 'Grandprize'],
-  ['1 Milion USDT', '2 Milion USDT', '2 Milion USDT', '2 Milion USDT', '2 Milion USDT', '2 Milion USDT'],
-  ['50,000 USDT', '100 Milion USDT', '150 Milion USDT', '200 Milion USDT', '250 Milion USDT', '500 Milion USDT'],
+  ['1 M USDT', '2 M USDT', '2 M USDT', '2 M USDT', '2 M USDT', '2 M USDT'],
+  ['50,000 USDT', '100 M USDT', '150 M USDT', '200 M USDT', '250 M USDT', '500 M USDT'],
   ['100 USDT', '200 USDT', '300 USDT', '400 USDT', '500 USDT', '1000 USDT'],
   ['100 USDT', '200 USDT', '300 USDT', '400 USDT', '500 USDT', '1000 USDT'],
   ['7 USDT', '14 USDT', '21 USDT', '28 USDT', '35 USDT', '70 USDT'],
