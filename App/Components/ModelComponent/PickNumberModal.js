@@ -67,7 +67,7 @@ const PickNumberModal = React.memo(props => {
     } else if (index !== -1) {
       newBall.splice(index, 1);
     }
-    setData({ ...data, whiteBall: newBall.sort() });
+    setData({ ...data, whiteBall: newBall });
   }
 
   function setRedBall(value) {

@@ -29,7 +29,7 @@ const SwippeBallComponent = React.memo(props => {
     const { date_created, white_ball_1, white_ball_2, white_ball_3, white_ball_4,
       white_ball_5, red_ball, multiplier_value, total_jackpot, jackpot_value } = data;
     const date = moment(date_created).format('dddd, MMMM DD, YYYY');
-    const winnerLot = [white_ball_1, white_ball_2, white_ball_3, white_ball_4, white_ball_5, red_ball];
+    const winnerLot = [white_ball_1, white_ball_2, white_ball_3, white_ball_4, white_ball_5];
     winnerLot.sort(function (a, b) { return a - b });
     return (
       <View style={Styles.winnerBody} key={index}>
@@ -42,7 +42,7 @@ const SwippeBallComponent = React.memo(props => {
           <BallComponent number={winnerLot[2]} type={0} size={Utils.hp(45)} textSize={Utils.hp(16)} />
           <BallComponent number={winnerLot[3]} type={0} size={Utils.hp(45)} textSize={Utils.hp(16)} />
           <BallComponent number={winnerLot[4]} type={0} size={Utils.hp(45)} textSize={Utils.hp(16)} />
-          <BallComponent number={winnerLot[5]} type={1} size={Utils.hp(45)} textSize={Utils.hp(16)} />
+          <BallComponent number={red_ball} type={1} size={Utils.hp(45)} textSize={Utils.hp(16)} />
         </View>
         <Text style={Styles.powerText}>POWER PLAY: {multiplier_value}</Text>
         <Text style={Styles.payoutValue}>{Utils.usdtFormat(jackpot_value)}</Text>

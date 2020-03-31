@@ -8,7 +8,10 @@ import DataStorage from '../Services/DataStorage';
 const HiddenStack = createStackNavigator(
   {
     Info: {
-      screen: InformationScreen
+      screen: InformationScreen,
+      navigationOptions: ({ navigation }) => ({
+        headerTitle: '9 Ways To Win'
+      })
     }
   },
   {

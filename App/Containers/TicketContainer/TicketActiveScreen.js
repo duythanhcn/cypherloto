@@ -45,8 +45,8 @@ const TicketActiveScreen = React.memo(props => {
   async function getData() {
     if (isLoad) return;
     clearTimeout(timerLoad);
+    setLoad(true);
     timerLoad = setTimeout(() => {
-      setLoad(true);
       getUserActiveTicket();
     }, 500)
   }
@@ -112,7 +112,7 @@ const TicketActiveScreen = React.memo(props => {
         numColumns={1}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item, index }) => renderItem(item, index)}
-        onEndReached={() => isNext ? setPage(page + 1) : null}
+        onEndReached={() => isNext && !isLoad ? setPage(page + 1) : null}
         onRefresh={() => onRefresh()}
         ListEmptyComponent={isFirstLoad ? null : <EmptyState />}
         ListFooterComponent={isLoad ? Spinner : null}
