@@ -35,11 +35,11 @@ const SignInScreen = React.memo(props => {
       setErrorMessage(emailError || passwordError);
       return;
     }
-    const response = await apiService.login(email, password);
+    const _password = Utils.hashString({ email, password }, 'password_token');
+    const response = await apiService.login(email, _password);
     const { data, status } = response;
     if (status === 200 && !data.errors) {
       const { enable_2fa } = data.account_info;
-      const _password = Utils.hashString({ email, password }, 'password_token');
       const userInfo = { ...data.account_info, email, password: _password };
       setUser(userInfo);
       Storage.setLoginSession(userInfo);

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Styles from './Styles/ChangePasswordScreenStyles';
-import { View, Text, TouchableOpacity, Image, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, Text, TouchableOpacity, KeyboardAvoidingView, Platform } from 'react-native';
 import InputComponent from '../../Components/ItemComponent/InputComponent';
 import { connect } from 'react-redux';
 import validation from '../../Common/validation';

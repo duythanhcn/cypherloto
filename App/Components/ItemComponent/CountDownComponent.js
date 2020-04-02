@@ -34,9 +34,9 @@ const CountDownComponent = React.memo(props => {
     let minute = diff - (hour * 3600);
     minute = (minute - minute % 60) / 60;
     const second = diff - (hour * 3600) - (minute * 60);
-    setHour(hour)
-    setMinute(minute)
-    setSecond(second)
+    setHour(hour > 9 ? hour : `0${hour}`)
+    setMinute(minute > 9 ? minute : `0${minute}`)
+    setSecond(second > 9 ? second : `0${second}`)
   }
 
   return (

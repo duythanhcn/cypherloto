@@ -6,16 +6,12 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
 
 const InputComponent = React.memo(props => {
-  const { navigation, icon, placeHolder, onChange, title, value, type } = props;
+  const { navigation, icon, placeHolder, onChange, title, value, type, keyboard } = props;
   const [_value, setValue] = useState(value);
 
   useEffect(() => {
     setValue(value)
   }, [value])
-
-  // useEffect(() => {
-  //   onChange(_value)
-  // }, [_value])
 
   return (
     <View style={Styles.inputView}>
@@ -27,6 +23,7 @@ const InputComponent = React.memo(props => {
           placeholder={placeHolder}
           placeholderTextColor='gray'
           textContentType={type}
+          keyboardType={keyboard}
           onChangeText={val => onChange(val)}
           numberOfLines={1}
           secureTextEntry={type === 'password'}

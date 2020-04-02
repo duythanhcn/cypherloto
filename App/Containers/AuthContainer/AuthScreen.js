@@ -3,6 +3,7 @@ import Styles from './Styles/AuthScreenStyles';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 import Storage from '../../Common/Storage';
+import apiService from '../../Services/API';
 
 const AuthScreen = React.memo(props => {
   const { navigation, setUser } = props;
@@ -17,8 +18,19 @@ const AuthScreen = React.memo(props => {
     if (!userInfo) {
       navigation.navigate('Init');
     } else {
-      setUser(userInfo);
+      await autoSignIn(userInfo);
       navigation.navigate('App');
+    }
+  }
+
+  async function autoSignIn(userInfo) {
+    const response = await apiService.login(userInfo.email, userInfo.password);
+    const { data, status } = response;
+    if (status === 200 && !data.errors) {
+      const { enable_2fa } = data.account_info;
+      const _userInfo = { ...userInfo, enable_2fa };
+      setUser(_userInfo);
+      Storage.setLoginSession(_userInfo);
     }
   }
 

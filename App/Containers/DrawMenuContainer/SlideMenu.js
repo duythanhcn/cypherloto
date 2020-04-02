@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Styles from './Styles/SlideMenuStyles';
 import { View, Text, TouchableOpacity, SafeAreaView } from 'react-native';
 import { connect } from 'react-redux';
@@ -6,6 +6,11 @@ import Storage from '../../Common/Storage';
 
 const SideMenu = React.memo(props => {
   const { clearUser, navigation } = props;
+  const [user, setUser] = useState(props.user);
+
+  useEffect(() => {
+    setUser(props.user);
+  }, [props.user])
 
   function signOut() {
     clearUser({});
@@ -27,8 +32,14 @@ const SideMenu = React.memo(props => {
         </View>
         <View style={Styles.itemView}>
           <TouchableOpacity
-            onPress={() => navigation.navigate('TwoFA')}>
-            <Text style={Styles.headerText}>2FA</Text>
+            onPress={() => {
+              if (user.enable_2fa) {
+                navigation.navigate('DisableAuthen')
+              } else {
+                navigation.navigate('TwoFA')
+              }
+            }}>
+            <Text style={Styles.headerText}>2FA Setting</Text>
           </TouchableOpacity>
         </View>
         <View style={Styles.itemView}>

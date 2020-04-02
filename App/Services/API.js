@@ -2,7 +2,6 @@ import axios from 'axios';
 import { API_URL } from '../Common/constants';
 import Message from '../Common/Message';
 import Utils from '../Common/Utils';
-import { connect } from 'react-redux';
 
 const baseURL = 'http://95.216.25.89:3001/api/v1';
 
@@ -34,7 +33,7 @@ class API {
   async login(email, password) {
     const data = {
       email,
-      password_token: Utils.hashString({ email, password }, 'password_token')
+      password_token: password
     }
     const res = await POST(API_URL.LOGIN, {}, data);
     return res;
@@ -136,7 +135,7 @@ class API {
   async enable2FA(account, password, token) {
     const data = {
       account,
-      password_token: password,
+      password_token: Utils.hashString({ email: account, password }, 'password_token'),
       token
     }
     const res = await POST(API_URL.ENABLE_2FA, {}, data);
@@ -146,7 +145,7 @@ class API {
   async disable2FA(account, password, token) {
     const data = {
       account,
-      password_token: password,
+      password_token: Utils.hashString({ email: account, password }, 'password_token'),
       token
     }
     const res = await POST(API_URL.DISABLE_2FA, {}, data);

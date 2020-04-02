@@ -13,7 +13,6 @@ function withWinnerLot(WrappedComponent) {
       async function nextWinnerNumber() {
         const res = await apiService.getWinnerLot(10);
         const { data } = res;
-        console.log(data)
         if (!data.errors) {
           setWinnerLot(data);
         }
