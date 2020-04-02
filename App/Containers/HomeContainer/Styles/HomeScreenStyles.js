@@ -41,29 +41,8 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  timeView: {
-    alignItems: 'center',
-    padding: '1%'
-  },
   timeDrawView: {
     flexDirection: 'row'
-  },
-  hour: {
-    width: Utils.wp(50),
-    height: Utils.wp(50),
-    backgroundColor: '#3F4172',
-    borderRadius: Utils.hp(10),
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  hourText: {
-    color: '#FFCF20',
-    fontSize: Utils.hp(20),
-    fontWeight: 'bold'
-  },
-  hourDesc: {
-    fontSize: Utils.hp(13),
-    color: '#000'
   },
   //winner
   winnerView: {

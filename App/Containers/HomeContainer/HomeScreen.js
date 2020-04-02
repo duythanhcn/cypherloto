@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 import { View, Text, ScrollView } from 'react-native';
 import Utils from '../../Common/Utils';
 import apiService from '../../Services/API';
-import moment from 'moment';
-import CountDown from 'react-native-countdown-component';
+import CountDown from '../../Components/ItemComponent/CountDownComponent'
 import SwippeBallComponent from '../../Components/ItemComponent/SwippeBallComponent';
 import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
@@ -50,8 +49,7 @@ const HomeScreen = React.memo(props => {
     const { data } = res;
     if (!data.errors) {
       const { next_lottery_date } = data;
-      const diff = moment(next_lottery_date).diff(moment.now());
-      setNextDraw(diff / 1000);
+      setNextDraw(next_lottery_date);
     }
   }
 
@@ -104,16 +102,7 @@ const HomeScreen = React.memo(props => {
           <View style={Styles.nextDrawView}>
             <Text style={Styles.esttitle}>NEXT DRAWING</Text>
             <View style={Styles.timeDrawView}>
-              <CountDown
-                until={nextDraw}
-                size={Utils.hp(20)}
-                onFinish={() => { }}
-                style={Styles.timeView}
-                digitStyle={Styles.hour}
-                digitTxtStyle={Styles.hourText}
-                timeToShow={['H', 'M', 'S']}
-                timeLabels={{ h: 'Hours', m: 'Minutes', s: 'Seconds' }}
-                timeLabelStyle={Styles.hourDesc} />
+              <CountDown data={nextDraw} />
             </View>
           </View>
         </View>
