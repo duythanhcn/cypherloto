@@ -7,7 +7,7 @@ export default StyleSheet.create({
   },
   bodyView: {
     width: '100%',
-    height: '80%',
+    height: '75%',
     backgroundColor: '#FFF',
     alignItems: 'center',
     justifyContent: 'center',
@@ -18,7 +18,7 @@ export default StyleSheet.create({
   titleView: {
     width: '100%',
     height: '25%',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     alignItems: 'center'
   },
   titleText: {
@@ -30,24 +30,22 @@ export default StyleSheet.create({
     height: '75%',
     paddingVertical: '1%',
     alignItems: 'center',
-    justifyContent: 'center',
-    borderTopWidth: Utils.hp(1),
-    borderTopColor: 'gray'
+    justifyContent: 'center'
   },
   contentText: {
-    fontSize: Utils.hp(16),
+    fontSize: Utils.hp(18),
     textAlign: 'center'
   },
   footerView: {
     backgroundColor: '#FFF',
     width: '100%',
-    height: '20%',
+    height: '25%',
     justifyContent: 'center',
     alignItems: 'center',
     borderBottomEndRadius: Utils.hp(10),
     borderBottomStartRadius: Utils.hp(10),
     flexDirection: 'row',
-    borderTopColor: '#00A3B9',
+    borderTopColor: 'gray',
     borderTopWidth: Utils.hp(1)
   },
   btnClose: {
@@ -56,16 +54,15 @@ export default StyleSheet.create({
     height: '100%'
   },
   btnBorderLeft: {
-    borderLeftWidth: Utils.hp(1),
-    borderLeftColor: '#00A3B9'
+    borderLeftWidth: Utils.hp(0.5),
+    borderLeftColor: 'gray'
   },
   btnBorderRight: {
-    borderRightWidth: Utils.hp(1),
-    borderRightColor: '#00A3B9'
+    borderRightWidth: Utils.hp(0.5),
+    borderRightColor: 'gray'
   },
   btnText: {
-    color: '#00A3B9',
-    fontSize: Utils.hp(18),
-    fontWeight: 'bold'
+    color: '#147EFB',
+    fontSize: Utils.hp(18)
   }
 })

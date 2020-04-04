@@ -167,6 +167,11 @@ class API {
     return await GET(url, {}, {});
   }
 
+  async searchLot(date) {
+    const url = `${API_URL.SEARCH}?date=${date}`
+    return await GET(url, {}, {});
+  }
+
   async verifyAddress(hash) {
     const data = {
       hash,

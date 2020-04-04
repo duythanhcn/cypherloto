@@ -1,17 +1,18 @@
 import React from 'react'
 import styles from './Styles/AlertModalStyles'
-import { View, TouchableOpacity, Text } from 'react-native'
+import { View, TouchableOpacity, Text, Dimensions } from 'react-native'
 import PropTypes from 'prop-types'
 import Dialog from 'react-native-popup-dialog'
 
-const ratioH = 0.3
-const ratioW = 0.8
+const { height } = Dimensions.get('screen');
+const ratioH = 200 / height;
+const ratioW = 0.8;
 const AlertModal = React.memo(props => {
   const { message, actions, title } = props
 
   function renderButton(total, index, btnText, btnAction) {
     const w = 100 / total + '%'
-    const btnBorder = null
+    let btnBorder = null
     if (total > 1) {
       btnBorder = index % 2 !== 0 ? styles.btnBorderLeft : styles.btnBorderRight
     }
