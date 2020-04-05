@@ -15,7 +15,7 @@ const AccountButton = React.memo(props => {
       onPress={() => {
         navigation.dispatch(DrawerActions.openDrawer());
       }}>
-      <Icon name={'user-circle'} color='gray' size={Utils.hp(30)} />
+      <Icon name={'user-circle'} color='#147EFB' size={Utils.hp(30)} />
     </TouchableOpacity>
   );
 })

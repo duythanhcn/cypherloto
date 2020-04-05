@@ -5,6 +5,7 @@ import DataStorage from '../Services/DataStorage';
 import SearchInputScreen from '../Containers/SearchContainer/SearchInputScreen';
 import Utils from '../Common/Utils';
 import SearchResultScreen from '../Containers/SearchContainer/SearchResultScreen';
+import LogoTitle from '../Components/ItemComponent/LogoTitle';
 
 const Styles = StyleSheet.create({
   leftButton: {
@@ -23,10 +24,6 @@ const Styles = StyleSheet.create({
   textBtn: {
     fontSize: Utils.hp(18),
     color: '#147EFB'
-  },
-  titleText: {
-    fontSize: Utils.hp(18),
-    fontWeight: 'bold'
   }
 });
 
@@ -35,7 +32,6 @@ const SearchStack = createStackNavigator(
     SearchInput: {
       screen: SearchInputScreen,
       navigationOptions: ({ navigation }) => ({
-        headerTitle: <Text style={Styles.titleText}>Search Input</Text>,
         headerLeft: (<TouchableOpacity onPress={() => navigation.goBack()} style={Styles.leftButton}>
           <Text style={Styles.textBtn}>Cancel</Text>
         </TouchableOpacity>),
@@ -47,7 +43,6 @@ const SearchStack = createStackNavigator(
     SearchResult: {
       screen: SearchResultScreen,
       navigationOptions: ({ navigation }) => ({
-        headerTitle: <Text style={Styles.titleText}>Search Results</Text>,
         headerLeft: (<HeaderBackButton onPress={() => navigation.navigate(DataStorage.CURRENT_TAB)} />),
         headerRight: (<TouchableOpacity onPress={() => navigation.goBack()} style={Styles.rightButton}>
           <Text style={Styles.textBtn}>Search</Text>
@@ -58,7 +53,8 @@ const SearchStack = createStackNavigator(
   {
     defaultNavigationOptions: ({ navigation }) => ({
       headerBackTitle: null,
-      gesturesEnabled: false
+      gesturesEnabled: false,
+      headerTitle: <LogoTitle title='Search' />
     })
   })
 

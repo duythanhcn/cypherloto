@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Styles from './Styles/SearchInputStyles';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import DatePicker from 'react-native-date-picker';
 import moment from 'moment';
 import { connect } from 'react-redux';
@@ -15,7 +15,6 @@ const SearchInputScreen = React.memo(props => {
 
   return (
     <View style={Styles.container}>
-      <Text style={Styles.title}>Pleasse choose your date</Text>
       <DatePicker
         date={date}
         onDateChange={setDate}
