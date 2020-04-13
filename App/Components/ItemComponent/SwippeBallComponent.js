@@ -4,7 +4,7 @@ import BallComponent from '..//ItemComponent/BallComponent';
 import Utils from '../../Common/Utils';
 import Swiper from 'react-native-swiper';
 import withWinnerLot from '../../HOC/withWinnerLot';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import { View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
@@ -28,7 +28,7 @@ const SwippeBallComponent = React.memo(props => {
   function renderWinner(data, index) {
     const { date_created, white_ball_1, white_ball_2, white_ball_3, white_ball_4,
       white_ball_5, red_ball, multiplier_value, total_jackpot, jackpot_value } = data;
-    const date = moment(date_created).format('dddd, MMMM DD, YYYY');
+    const date = moment(date_created).tz('America/New_York').format('dddd, MMMM DD, YYYY');
     const winnerLot = [white_ball_1, white_ball_2, white_ball_3, white_ball_4, white_ball_5];
     winnerLot.sort(function (a, b) { return a - b });
     return (

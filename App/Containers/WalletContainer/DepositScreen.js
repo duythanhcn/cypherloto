@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Styles from './Styles/DepositScreenStyles';
 import { View, Text, TouchableOpacity, FlatList, Clipboard } from 'react-native';
 import Utils from '../../Common/Utils';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import { Spinner } from 'native-base';
 import { connect } from 'react-redux';
 import apiService from '../../Services/API';
@@ -89,7 +89,7 @@ const DepositScreen = React.memo(props => {
 
   function renderItem(item, index) {
     const { address, amount, status, date } = item;
-    const _date = moment(date).format('MM/DD/YY');
+    const _date = moment(date).tz('America/New_York').format('MM/DD/YY');
     const statusGroup = STATUS_ICON[status.toUpperCase()];
     return (
       <View style={[Styles.containerItem, index === 0 ? Styles.borderTop : null]}>

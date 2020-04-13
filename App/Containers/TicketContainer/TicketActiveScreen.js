@@ -5,7 +5,7 @@ import apiService from '../../Services/API';
 import Utils from '../../Common/Utils';
 import { connect } from 'react-redux';
 import { Spinner } from 'native-base';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import EmptyState from '../../Components/StateComponent/EmptyState';
 import BallComponent from '../../Components/ItemComponent/BallComponent';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -84,7 +84,7 @@ const TicketActiveScreen = React.memo(props => {
     return (
       <View style={Styles.containerItem} key={index}>
         <View style={Styles.rightView}>
-          <Text style={Styles.itemText}>{moment(created_at).format('MM/DD/YYYY')}</Text>
+          <Text style={Styles.itemText}>{moment(created_at).tz('America/New_York').format('MM/DD/YYYY')}</Text>
         </View>
         <View style={Styles.secondView}>
           <BallComponent number={arrBall[0]} size={Utils.hp(45)} type={0} textSize={Utils.hp(16)} />

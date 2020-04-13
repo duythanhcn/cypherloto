@@ -3,7 +3,7 @@ import Styles from './Styles/DrawingScreenStyles';
 import { View, Text, FlatList } from 'react-native';
 import apiService from '../../Services/API';
 import { Spinner } from 'native-base';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import Utils from '../../Common/Utils';
 import EmptyState from '../../Components/StateComponent/EmptyState';
 import BallComponent from '../../Components/ItemComponent/BallComponent';
@@ -74,7 +74,7 @@ const DrawingScreen = React.memo(props => {
       white_ball_5, red_ball, date_created, multiplier_value, total_jackpot, jackpot_value } = item;
     const arrBall = [white_ball_1, white_ball_2, white_ball_3, white_ball_4, white_ball_5];
     arrBall.sort(function (a, b) { return a - b });
-    const date = moment(date_created).format('dddd, MMMM DD, YYYY')
+    const date = moment(date_created).tz('America/New_York').format('dddd, MMMM DD, YYYY')
     return (
       <View style={Styles.containerItem} key={index}>
         <Text style={Styles.timeText}>{date.toUpperCase()}</Text>

@@ -3,7 +3,7 @@ import Styles from './Styles/TicketPlayedScreenStyles';
 import { View, Text, FlatList } from 'react-native';
 import apiService from '../../Services/API';
 import { connect } from 'react-redux';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import Utils from '../../Common/Utils';
 import { Spinner } from 'native-base';
 import BallComponent from '../../Components/ItemComponent/BallComponent';
@@ -76,7 +76,7 @@ const TicketPlayedScreen = React.memo(props => {
       white4_ball_checked, white5_ball_checked, red_ball_checked } = item;
     const arrBall = [white1_ball, white2_ball, white3_ball, white4_ball, white5_ball];
     arrBall.sort(function (a, b) { return a - b });
-    const date = moment(created_at).format('MM/DD/YYYY');
+    const date = moment(created_at).tz('America/New_York').format('MM/DD/YYYY');
     const numRedBall = red_ball_checked ? 1 : 0;
     let numWhiteBall = 0;
     numWhiteBall += white1_ball_checked ? 1 : 0

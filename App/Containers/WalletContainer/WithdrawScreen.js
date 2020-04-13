@@ -5,7 +5,7 @@ import { Input, Spinner } from 'native-base';
 import apiService from '../../Services/API';
 import Utils from '../../Common/Utils';
 import { connect } from 'react-redux';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import validation from '../../Common/validation';
 import EmptyState from '../../Components/StateComponent/EmptyState';
 import TwoFAModel from '../../Components/ModelComponent/TwoFAModel';
@@ -154,7 +154,7 @@ const WithdrawScreen = React.memo(props => {
 
   function renderItem(item, index) {
     const { address_to, amount, status, date } = item;
-    const _date = moment(date).format('MM/DD/YY');
+    const _date = moment(date).tz('America/New_York').format('MM/DD/YY');
     const statusGroup = STATUS_ICON[status.toUpperCase()];
     return (
       <View style={[Styles.containerItem, index === 0 ? Styles.borderTop : null]}>
