@@ -11,7 +11,7 @@
     "ios-device": "react-native run-ios --device",
     "android": "react-native run-android",
     "build-android": "npx jetify && cd android && ./gradlew -v && ./gradlew assembleRelease",
-    "gcs-enviroment": "cp ./GCS/google-services.json ./android/app/google-services.json && cp ./GCS/GoogleService-Info.plist  ./ios/cypherlotoTests/GoogleService-Info.plist"
+    "gcs-enviroment": "cp ./GCS/google-services.json ./android/app/google-services.json && cp ./GCS/GoogleService-Info.plist  ./ios/cypherloto/GoogleService-Info.plist"
   },
   "dependencies": {
     "@dooboo-ui/native-switch-toggle": "^0.4.1",

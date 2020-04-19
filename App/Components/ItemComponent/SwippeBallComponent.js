@@ -66,7 +66,7 @@ const SwippeBallComponent = React.memo(props => {
         {dataWinner.map((data, index) => renderWinner(data, index))}
       </Swiper>
       <View style={Styles.nextView}>
-        {index < 9 ? <Icon name='chevron-right' color='gray' size={Utils.hp(20)} /> : null}
+        {index < dataWinner.length - 1 ? <Icon name='chevron-right' color='gray' size={Utils.hp(20)} /> : null}
       </View>
     </View>)
 })

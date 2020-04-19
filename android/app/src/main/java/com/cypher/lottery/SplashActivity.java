@@ -1,9 +1,11 @@
-package com.cypherloto;
+package com.cypher.lottery;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+
+import com.cypher.R;
 
 public class SplashActivity extends AppCompatActivity {
 

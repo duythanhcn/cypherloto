@@ -29,7 +29,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:565390802167:ios:8fdfe855fa3266f3b527f2</string>
+	<string>1:565390802167:ios:44d0c7eb387b6823b527f2</string>
 	<key>DATABASE_URL</key>
 	<string>https://cypher-lottery.firebaseio.com</string>
 </dict>

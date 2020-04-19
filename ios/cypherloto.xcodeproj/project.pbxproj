@@ -17,6 +17,7 @@
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* cypherlotoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* cypherlotoTests.m */; };
 		5BDBE933F2363A205884D9A7 /* libPods-cypherlotoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FAE1DDCE627E9F32C08576A5 /* libPods-cypherlotoTests.a */; };
+		63F63E06244C6451009012A8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 63F63E05244C6451009012A8 /* GoogleService-Info.plist */; };
 		71FF1456B3D3D0063257A96C /* libPods-cypherloto-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BF2AE0ADDD9D819B65798AB5 /* libPods-cypherloto-tvOSTests.a */; };
 		BFC4F903E8BE3965E4EBFBD0 /* libPods-cypherloto-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D0FEAAD1EE56BDA9FDE10CD /* libPods-cypherloto-tvOS.a */; };
 		F2A1F5C3A20AD3DE93F5FB92 /* libPods-cypherloto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 82105909CBB0F6A95C1D8A66 /* libPods-cypherloto.a */; };
@@ -56,6 +57,7 @@
 		2D02E4901E0B4A5D006451C7 /* cypherloto-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "cypherloto-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		37FE4E4E371328861972D759 /* Pods-cypherloto-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cypherloto-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-cypherloto-tvOSTests/Pods-cypherloto-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		6300C18B244C353200082A27 /* cypherloto.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = cypherloto.entitlements; path = cypherloto/cypherloto.entitlements; sourceTree = "<group>"; };
+		63F63E05244C6451009012A8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GCS/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		649999B4C605CBB96AF8ABBE /* Pods-cypherlotoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cypherlotoTests.debug.xcconfig"; path = "Target Support Files/Pods-cypherlotoTests/Pods-cypherlotoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		672A99101780EB47D336FD6B /* Pods-cypherlotoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-cypherlotoTests.release.xcconfig"; path = "Target Support Files/Pods-cypherlotoTests/Pods-cypherlotoTests.release.xcconfig"; sourceTree = "<group>"; };
 		82105909CBB0F6A95C1D8A66 /* libPods-cypherloto.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-cypherloto.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,6 +170,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				63F63E05244C6451009012A8 /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* cypherloto */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* cypherlotoTests */,
@@ -353,6 +356,7 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				63F63E06244C6451009012A8 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

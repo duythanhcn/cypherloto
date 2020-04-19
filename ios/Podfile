@@ -34,6 +34,9 @@ target 'cypherloto' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
+  # Required by RNFirebase
+  pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
 
   target 'cypherlotoTests' do
     inherit! :search_paths

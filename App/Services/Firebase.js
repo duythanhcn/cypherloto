@@ -9,18 +9,10 @@ class FireBase {
     this.registerChanel()
   }
 
-  async setLoginEvent() {
-    await firebase.app().auth().signInAnonymously()
-  }
-
-  setSearchEvent(type, params) {
-    firebase.analytics().logEvent('search', { type: type, params: { ...params } })
-  }
-
   registerChanel() {
     const channel = new firebase.notifications.Android.Channel(
-      'Naviwise',
-      'Naviwise',
+      'Cypher Lottery',
+      'Cypher Lottery',
       firebase.notifications.Android.Importance.Max
     ).setDescription('A natural description of the channel')
     firebase.notifications().android.createChannel(channel)
@@ -33,11 +25,11 @@ class FireBase {
         show_in_foreground: true,
       })
         .setNotificationId(notification.notificationId)
-        .setTitle('Naviwise')
+        .setTitle('Cypher Lottery')
         .setSubtitle(notification.subtitle)
         .setBody(notification.body)
         .setData(notification.data)
-        .android.setChannelId('Naviwise')
+        .android.setChannelId('Cypher Lottery')
         .android.setSmallIcon('ic_notification')
         .android.setColor('#57C2D2')
         .android.setPriority(firebase.notifications.Android.Priority.High)
@@ -49,7 +41,7 @@ class FireBase {
     } else if (Platform.OS === 'ios') {
       const localNotification = new firebase.notifications.Notification()
         .setNotificationId(notification.notificationId)
-        .setTitle('Naviwise')
+        .setTitle('Cypher Lottery')
         .setSubtitle(notification.subtitle)
         .setBody(notification.body)
         .setData(notification.data)
@@ -67,6 +59,14 @@ class FireBase {
       this.displayNotification(notification)
 
     })
+  }
+
+  async subscribeToTopic(topicName) {
+    firebase.messaging().subscribeToTopic(topicName);
+  }
+
+  async unsubscribeFromTopic(topicName) {
+    firebase.messaging().unsubscribeFromTopic(topicName);
   }
 
   async registerFBNotificationOpen(callBack) {
