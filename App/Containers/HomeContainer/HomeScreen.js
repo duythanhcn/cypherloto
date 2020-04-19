@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { View, Text, ScrollView } from 'react-native';
 import Utils from '../../Common/Utils';
 import apiService from '../../Services/API';
+import { Spinner } from 'native-base'
 import CountDown from '../../Components/ItemComponent/CountDownComponent'
 import SwippeBallComponent from '../../Components/ItemComponent/SwippeBallComponent';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -22,18 +23,36 @@ const payout = [
 ];
 
 const HomeScreen = React.memo(props => {
-  const { user, setUser } = props;
+  const { user, setUser, lot, buy } = props;
   const [payoutValue, setPayoutValue] = useState([{ amount: 0 }, { amount: 0 }, { amount: 0 }, { amount: 0 }, { amount: 0 }, { amount: 0 }, { amount: 0 }, { amount: 0 }, { amount: 0 }]);
   const [nextDraw, setNextDraw] = useState(0);
   const [estValue, setESTValue] = useState(0);
   const [powerX, setPowerX] = useState(0);
   const [totalPayout, setTotalPayout] = useState(0);
+  const [isRefresh, setRefresh] = useState(false)
 
   useEffect(() => {
     getCurrentLot();
     getCurLotReport();
     getBalance(user.email);
   }, [])
+
+  useEffect(() => {
+    if (lot.isBuy) {
+      getBalance(user.email);
+    }
+  }, [buy])
+
+  useEffect(() => {
+    if (lot.isLot) {
+      setRefresh(true)
+      console.log('run')
+      getCurrentLot();
+      getCurLotReport();
+    } else {
+      setRefresh(false)
+    }
+  }, [lot])
 
   async function getBalance(email) {
     const res = await apiService.getUserBalance(email);
@@ -51,6 +70,7 @@ const HomeScreen = React.memo(props => {
       const { next_lottery_date } = data;
       setNextDraw(next_lottery_date);
     }
+    setRefresh(false)
   }
 
   async function getCurLotReport() {
@@ -60,6 +80,7 @@ const HomeScreen = React.memo(props => {
       const { balance } = data;
       setESTValue(balance);
     }
+    setRefresh(false)
   }
 
   function renderPayout(isHeader, value1, value2, value3) {
@@ -88,6 +109,10 @@ const HomeScreen = React.memo(props => {
 
   return (
     <View style={Styles.container}>
+      {isRefresh ? <View style={Styles.loadingView}>
+        <Spinner />
+      </View>
+        : null}
       <ScrollView
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}>
@@ -131,7 +156,7 @@ const HomeScreen = React.memo(props => {
 })
 
 const mapStateToProps = state => {
-  return { user: state.user }
+  return { user: state.user, lot: state.lot, buy: state.buy }
 }
 
 const mapDispatchToProps = dispatch => {

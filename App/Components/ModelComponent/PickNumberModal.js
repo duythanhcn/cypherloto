@@ -169,8 +169,8 @@ const PickNumberModal = React.memo(props => {
             <Text style={Styles.powerText}>Power Play:</Text>
             <View style={Styles.radioInnerView}>
               <SwitchToggle
-                backTextRight={data.power ? '' : 'ON'}
-                backTextLeft={data.power ? 'OFF' : ''}
+                backTextRight={data.power ? '' : 'OFF'}
+                backTextLeft={data.power ? 'ON' : ''}
                 type={1}
                 buttonStyle={Styles.toggleButtonStyle}
                 rightContainerStyle={Styles.toggleRightContainerStyle}
@@ -178,13 +178,13 @@ const PickNumberModal = React.memo(props => {
                 textRightStyle={Styles.toggleTextRightStyle}
                 textLeftStyle={Styles.toggleTextLeftStyle}
                 containerStyle={Styles.toggleContainerStyle}
-                backgroundColorOn="#FFF"
-                backgroundColorOff="#004E79"
+                backgroundColorOn="#004E79"
+                backgroundColorOff="#FFF"
                 circleStyle={Styles.toggleCircleStyle}
                 switchOn={data.power}
                 onPress={() => onPower()}
-                circleColorOff="#FFF"
-                circleColorOn="#004E79"
+                circleColorOff="#004E79"
+                circleColorOn="#FFF"
                 duration={300}
               />
             </View>

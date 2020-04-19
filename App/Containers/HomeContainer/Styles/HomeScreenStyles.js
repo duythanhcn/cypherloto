@@ -4,7 +4,9 @@ import Utils from '../../../Common/Utils';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFF'
+    backgroundColor: '#FFF',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   headerView: {
     width: '100%',
@@ -85,5 +87,13 @@ export default StyleSheet.create({
   },
   payoutHeader: {
     fontWeight: 'bold'
+  },
+  loadingView: {
+    position: 'absolute',
+    display: 'flex',
+    width: '100%',
+    height: '100%',
+    zIndex: 1,
+    justifyContent: 'center'
   }
 })

@@ -10,7 +10,8 @@
     "ios": "react-native run-ios --simulator='Iphone 8'",
     "ios-device": "react-native run-ios --device",
     "android": "react-native run-android",
-    "build-android": "npx jetify && cd android && ./gradlew -v && ./gradlew assembleRelease"
+    "build-android": "npx jetify && cd android && ./gradlew -v && ./gradlew assembleRelease",
+    "gcs-enviroment": "cp ./GCS/google-services.json ./android/app/google-services.json && cp ./GCS/GoogleService-Info.plist  ./ios/cypherlotoTests/GoogleService-Info.plist"
   },
   "dependencies": {
     "@dooboo-ui/native-switch-toggle": "^0.4.1",
@@ -66,7 +67,9 @@
     "url": "^0.10.3",
     "util": "^0.10.4",
     "validate.js": "^0.13.1",
-    "vm-browserify": "0.0.4"
+    "vm-browserify": "0.0.4",
+    "react-native-splash-screen": "^3.2.0",
+    "react-native-firebase": "^5.6.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",

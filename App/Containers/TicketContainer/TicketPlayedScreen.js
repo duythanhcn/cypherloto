@@ -13,7 +13,7 @@ Icon.loadFont();
 
 let timerLoad = null;
 const TicketPlayedScreen = React.memo(props => {
-  const { user } = props;
+  const { user, lot } = props;
   const [dataList, setDataList] = useState([]);
   const [page, setPage] = useState(0);
   const [isNext, setNext] = useState(true);
@@ -24,6 +24,12 @@ const TicketPlayedScreen = React.memo(props => {
   useEffect(() => {
     getData();
   }, [])
+
+  useEffect(() => {
+    if (lot.isLot) {
+      onRefresh()
+    }
+  }, [lot])
 
   useEffect(() => {
     getData();
@@ -127,7 +133,7 @@ const TicketPlayedScreen = React.memo(props => {
 })
 
 const mapStateToProps = state => {
-  return { user: state.user }
+  return { user: state.user, lot: state.lot }
 }
 
 const mapDispatchToProps = dispatch => {

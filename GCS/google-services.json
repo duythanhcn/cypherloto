@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "565390802167",
+    "firebase_url": "https://cypher-lottery.firebaseio.com",
+    "project_id": "cypher-lottery",
+    "storage_bucket": "cypher-lottery.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:565390802167:android:6baee318493714c6b527f2",
+        "android_client_info": {
+          "package_name": "com.cypher.lottery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "565390802167-rndqk9rg7q6b9kt59pgl488ie9410852.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDk6LGSpSnwtEPTH5WGOHvRUR4_r50wi6I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "565390802167-rndqk9rg7q6b9kt59pgl488ie9410852.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "565390802167-5kbhoukl14mu3pm5s4fsh66642gi1fqt.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.cypher.lottery"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

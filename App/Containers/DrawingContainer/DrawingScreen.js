@@ -7,9 +7,11 @@ import moment from 'moment-timezone';
 import Utils from '../../Common/Utils';
 import EmptyState from '../../Components/StateComponent/EmptyState';
 import BallComponent from '../../Components/ItemComponent/BallComponent';
+import { connect } from 'react-redux';
 
 let timerLoad = null;
 const DrawingScreen = React.memo(props => {
+  const { lot } = props;
   const [dataList, setDataList] = useState([]);
   const [page, setPage] = useState(0);
   const [isNext, setNext] = useState(true);
@@ -24,6 +26,12 @@ const DrawingScreen = React.memo(props => {
   useEffect(() => {
     getData();
   }, [page])
+
+  useEffect(() => {
+    if (lot.isLot) {
+      onRefresh()
+    }
+  }, [lot])
 
   useEffect(() => {
     if (isRefresh) {
@@ -112,6 +120,14 @@ const DrawingScreen = React.memo(props => {
       />
     </View>
   );
-})
+});
 
-export default DrawingScreen;
+const mapStateToProps = state => {
+  return { lot: state.lot }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DrawingScreen);

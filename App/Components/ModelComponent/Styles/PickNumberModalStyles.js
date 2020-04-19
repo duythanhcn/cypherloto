@@ -129,12 +129,12 @@ export default StyleSheet.create({
   toggleTextRightStyle: {
     fontSize: Utils.hp(14),
     fontWeight: 'bold',
-    color: '#FFF'
+    color: '#004E79'
   },
   toggleTextLeftStyle: {
     fontSize: Utils.hp(14),
     fontWeight: 'bold',
-    color: '#004E79'
+    color: '#FFF'
   },
   toggleContainerStyle: {
     marginTop: 0,

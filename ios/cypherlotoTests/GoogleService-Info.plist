@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>565390802167-5kbhoukl14mu3pm5s4fsh66642gi1fqt.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.565390802167-5kbhoukl14mu3pm5s4fsh66642gi1fqt</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCSxRraFZl0JHDtJ113Z2tvkuCqOS17XQ0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>565390802167</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.cypher.lottery</string>
+	<key>PROJECT_ID</key>
+	<string>cypher-lottery</string>
+	<key>STORAGE_BUCKET</key>
+	<string>cypher-lottery.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:565390802167:ios:8fdfe855fa3266f3b527f2</string>
+	<key>DATABASE_URL</key>
+	<string>https://cypher-lottery.firebaseio.com</string>
+</dict>
+</plist>
