@@ -2,6 +2,7 @@ import axios from 'axios';
 import { API_URL } from '../Common/constants';
 import Message from '../Common/Message';
 import Utils from '../Common/Utils';
+import FireBase from './Firebase';
 
 const baseURL = 'http://95.216.25.89:3001/api/v1';
 
@@ -33,7 +34,8 @@ class API {
   async login(email, password) {
     const data = {
       email,
-      password_token: password
+      password_token: password,
+      device_token: FireBase.fcmToken
     }
     const res = await POST(API_URL.LOGIN, {}, data);
     return res;
@@ -45,7 +47,8 @@ class API {
       first_name: firstName,
       last_name: lastName,
       password_token: Utils.hashString({ email, password }, 'password_token'),
-      referral_id: referralId
+      referral_id: referralId,
+      device_token: FireBase.fcmToken
     }
     return await POST(API_URL.REGISTER, {}, data);
   }

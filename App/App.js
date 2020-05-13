@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import store from './Redux';
 import { connect } from 'react-redux';
 import FireBase from './Services/Firebase';
-import SplashScreen from 'react-native-splash-screen'
+import SplashScreen from 'react-native-splash-screen';
 
 let App = (props) => {
   const { lot, setLot } = props;

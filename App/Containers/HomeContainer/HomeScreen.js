@@ -7,6 +7,7 @@ import apiService from '../../Services/API';
 import { Spinner } from 'native-base'
 import CountDown from '../../Components/ItemComponent/CountDownComponent'
 import SwippeBallComponent from '../../Components/ItemComponent/SwippeBallComponent';
+import Socket from '../../Services/Socket';
 import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
 
@@ -35,6 +36,7 @@ const HomeScreen = React.memo(props => {
     getCurrentLot();
     getCurLotReport();
     getBalance(user.email);
+    registerSocket();
   }, [])
 
   useEffect(() => {
@@ -45,14 +47,27 @@ const HomeScreen = React.memo(props => {
 
   useEffect(() => {
     if (lot.isLot) {
-      setRefresh(true)
-      console.log('run')
+      setRefresh(true);
       getCurrentLot();
       getCurLotReport();
     } else {
-      setRefresh(false)
+      setRefresh(false);
     }
   }, [lot])
+
+  function registerSocket() {
+    if (user && user.email) {
+      Socket.emitLogin(user.email);
+    }
+    Socket.onBalance(balance => {
+      getBalance(user.email);
+    });
+    Socket.onPoolprize(balance => {
+      setRefresh(true);
+      getCurrentLot();
+      getCurLotReport();
+    });
+  }
 
   async function getBalance(email) {
     const res = await apiService.getUserBalance(email);
