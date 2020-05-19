@@ -59,13 +59,13 @@ const HomeScreen = React.memo(props => {
     if (user && user.email) {
       Socket.emitLogin(user.email);
     }
+
     Socket.onBalance(balance => {
-      getBalance(user.email);
+      setUser({ balance });
     });
+
     Socket.onPoolprize(balance => {
-      setRefresh(true);
-      getCurrentLot();
-      getCurLotReport();
+      setESTValue(balance);
     });
   }
 

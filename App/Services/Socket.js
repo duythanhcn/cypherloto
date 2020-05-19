@@ -10,10 +10,10 @@ class Socket {
         return this.SOCKET.emit('login', { account });
     }
 
-    onPoolprize() {
+    onPoolprize(callBack) {
         this.SOCKET.on("get-poolprize", msg => {
-            const { balance } = msg;
-            return balance;
+            const { balance } = JSON.parse(msg);
+            callBack(balance);
         });
     }
 
@@ -21,10 +21,10 @@ class Socket {
         this.SOCKET.off("get-poolprize");
     }
 
-    onBalance() {
-        this.SOCKET.on("get-balance", msg => {
-            const { balance } = msg;
-            return balance;
+    onBalance(callBack) {
+        return this.SOCKET.on("get-balance", msg => {
+            const { balance } = JSON.parse(msg);
+            callBack(balance);
         });
     }
 
