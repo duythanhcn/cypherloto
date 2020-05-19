@@ -307,7 +307,7 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 7M8R5X7MTS;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -694,11 +694,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = cypherloto/cypherloto.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 12;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = 7M8R5X7MTS;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = cypherloto/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -708,7 +708,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cypher.lottery;
 				PRODUCT_NAME = cypherloto;
-				PROVISIONING_PROFILE_SPECIFIER = cypherlottery;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -719,10 +719,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = cypherloto/cypherloto.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 12;
-				DEVELOPMENT_TEAM = 7M8R5X7MTS;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = cypherloto/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -732,7 +732,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cypher.lottery;
 				PRODUCT_NAME = cypherloto;
-				PROVISIONING_PROFILE_SPECIFIER = cypherlottery;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

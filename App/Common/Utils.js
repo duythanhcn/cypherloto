@@ -1,6 +1,6 @@
 import { Dimensions, Platform } from 'react-native';
 import { widthPercentageToDP as _wp, heightPercentageToDP as _hp } from 'react-native-responsive-screen';
-import crypto from 'crypto';
+import CryptoJS from 'crypto-js';
 
 const { width, height } = Dimensions.get('screen')
 const wBase = width // iPhone X
@@ -60,9 +60,8 @@ class Utils {
    * @param {object} params 
    */
   hashString(params, key) {
-    const hmac = crypto.createHmac('sha256', key);
-    hmac.update(JSON.stringify(params));
-    return hmac.digest('hex');
+    const hmac = CryptoJS.HmacSHA256(JSON.stringify(params), key)
+    return hmac.toString();
   }
 
   async randomNumberInList(num, start, end) {

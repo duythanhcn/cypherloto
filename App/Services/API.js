@@ -37,6 +37,7 @@ class API {
       password_token: password,
       device_token: FireBase.fcmToken
     }
+    console.log(data)
     const res = await POST(API_URL.LOGIN, {}, data);
     return res;
   }
