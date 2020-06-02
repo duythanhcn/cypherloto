@@ -38,7 +38,7 @@ const WalletScreen = React.memo(props => {
         <Tab
           heading={<TabHeading style={Styles.headerRightView}>
             <View style={[Styles.tabHeaderRightInnerView, tab === 2 ? Styles.activeTab : null]}>
-              <Text style={tab === 2 ? Styles.tabActiveText : Styles.tabText}>History</Text>
+              <Text style={tab === 2 ? Styles.tabActiveText : Styles.tabText}>Lottery</Text>
             </View>
           </TabHeading>}>
           <BalanceHistoryScreen />

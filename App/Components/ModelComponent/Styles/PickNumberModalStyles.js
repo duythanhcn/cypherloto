@@ -129,27 +129,36 @@ export default StyleSheet.create({
   toggleTextRightStyle: {
     fontSize: Utils.hp(14),
     fontWeight: 'bold',
-    color: '#004E79'
+    color: 'red'
   },
   toggleTextLeftStyle: {
     fontSize: Utils.hp(14),
     fontWeight: 'bold',
-    color: '#FFF'
+    color: '#197BFF'
   },
-  toggleContainerStyle: {
+  toggleOnContainerStyle: {
     marginTop: 0,
     width: Utils.hp(70),
     height: Utils.hp(30),
     borderRadius: Utils.hp(30 / 2),
     padding: Utils.hp(2),
-    borderColor: '#004E79',
+    borderColor: '#197BFF',
+    borderWidth: Utils.hp(1),
+  },
+  toggleOffContainerStyle: {
+    marginTop: 0,
+    width: Utils.hp(70),
+    height: Utils.hp(30),
+    borderRadius: Utils.hp(30 / 2),
+    padding: Utils.hp(2),
+    borderColor: 'red',
     borderWidth: Utils.hp(1),
   },
   toggleCircleStyle: {
     width: Utils.hp(24),
     height: Utils.hp(24),
     borderRadius: Utils.hp(24 / 2),
-    backgroundColor: 'blue'
+    backgroundColor: '#197BFF'
   },
   powerText: {
     fontSize: Utils.hp(16),

@@ -49,7 +49,7 @@ const PickNumberModal = React.memo(props => {
       if (isRandom) {
         let whiteBall = await Utils.randomNumberInList(5, 1, 69);
         const redBall = await Utils.randomNumberInList(1, 1, 26);
-        setData({ power: false, whiteBall, redBall });
+        setData({ power: data.power, whiteBall, redBall });
       }
     }
     func();
@@ -177,14 +177,14 @@ const PickNumberModal = React.memo(props => {
                 leftContainerStyle={Styles.toggleLeftContainerStyle}
                 textRightStyle={Styles.toggleTextRightStyle}
                 textLeftStyle={Styles.toggleTextLeftStyle}
-                containerStyle={Styles.toggleContainerStyle}
-                backgroundColorOn="#004E79"
+                containerStyle={data.power ? Styles.toggleOnContainerStyle : Styles.toggleOffContainerStyle}
+                backgroundColorOn="#FFF"
                 backgroundColorOff="#FFF"
                 circleStyle={Styles.toggleCircleStyle}
                 switchOn={data.power}
                 onPress={() => onPower()}
-                circleColorOff="#004E79"
-                circleColorOn="#FFF"
+                circleColorOff="red"
+                circleColorOn="#197BFF"
                 duration={300}
               />
             </View>
