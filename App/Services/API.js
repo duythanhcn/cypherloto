@@ -191,6 +191,11 @@ class API {
       })
     })
   }
+
+  async getBalanceHistory(email, limit, page) {
+    const url = `${API_URL.GET_BALANCE_HISTORY}?account=${email}&limit=${limit}&page=${page}`
+    return await GET(url, {}, {});
+  }
 }
 
 export default new API()

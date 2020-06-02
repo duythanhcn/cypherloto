@@ -105,7 +105,7 @@ export default StyleSheet.create({
   input: {
     width: '100%',
     height: '100%',
-    fontSize:Utils.hp(14)
+    fontSize: Utils.hp(14)
   },
   submitView: {
     justifyContent: 'center',
@@ -125,5 +125,10 @@ export default StyleSheet.create({
   submitText: {
     color: '#FFF',
     fontSize: Utils.hp(16)
+  },
+  borderTop: {
+  },
+  headerText: {
+    fontSize: Utils.hp(15)
   }
 })

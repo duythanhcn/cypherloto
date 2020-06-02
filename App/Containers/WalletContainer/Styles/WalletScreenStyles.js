@@ -7,7 +7,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  tabView: {
+  tabsView: {
     backgroundColor: '#f3f2f8'
   },
   activeTab: {
@@ -22,7 +22,8 @@ export default StyleSheet.create({
     fontSize: Utils.hp(18)
   },
   tabHeaderLeftInnerView: {
-    width: '70%', height: '60%',
+    width: '100%',
+    height: '60%',
     backgroundColor: '#f3f2f8',
     justifyContent: 'center',
     borderColor: '#007aff',
@@ -34,10 +35,13 @@ export default StyleSheet.create({
   headerLeftView: {
     justifyContent: 'flex-end',
     backgroundColor: '#f3f2f8',
-    alignItems: 'center'
+    alignItems: 'center',
+    width: '100%',
+    height: '100%'
   },
   tabHeaderRightInnerView: {
-    width: '70%', height: '60%',
+    width: '100%',
+    height: '60%',
     backgroundColor: '#f3f2f8',
     justifyContent: 'center',
     borderColor: '#007aff',
@@ -49,6 +53,29 @@ export default StyleSheet.create({
   headerRightView: {
     justifyContent: 'flex-start',
     backgroundColor: '#f3f2f8',
+    alignItems: 'center',
+    width: '100%',
+    height: '100%'
+  },
+  headerCenterView: {
+    backgroundColor: '#f3f2f8',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    height: '100%'
+  },
+  tabHeaderCenterInnerView: {
+    width: '100%',
+    height: '60%',
+    backgroundColor: '#f3f2f8',
+    justifyContent: 'center',
+    borderColor: '#007aff',
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
     alignItems: 'center'
+  },
+  tabContainer: {
+    paddingHorizontal: '10%',
+    backgroundColor: '#f3f2f8'
   }
 })

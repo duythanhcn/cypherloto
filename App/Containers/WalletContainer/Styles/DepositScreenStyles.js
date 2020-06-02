@@ -110,4 +110,9 @@ export default StyleSheet.create({
   itemText: {
     fontSize: Utils.hp(13)
   },
+  borderTop: {
+  },
+  headerText: {
+    fontSize: Utils.hp(15)
+  }
 })

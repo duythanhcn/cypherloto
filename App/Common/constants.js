@@ -18,7 +18,8 @@ export const API_URL = {
   FORGOT_PASSWORD: '/account/forgot_password',
   ENABLE_2FA: '/account/enable_2fa',
   DISABLE_2FA: '/account/disable_2fa',
-  SEARCH: '/lottery/search'
+  SEARCH: '/lottery/search',
+  GET_BALANCE_HISTORY: '/account/balance_history'
 };
 
 export const STATUS_ICON = {
