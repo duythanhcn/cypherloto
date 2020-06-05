@@ -46,7 +46,6 @@ const BalanceHistoryScreen = React.memo(props => {
     if (isRefresh) newData = [];
     try {
       const res = await apiService.getBalanceHistory(user.email, 10, page);
-      console.log(res)
       const { data } = res;
       if (!data.errors) {
         const { balance_history } = data;
@@ -77,7 +76,7 @@ const BalanceHistoryScreen = React.memo(props => {
           <Text style={Styles.headerText}>Date</Text>
         </View>
         <View style={Styles.secondView}>
-          <Text style={Styles.headerText}>Amount(+/-)</Text>
+          <Text style={Styles.headerText}>Amount</Text>
         </View>
         <View style={Styles.thirdView}>
           <Text style={Styles.headerText}>Information</Text>

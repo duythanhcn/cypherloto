@@ -708,7 +708,7 @@
 				CODE_SIGN_ENTITLEMENTS = cypherloto/cypherloto.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 7M8R5X7MTS;
 				INFOPLIST_FILE = cypherloto/Info.plist;
@@ -733,7 +733,7 @@
 				CODE_SIGN_ENTITLEMENTS = cypherloto/cypherloto.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = 7M8R5X7MTS;
 				INFOPLIST_FILE = cypherloto/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
