@@ -21,11 +21,10 @@ const DrawingScreen = React.memo(props => {
 
   useEffect(() => {
     getData();
+    return () => {
+      clearTimeout(timerLoad);
+    }
   }, [])
-
-  useEffect(() => {
-    getData();
-  }, [page])
 
   useEffect(() => {
     if (lot.isLot) {
@@ -35,7 +34,7 @@ const DrawingScreen = React.memo(props => {
 
   useEffect(() => {
     if (isRefresh) {
-      setPage(0)
+      getData();
     }
   }, [isRefresh])
 
@@ -51,8 +50,12 @@ const DrawingScreen = React.memo(props => {
   async function getDrawing() {
     if (!isNext) return;
     let newData = [...dataList];
-    if (isRefresh) newData = [];
-    const res = await apiService.getDrawing(10, page);
+    let _page = page;
+    if (isRefresh) {
+      newData = [];
+      _page = 0;
+    }
+    const res = await apiService.getDrawing(10, _page);
     const { data } = res;
     if (!data.errors) {
       const { lotteries } = data;
@@ -66,11 +69,18 @@ const DrawingScreen = React.memo(props => {
     setRefresh(false);
     setFirstLoad(false);
     setLoad(false);
+    setPage(_page + 1);
   }
 
   function onRefresh() {
     setRefresh(true);
     setNext(true);
+  }
+
+  function loadNext() {
+    if (isNext && !isRefresh) {
+      getData()
+    }
   }
 
   function renderSeparator() {
@@ -111,7 +121,7 @@ const DrawingScreen = React.memo(props => {
         numColumns={1}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item, index }) => renderItem(item, index)}
-        onEndReached={() => isNext ? setPage(page + 1) : null}
+        onEndReached={() => isNext ? loadNext() : null}
         onRefresh={() => onRefresh()}
         ListEmptyComponent={isFirstLoad ? null : <EmptyState />}
         ListFooterComponent={isLoad ? Spinner : null}

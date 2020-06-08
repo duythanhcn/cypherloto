@@ -26,10 +26,6 @@ const TicketActiveScreen = React.memo(props => {
   }, [])
 
   useEffect(() => {
-    getData();
-  }, [page])
-
-  useEffect(() => {
     if (buy.isBuy) {
       onRefresh();
       setBuy({ isBuy: false });
@@ -38,7 +34,7 @@ const TicketActiveScreen = React.memo(props => {
 
   useEffect(() => {
     if (isRefresh) {
-      setPage(0)
+      getData();
     }
   }, [isRefresh])
 
@@ -54,8 +50,12 @@ const TicketActiveScreen = React.memo(props => {
   async function getUserActiveTicket() {
     if (!isNext) return;
     let newData = [...dataList];
-    if (isRefresh) newData = [];
-    const res = await apiService.getUserActiveTicket(user.email, 10, page);
+    let _page = page;
+    if (isRefresh) {
+      newData = [];
+      _page = 0;
+    }
+    const res = await apiService.getUserActiveTicket(user.email, 10, _page);
     const { data } = res;
     if (!data.errors) {
       const { tickets } = data;
@@ -69,11 +69,18 @@ const TicketActiveScreen = React.memo(props => {
     setRefresh(false);
     setFirstLoad(false);
     setLoad(false);
+    setPage(_page + 1);
   }
 
   function onRefresh() {
     setRefresh(true);
     setNext(true);
+  }
+
+  function loadNext() {
+    if (isNext && !isRefresh) {
+      getData()
+    }
   }
 
   function renderItem(item, index) {
@@ -112,7 +119,7 @@ const TicketActiveScreen = React.memo(props => {
         numColumns={1}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item, index }) => renderItem(item, index)}
-        onEndReached={() => isNext && !isLoad ? setPage(page + 1) : null}
+        onEndReached={() => isNext && !isLoad ? loadNext() : null}
         onRefresh={() => onRefresh()}
         ListEmptyComponent={isFirstLoad ? null : <EmptyState />}
         ListFooterComponent={isLoad ? Spinner : null}

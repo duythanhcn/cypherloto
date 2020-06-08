@@ -37,12 +37,8 @@ const WithdrawScreen = React.memo(props => {
   }, [])
 
   useEffect(() => {
-    getData();
-  }, [page])
-
-  useEffect(() => {
     if (isRefresh) {
-      setPage(0)
+      getData();
     }
   }, [isRefresh])
 
@@ -58,8 +54,12 @@ const WithdrawScreen = React.memo(props => {
   async function getWithdrawHistory() {
     if (!isNext) return;
     let newData = [...dataList];
-    if (isRefresh) newData = [];
-    const res = await apiService.getWithdrawHistory(user.email, 10, page);
+    let _page = page;
+    if (isRefresh) {
+      newData = [];
+      _page = 0;
+    }
+    const res = await apiService.getWithdrawHistory(user.email, 10, _page);
     const { data } = res;
     if (!data.errors) {
       const { withdraw_history } = data;
@@ -73,11 +73,18 @@ const WithdrawScreen = React.memo(props => {
     setRefresh(false);
     setFirstLoad(false);
     setLoad(false);
+    setPage(_page + 1);
   }
 
   function onRefresh() {
     setRefresh(true);
     setNext(true);
+  }
+
+  function loadNext() {
+    if (isNext && !isRefresh) {
+      getData()
+    }
   }
 
   async function validateWithdraw() {
@@ -223,7 +230,7 @@ const WithdrawScreen = React.memo(props => {
             numColumns={1}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ item, index }) => renderItem(item, index)}
-            onEndReached={() => isNext ? setPage(page + 1) : null}
+            onEndReached={() => isNext ? loadNext() : null}
             onRefresh={() => onRefresh()}
             ListEmptyComponent={isFirstLoad || isRefresh ? null : <EmptyState />}
             ListFooterComponent={isLoad ? Spinner : null}
