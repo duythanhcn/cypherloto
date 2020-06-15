@@ -7,6 +7,7 @@ import validation from '../../Common/validation';
 import apiService from '../../Services/API';
 import AlertModal from '../../Components/ModelComponent/AlertModal';
 import { withNavigationFocus } from 'react-navigation';
+import Message from '../../Common/Message';
 
 const ChangePasswordScreen = React.memo(props => {
   const { user, setUser, isFocused } = props;
@@ -47,15 +48,19 @@ const ChangePasswordScreen = React.memo(props => {
       setErrorMessage(oldPasswordError || newPasswordError || confirmPasswordError || confirmOldPasswordError);
       return;
     }
-    const response = await apiService.changePassword(user.email, oldPassword, newPassword);
-    const { data, status } = response;
-    if (status === 200 && !data.errors) {
-      setMessage('Change password success');
-      setShowAlert(true);
-      const _password = Utils.hashString({ email, password }, 'password_token');
-      setUser({ password: _password });
-    } else {
-      setErrorMessage(data.errors.message);
+    try {
+      const response = await apiService.changePassword(user.email, oldPassword, newPassword);
+      const { data, status } = response;
+      if (status === 200 && !data.errors) {
+        setMessage('Change password success');
+        setShowAlert(true);
+        const _password = Utils.hashString({ email, password }, 'password_token');
+        setUser({ password: _password });
+      } else {
+        setErrorMessage(data.errors.message);
+      }
+    } catch (err) {
+      setErrorMessage(Message.ServiceError);
     }
   }
 

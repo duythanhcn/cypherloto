@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import PickedNumberComponent from '../../Components/ItemComponent/PickedNumberComponent';
 import PickNumberModal from '../../Components/ModelComponent/PickNumberModal';
 import AlertModal from '../../Components/ModelComponent/AlertModal';
+import Message from '../../Common/Message';
 import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
 
@@ -45,26 +46,32 @@ const BuyScreen = React.memo(props => {
       setShowAlert(true);
       return;
     }
-    const response = await apiService.buyTicket(email, amount, tickets);
-    const { data } = response;
-    if (!data.errors) {
-      setMessage('Transaction Success');
-      setBuy({ isBuy: true });
-      await getBalance();
-    } else {
-      setMessage(data.errors.message)
+    try {
+      const response = await apiService.buyTicket(email, amount, tickets);
+      const { data } = response;
+      if (!data.errors) {
+        setMessage('Transaction Success');
+        setBuy({ isBuy: true });
+        await getBalance();
+      } else {
+        setMessage(data.errors.message)
+      }
+      setShowAlert(true);
+      setData({ list: [], timestamp: Date.now() })
+    } catch (err) {
+      setMessage(Message.ServiceError);
     }
-    setShowAlert(true);
-    setData({ list: [], timestamp: Date.now() })
   }
 
   async function getBalance() {
-    const res = await apiService.getUserBalance(user.email);
-    const { data } = res;
-    if (!data.errors) {
-      const { address, balance } = data;
-      setUser({ address, balance });
-    }
+    try {
+      const res = await apiService.getUserBalance(user.email);
+      const { data } = res;
+      if (!data.errors) {
+        const { address, balance } = data;
+        setUser({ address, balance });
+      }
+    } catch (err) { }
   }
 
   function processData() {

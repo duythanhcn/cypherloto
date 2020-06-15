@@ -34,19 +34,21 @@ const SearchResultScreen = React.memo(props => {
   }, [])
 
   async function search() {
-    const res = await apiService.searchLot(searchParams.date);
-    const { data } = res;
-    if (!data.errors) {
-      const { lottery } = data;
-      if (lottery) {
-        setDataList([lottery]);
+    try {
+      const res = await apiService.searchLot(searchParams.date);
+      const { data } = res;
+      if (!data.errors) {
+        const { lottery } = data;
+        if (lottery) {
+          setDataList([lottery]);
+        } else {
+          setShowAlert(true);
+        }
       } else {
         setShowAlert(true);
       }
-    } else {
-      setShowAlert(true);
-    }
-    setFirstLoad(false);
+      setFirstLoad(false);
+    } catch (err) { }
   }
 
   function renderItem(item, index) {

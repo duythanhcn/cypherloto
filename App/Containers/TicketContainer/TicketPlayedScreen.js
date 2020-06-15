@@ -12,6 +12,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
 
 let timerLoad = null;
+let timerRefresh = null;
 const TicketPlayedScreen = React.memo(props => {
   const { user, lot } = props;
   const [dataList, setDataList] = useState([]);
@@ -23,6 +24,10 @@ const TicketPlayedScreen = React.memo(props => {
 
   useEffect(() => {
     getData();
+    return () => {
+      clearTimeout(timerLoad);
+      clearTimeout(timerRefresh);
+    }
   }, [])
 
   useEffect(() => {
@@ -35,10 +40,13 @@ const TicketPlayedScreen = React.memo(props => {
     if (isRefresh) {
       getData();
     }
+    timerRefresh = setTimeout(() => {
+      setRefresh(false)
+    }, 10000)
   }, [isRefresh])
 
   async function getData() {
-    if (isLoad) return;
+    if (isLoad && !isRefresh) return;
     clearTimeout(timerLoad);
     timerLoad = setTimeout(() => {
       setLoad(true);
@@ -47,23 +55,25 @@ const TicketPlayedScreen = React.memo(props => {
   }
 
   async function getUserPlayedTicket() {
-    if (!isNext) return;
     let newData = [...dataList];
     let _page = page;
     if (isRefresh) {
       newData = [];
       _page = 0;
     }
-    const res = await apiService.getUserPlayedTicket(user.email, 10, _page);
-    const { data } = res;
-    if (!data.errors) {
-      const { tickets } = data;
-      if (tickets.length > 0) {
-        newData = [...newData, ...tickets];
-      } else {
-        setNext(false);
+    try {
+      const res = await apiService.getUserPlayedTicket(user.email, 10, _page);
+      const { data } = res;
+      if (!data.errors) {
+        const { tickets } = data;
+        if (tickets.length > 0) {
+          newData = [...newData, ...tickets];
+          setNext(true);
+        } else {
+          setNext(false);
+        }
       }
-    }
+    } catch (err) { }
     setDataList(newData);
     setRefresh(false);
     setFirstLoad(false);
@@ -73,7 +83,6 @@ const TicketPlayedScreen = React.memo(props => {
 
   function onRefresh() {
     setRefresh(true);
-    setNext(true);
   }
 
   function loadNext() {
@@ -89,7 +98,7 @@ const TicketPlayedScreen = React.memo(props => {
       white4_ball_checked, white5_ball_checked, red_ball_checked } = item;
     const arrBall = [white1_ball, white2_ball, white3_ball, white4_ball, white5_ball];
     arrBall.sort(function (a, b) { return a - b });
-    const date = moment(created_at).tz('America/New_York').format('MM/DD/YYYY');
+    const date = moment(created_at).tz('America/New_York').format('MM.DD.YYYY');
     const numRedBall = red_ball_checked ? 1 : 0;
     let numWhiteBall = 0;
     numWhiteBall += white1_ball_checked ? 1 : 0
@@ -132,7 +141,7 @@ const TicketPlayedScreen = React.memo(props => {
         onEndReached={() => isNext ? loadNext() : null}
         onRefresh={() => onRefresh()}
         ListEmptyComponent={isFirstLoad ? null : <EmptyState />}
-        ListFooterComponent={isLoad ? Spinner : null}
+        ListFooterComponent={isLoad && isNext ? Spinner : null}
         ItemSeparatorComponent={() => (<View style={Styles.seperatorView}></View>)}
       />
     </View>

@@ -11,11 +11,13 @@ function withWinnerLot(WrappedComponent) {
       }, [])
 
       async function nextWinnerNumber() {
-        const res = await apiService.getWinnerLot(10);
-        const { data } = res;
-        if (!data.errors) {
-          setWinnerLot(data);
-        }
+        try {
+          const res = await apiService.getWinnerLot(10);
+          const { data } = res;
+          if (!data.errors) {
+            setWinnerLot(data);
+          }
+        } catch (err) { }
       }
 
       if (winnerLot.length <= 0) {

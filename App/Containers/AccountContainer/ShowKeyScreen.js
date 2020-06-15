@@ -14,12 +14,14 @@ const ShowKeyScreen = React.memo(props => {
   }, [])
 
   async function get2FA() {
-    const response = await apiService.createQR(user.email, user.password);
-    const { data, status } = response;
-    if (status === 200 && !data.errors) {
-      const { secret } = data;
-      setQRString(secret);
-    }
+    try {
+      const response = await apiService.createQR(user.email, user.password);
+      const { data, status } = response;
+      if (status === 200 && !data.errors) {
+        const { secret } = data;
+        setQRString(secret);
+      }
+    } catch (err) { }
   }
 
   return (

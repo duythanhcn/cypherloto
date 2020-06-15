@@ -12,6 +12,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
 
 let timerLoad = null;
+let timerRefresh = null;
 const DepositScreen = React.memo(props => {
   const { user } = props;
   const [dataList, setDataList] = useState([]);
@@ -23,16 +24,23 @@ const DepositScreen = React.memo(props => {
 
   useEffect(() => {
     getData();
+    return () => {
+      clearTimeout(timerLoad);
+      clearTimeout(timerRefresh);
+    }
   }, [])
 
   useEffect(() => {
     if (isRefresh) {
       getData();
     }
+    timerRefresh = setTimeout(() => {
+      setRefresh(false)
+    }, 10000)
   }, [isRefresh])
 
   async function getData() {
-    if (isLoad) return;
+    if (isLoad && !isRefresh) return;
     clearTimeout(timerLoad);
     timerLoad = setTimeout(() => {
       setLoad(true);
@@ -48,16 +56,19 @@ const DepositScreen = React.memo(props => {
       newData = [];
       _page = 0;
     }
-    const res = await apiService.getDepositeHistory(user.email, 10, _page);
-    const { data } = res;
-    if (!data.errors) {
-      const { deposit_history } = data;
-      if (deposit_history.length > 0) {
-        newData = [...newData, ...deposit_history];
-      } else {
-        setNext(false);
+    try {
+      const res = await apiService.getDepositeHistory(user.email, 10, _page);
+      const { data } = res;
+      if (!data.errors) {
+        const { deposit_history } = data;
+        if (deposit_history.length > 0) {
+          newData = [...newData, ...deposit_history];
+          setNext(true);
+        } else {
+          setNext(false);
+        }
       }
-    }
+    } catch (err) { }
     setDataList(newData);
     setRefresh(false);
     setFirstLoad(false);
@@ -67,7 +78,6 @@ const DepositScreen = React.memo(props => {
 
   function onRefresh() {
     setRefresh(true);
-    setNext(true);
   }
 
   function loadNext() {
@@ -96,7 +106,7 @@ const DepositScreen = React.memo(props => {
 
   function renderItem(item, index) {
     const { address, amount, status, date } = item;
-    const _date = moment(date).tz('America/New_York').format('MM/DD/YY');
+    const _date = moment(date).tz('America/New_York').format('MM.DD.YY');
     const statusGroup = STATUS_ICON[status.toUpperCase()];
     return (
       <View style={[Styles.containerItem, index === 0 ? Styles.borderTop : null]}>
@@ -155,7 +165,7 @@ const DepositScreen = React.memo(props => {
             onEndReached={() => isNext ? loadNext() : null}
             onRefresh={() => onRefresh()}
             ListEmptyComponent={isFirstLoad || isRefresh ? null : <EmptyState />}
-            ListFooterComponent={isLoad ? Spinner : null}
+            ListFooterComponent={isLoad && isNext ? Spinner : null}
             onEndReachedThreshold={1}
           />
         </View>

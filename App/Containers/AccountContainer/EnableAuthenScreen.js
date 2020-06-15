@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import apiService from '../../Services/API';
 import InputComponent from '../../Components/ItemComponent/InputComponent';
 import DataStorage from '../../Services/DataStorage';
+import Message from '../../Common/Message';
 
 const EnableAuthenScreen = React.memo(props => {
   const { navigation, user, setUser } = props;
@@ -13,24 +14,32 @@ const EnableAuthenScreen = React.memo(props => {
   const [message, setMessage] = useState('');
 
   async function enable2FA() {
-    const response = await apiService.enable2FA(user.email, password, authenCode);
-    const { data, status } = response;
-    if (status === 200 && !data.errors) {
-      setUser({ enable_2fa: true });
-      navigation.navigate(DataStorage.CURRENT_TAB)
-    } else {
-      setMessage(data.errors.message);
+    try {
+      const response = await apiService.enable2FA(user.email, password, authenCode);
+      const { data, status } = response;
+      if (status === 200 && !data.errors) {
+        setUser({ enable_2fa: true });
+        navigation.navigate(DataStorage.CURRENT_TAB)
+      } else {
+        setMessage(data.errors.message);
+      }
+    } catch (err) {
+      setMessage(Message.ServiceError);
     }
   }
 
   async function disable2FA() {
-    const response = await apiService.disable2FA(user.email, password, authenCode);
-    const { data, status } = response;
-    if (status === 200 && !data.errors) {
-      setUser({ enable_2fa: false });
-      navigation.navigate(DataStorage.CURRENT_TAB)
-    } else {
-      setMessage(data.errors.message);
+    try {
+      const response = await apiService.disable2FA(user.email, password, authenCode);
+      const { data, status } = response;
+      if (status === 200 && !data.errors) {
+        setUser({ enable_2fa: false });
+        navigation.navigate(DataStorage.CURRENT_TAB)
+      } else {
+        setMessage(data.errors.message);
+      }
+    } catch (err) {
+      setMessage(Message.ServiceError);
     }
   }
 

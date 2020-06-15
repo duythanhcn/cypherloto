@@ -5,6 +5,7 @@ import logo from '../../Images/logo.png';
 import InputComponent from '../../Components/ItemComponent/InputComponent';
 import apiService from '../../Services/API';
 import validation from '../../Common/validation';
+import Message from '../../Common/Message';
 
 const SignUpScreen = React.memo(props => {
   const { navigation } = props;
@@ -20,12 +21,16 @@ const SignUpScreen = React.memo(props => {
       setErrorMessage(emailError || passwordError || confirmPasswordError);
       return;
     }
-    const response = await apiService.register(formData.email, formData.firstName, formData.lastName, formData.password);
-    const { data } = response;
-    if (!data.errors) {
-      navigation.navigate('SignIn');
-    } else {
-      setErrorMessage(data.errors.message);
+    try {
+      const response = await apiService.register(formData.email, formData.firstName, formData.lastName, formData.password);
+      const { data } = response;
+      if (!data.errors) {
+        navigation.navigate('SignIn');
+      } else {
+        setErrorMessage(data.errors.message);
+      }
+    } catch (err) {
+      setErrorMessage(Message.ServiceError);
     }
   }
 

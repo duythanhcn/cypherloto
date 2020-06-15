@@ -8,6 +8,7 @@ import moment from 'moment-timezone';
 import EmptyState from '../../Components/StateComponent/EmptyState';
 
 let timerLoad = null;
+let timerRefresh = null;
 const BalanceHistoryScreen = React.memo(props => {
   const { user } = props;
   const [dataList, setDataList] = useState([]);
@@ -19,16 +20,23 @@ const BalanceHistoryScreen = React.memo(props => {
 
   useEffect(() => {
     getData();
+    return () => {
+      clearTimeout(timerLoad);
+      clearTimeout(timerRefresh);
+    }
   }, [])
 
   useEffect(() => {
     if (isRefresh) {
       getData();
     }
+    timerRefresh = setTimeout(() => {
+      setRefresh(false)
+    }, 10000)
   }, [isRefresh])
 
   async function getData() {
-    if (isLoad) return;
+    if (isLoad && !isRefresh) return;
     clearTimeout(timerLoad);
     timerLoad = setTimeout(() => {
       setLoad(true);
@@ -37,7 +45,6 @@ const BalanceHistoryScreen = React.memo(props => {
   }
 
   async function getHistory() {
-    if (!isNext) return;
     let newData = [...dataList];
     let _page = page;
     if (isRefresh) {
@@ -51,13 +58,12 @@ const BalanceHistoryScreen = React.memo(props => {
         const { balance_history } = data;
         if (balance_history.length > 0) {
           newData = [...newData, ...balance_history];
+          setNext(true);
         } else {
           setNext(false);
         }
       }
-    } catch (err) {
-
-    }
+    } catch (err) { }
     setDataList(newData);
     setRefresh(false);
     setFirstLoad(false);
@@ -67,7 +73,6 @@ const BalanceHistoryScreen = React.memo(props => {
 
   function onRefresh() {
     setRefresh(true);
-    setNext(true);
   }
 
 
@@ -94,7 +99,7 @@ const BalanceHistoryScreen = React.memo(props => {
 
   function renderItem(item, index) {
     const { info, amount, date } = item;
-    const _date = moment(date).tz('America/New_York').format('MM/DD/YY');
+    const _date = moment(date).tz('America/New_York').format('MM.DD.YY');
     return (
       <View style={[Styles.containerItem, index === 0 ? Styles.borderTop : null]}>
         <View style={Styles.firstView}>
@@ -125,7 +130,7 @@ const BalanceHistoryScreen = React.memo(props => {
         onEndReached={() => isNext ? loadNext() : null}
         onRefresh={() => onRefresh()}
         ListEmptyComponent={isFirstLoad || isRefresh ? null : <EmptyState />}
-        ListFooterComponent={isLoad ? Spinner : null}
+        ListFooterComponent={isLoad && isNext ? Spinner : null}
         onEndReachedThreshold={1}
       />
     </View>)

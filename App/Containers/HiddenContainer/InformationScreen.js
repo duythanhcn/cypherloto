@@ -13,8 +13,8 @@ const price = [
   ['100 USDT', '200 USDT', '300 USDT', '400 USDT', '500 USDT', '1000 USDT'],
   ['7 USDT', '14 USDT', '21 USDT', '28 USDT', '35 USDT', '70 USDT'],
   ['7 USDT', '14 USDT', '21 USDT', '28 USDT', '35 USDT', '70 USDT'],
-  ['7 USDT', '14 USDT', '21 USDT', '28 USDT', '35 USDT', '70 USDT'],
-  ['7 USDT', '14 USDT', '21 USDT', '28 USDT', '35 USDT', '70 USDT'],
+  ['4 USDT', '8 USDT', '12 USDT', '16 USDT', '20 USDT', '40 USDT'],
+  ['4 USDT', '8 USDT', '12 USDT', '16 USDT', '20 USDT', '40 USDT'],
 ]
 const InformationScreen = React.memo(props => {
 

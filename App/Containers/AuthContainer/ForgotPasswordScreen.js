@@ -6,6 +6,7 @@ import apiService from '../../Services/API';
 import logo from '../../Images/logo.png';
 import validation from '../../Common/validation';
 import AlertModal from '../../Components/ModelComponent/AlertModal';
+import Message from '../../Common/Message';
 
 const ForgotPasswordScreen = React.memo(props => {
   const { navigation } = props;
@@ -23,12 +24,16 @@ const ForgotPasswordScreen = React.memo(props => {
       setErrorMessage(emailError);
       return;
     }
-    const response = await apiService.forgotPassword(email);
-    const { data, status } = response;
-    if (status === 200 && !data.errors) {
-      setShowAlert(true);
-    } else {
-      setErrorMessage(data.errors.message);
+    try {
+      const response = await apiService.forgotPassword(email);
+      const { data, status } = response;
+      if (status === 200 && !data.errors) {
+        setShowAlert(true);
+      } else {
+        setErrorMessage(data.errors.message);
+      }
+    } catch (err) {
+      setErrorMessage(Message.ServiceError);
     }
   }
 

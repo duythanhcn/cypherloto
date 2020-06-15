@@ -12,6 +12,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 Icon.loadFont();
 
 let timerLoad = null;
+let timerRefresh = null;
 const TicketActiveScreen = React.memo(props => {
   const { user, setBuy, buy } = props;
   const [dataList, setDataList] = useState([]);
@@ -23,6 +24,10 @@ const TicketActiveScreen = React.memo(props => {
 
   useEffect(() => {
     getData();
+    return () => {
+      clearTimeout(timerLoad);
+      clearTimeout(timerRefresh);
+    }
   }, [])
 
   useEffect(() => {
@@ -36,10 +41,13 @@ const TicketActiveScreen = React.memo(props => {
     if (isRefresh) {
       getData();
     }
+    timerRefresh = setTimeout(() => {
+      setRefresh(false);
+    }, 10000)
   }, [isRefresh])
 
   async function getData() {
-    if (isLoad) return;
+    if (isLoad && !isRefresh) return;
     clearTimeout(timerLoad);
     setLoad(true);
     timerLoad = setTimeout(() => {
@@ -48,23 +56,25 @@ const TicketActiveScreen = React.memo(props => {
   }
 
   async function getUserActiveTicket() {
-    if (!isNext) return;
     let newData = [...dataList];
     let _page = page;
     if (isRefresh) {
       newData = [];
       _page = 0;
     }
-    const res = await apiService.getUserActiveTicket(user.email, 10, _page);
-    const { data } = res;
-    if (!data.errors) {
-      const { tickets } = data;
-      if (tickets.length > 0) {
-        newData = [...newData, ...tickets];
-      } else {
-        setNext(false);
+    try {
+      const res = await apiService.getUserActiveTicket(user.email, 10, _page);
+      const { data } = res;
+      if (!data.errors) {
+        const { tickets } = data;
+        if (tickets.length > 0) {
+          newData = [...newData, ...tickets];
+          setNext(true);
+        } else {
+          setNext(false);
+        }
       }
-    }
+    } catch (err) { }
     setDataList(newData);
     setRefresh(false);
     setFirstLoad(false);
@@ -74,7 +84,6 @@ const TicketActiveScreen = React.memo(props => {
 
   function onRefresh() {
     setRefresh(true);
-    setNext(true);
   }
 
   function loadNext() {
@@ -91,7 +100,7 @@ const TicketActiveScreen = React.memo(props => {
     return (
       <View style={Styles.containerItem} key={index}>
         <View style={Styles.rightView}>
-          <Text style={Styles.itemText}>{moment(created_at).tz('America/New_York').format('MM/DD/YYYY')}</Text>
+          <Text style={Styles.itemText}>{moment(created_at).tz('America/New_York').format('MM.DD.YYYY')}</Text>
         </View>
         <View style={Styles.secondView}>
           <BallComponent number={arrBall[0]} size={Utils.hp(45)} type={0} textSize={Utils.hp(16)} />
@@ -122,7 +131,7 @@ const TicketActiveScreen = React.memo(props => {
         onEndReached={() => isNext && !isLoad ? loadNext() : null}
         onRefresh={() => onRefresh()}
         ListEmptyComponent={isFirstLoad ? null : <EmptyState />}
-        ListFooterComponent={isLoad ? Spinner : null}
+        ListFooterComponent={isLoad && isNext ? Spinner : null}
         ItemSeparatorComponent={() => <View style={Styles.seperatorView}></View>}
       />
     </View>

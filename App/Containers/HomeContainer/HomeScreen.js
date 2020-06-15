@@ -19,8 +19,8 @@ const payout = [
   ['3 + 1', '100', '400'],
   ['3 + 0', '7', '28'],
   ['2 + 1', '7', '28'],
-  ['1 + 1', '7', '28'],
-  ['0 + 1', '7', '28']
+  ['1 + 1', '4', '28'],
+  ['0 + 1', '4', '28']
 ];
 
 const HomeScreen = React.memo(props => {
@@ -70,32 +70,38 @@ const HomeScreen = React.memo(props => {
   }
 
   async function getBalance(email) {
-    const res = await apiService.getUserBalance(email);
-    const { data } = res;
-    if (!data.errors) {
-      const { address, balance } = data;
-      setUser({ address, balance });
-    }
+    try {
+      const res = await apiService.getUserBalance(email);
+      const { data } = res;
+      if (!data.errors) {
+        const { address, balance } = data;
+        setUser({ address, balance });
+      }
+    } catch (err) { }
   }
 
   async function getCurrentLot() {
-    const res = await apiService.getCurrentLot();
-    const { data } = res;
-    if (!data.errors) {
-      const { next_lottery_date } = data;
-      setNextDraw(next_lottery_date);
-    }
-    setRefresh(false)
+    try {
+      const res = await apiService.getCurrentLot();
+      const { data } = res;
+      if (!data.errors) {
+        const { next_lottery_date } = data;
+        setNextDraw(next_lottery_date);
+      }
+      setRefresh(false)
+    } catch (err) { }
   }
 
   async function getCurLotReport() {
-    const res = await apiService.getUserBalance('poolprize');
-    const { data } = res;
-    if (!data.errors) {
-      const { balance } = data;
-      setESTValue(balance);
-    }
-    setRefresh(false)
+    try {
+      const res = await apiService.getUserBalance('poolprize');
+      const { data } = res;
+      if (!data.errors) {
+        const { balance } = data;
+        setESTValue(balance);
+      }
+      setRefresh(false)
+    } catch (err) { }
   }
 
   function renderPayout(isHeader, value1, value2, value3) {

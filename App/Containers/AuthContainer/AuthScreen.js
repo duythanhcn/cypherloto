@@ -24,14 +24,16 @@ const AuthScreen = React.memo(props => {
   }
 
   async function autoSignIn(userInfo) {
-    const response = await apiService.login(userInfo.email, userInfo.password);
-    const { data, status } = response;
-    if (status === 200 && !data.errors) {
-      const { enable_2fa } = data.account_info;
-      const _userInfo = { ...userInfo, enable_2fa };
-      setUser(_userInfo);
-      Storage.setLoginSession(_userInfo);
-    }
+    try {
+      const response = await apiService.login(userInfo.email, userInfo.password);
+      const { data, status } = response;
+      if (status === 200 && !data.errors) {
+        const { enable_2fa } = data.account_info;
+        const _userInfo = { ...userInfo, enable_2fa };
+        setUser(_userInfo);
+        Storage.setLoginSession(_userInfo);
+      }
+    } catch (err) { }
   }
 
   return (<View style={Styles.container}></View>)

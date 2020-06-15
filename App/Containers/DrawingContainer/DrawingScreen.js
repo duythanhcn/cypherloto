@@ -10,6 +10,7 @@ import BallComponent from '../../Components/ItemComponent/BallComponent';
 import { connect } from 'react-redux';
 
 let timerLoad = null;
+let timerRefresh = null;
 const DrawingScreen = React.memo(props => {
   const { lot } = props;
   const [dataList, setDataList] = useState([]);
@@ -23,6 +24,7 @@ const DrawingScreen = React.memo(props => {
     getData();
     return () => {
       clearTimeout(timerLoad);
+      clearTimeout(timerRefresh);
     }
   }, [])
 
@@ -36,10 +38,13 @@ const DrawingScreen = React.memo(props => {
     if (isRefresh) {
       getData();
     }
+    timerRefresh = setTimeout(() => {
+      setRefresh(false);
+    }, 10000)
   }, [isRefresh])
 
   async function getData() {
-    if (isLoad) return;
+    if (isLoad && !isRefresh) return;
     clearTimeout(timerLoad);
     timerLoad = setTimeout(() => {
       setLoad(true);
@@ -48,23 +53,25 @@ const DrawingScreen = React.memo(props => {
   }
 
   async function getDrawing() {
-    if (!isNext) return;
     let newData = [...dataList];
     let _page = page;
     if (isRefresh) {
       newData = [];
       _page = 0;
     }
-    const res = await apiService.getDrawing(10, _page);
-    const { data } = res;
-    if (!data.errors) {
-      const { lotteries } = data;
-      if (lotteries.length > 0) {
-        newData = [...newData, ...lotteries];
-      } else {
-        setNext(false);
+    try {
+      const res = await apiService.getDrawing(10, _page);
+      const { data } = res;
+      if (!data.errors) {
+        const { lotteries } = data;
+        if (lotteries.length > 0) {
+          newData = [...newData, ...lotteries];
+          setNext(true);
+        } else {
+          setNext(false);
+        }
       }
-    }
+    } catch (err) { }
     setDataList(newData);
     setRefresh(false);
     setFirstLoad(false);
@@ -74,7 +81,6 @@ const DrawingScreen = React.memo(props => {
 
   function onRefresh() {
     setRefresh(true);
-    setNext(true);
   }
 
   function loadNext() {
@@ -124,7 +130,7 @@ const DrawingScreen = React.memo(props => {
         onEndReached={() => isNext ? loadNext() : null}
         onRefresh={() => onRefresh()}
         ListEmptyComponent={isFirstLoad ? null : <EmptyState />}
-        ListFooterComponent={isLoad ? Spinner : null}
+        ListFooterComponent={isLoad && isNext ? Spinner : null}
         ItemSeparatorComponent={renderSeparator}
         onEndReachedThreshold={1}
       />

@@ -5,6 +5,7 @@ import Dialog from 'react-native-popup-dialog';
 import apiService from '../../Services/API';
 import { connect } from 'react-redux';
 import validation from '../../Common/validation';
+import Message from '../../Common/Message';
 
 const TwoFAModel = React.memo(props => {
   const { onChange, user } = props;
@@ -30,14 +31,18 @@ const TwoFAModel = React.memo(props => {
       setErrorMessage(tokenError);
       return;
     }
-    const response = await apiService.verifyQR(user.email, user.password, token);
-    const { data, status } = response;
-    if (status === 200 && !data.errors) {
-      setErrorMessage('');
-      onChange(true, token);
-      setCode(null);
-    } else {
-      setErrorMessage(data.errors.message);
+    try {
+      const response = await apiService.verifyQR(user.email, user.password, token);
+      const { data, status } = response;
+      if (status === 200 && !data.errors) {
+        setErrorMessage('');
+        onChange(true, token);
+        setCode(null);
+      } else {
+        setErrorMessage(data.errors.message);
+      }
+    } catch (err) {
+      setErrorMessage(Message.ServiceError);
     }
   }
 

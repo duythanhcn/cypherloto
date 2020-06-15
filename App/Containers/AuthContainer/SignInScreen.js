@@ -9,6 +9,7 @@ import apiService from '../../Services/API';
 import validation from '../../Common/validation';
 import Utils from '../../Common/Utils';
 import Storage from '../../Common/Storage';
+import Message from '../../Common/Message';
 
 const SignInScreen = React.memo(props => {
   const { navigation, setUser } = props;
@@ -36,20 +37,24 @@ const SignInScreen = React.memo(props => {
       return;
     }
     const _password = Utils.hashString({ email, password }, 'password_token');
-    const response = await apiService.login(email, _password);
-    const { data, status } = response;
-    if (status === 200 && !data.errors) {
-      const { enable_2fa } = data.account_info;
-      const userInfo = { ...data.account_info, email, password: _password };
-      setUser(userInfo);
-      Storage.setLoginSession(userInfo);
-      if (enable_2fa) {
-        setBtnDisable(true);
+    try {
+      const response = await apiService.login(email, _password);
+      const { data, status } = response;
+      if (status === 200 && !data.errors) {
+        const { enable_2fa } = data.account_info;
+        const userInfo = { ...data.account_info, email, password: _password };
+        setUser(userInfo);
+        Storage.setLoginSession(userInfo);
+        if (enable_2fa) {
+          setBtnDisable(true);
+        } else {
+          navigation.navigate('App');
+        }
       } else {
-        navigation.navigate('App');
+        setErrorMessage(data.errors.message);
       }
-    } else {
-      setErrorMessage(data.errors.message);
+    } catch (err) {
+      setErrorMessage(Message.ServiceError);
     }
   }
 
