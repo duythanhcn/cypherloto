@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, Platform } from 'react-native'
 import Utils from '../../../Common/Utils'
 
 export default StyleSheet.create({
@@ -18,7 +18,7 @@ export default StyleSheet.create({
   },
   walletBox: {
     width: '100%',
-    height: Utils.hp(50),
+    height: Utils.hp(Platform.OS === 'ios' ? 50 : 48),
     borderWidth: Utils.hp(1),
     borderColor: '#e6e6e6',
     justifyContent: 'center',
@@ -26,26 +26,26 @@ export default StyleSheet.create({
     alignSelf: 'center'
   },
   walletAdd: {
-    fontSize: Utils.hp(13)
+    fontSize: Utils.hp(Platform.OS === 'ios' ? 13 : 11)
   },
   walletWarning: {
     paddingVertical: '2%',
-    fontSize: Utils.hp(14)
+    fontSize: Utils.hp(Platform.OS === 'ios' ? 14 : 12)
   },
   walletWarningMess: {
     paddingHorizontal: '3%',
-    fontSize: Utils.hp(13)
+    fontSize: Utils.hp(Platform.OS === 'ios' ? 13 : 11)
   },
   walletTitle: {
     paddingVertical: '2%',
-    fontSize: Utils.hp(15)
+    fontSize: Utils.hp(Platform.OS === 'ios' ? 15 : 13)
   },
   walletCopy: {
     paddingTop: '5%'
   },
   btnWalletCopy: {
-    width: Utils.hp(100),
-    height: Utils.hp(30),
+    width: Utils.hp(Platform.OS === 'ios' ? 100 : 98),
+    height: Utils.hp(Platform.OS === 'ios' ? 30 : 28),
     borderColor: '#d9d9d9',
     borderWidth: Utils.hp(1),
     justifyContent: 'center',
@@ -74,7 +74,7 @@ export default StyleSheet.create({
   },
   containerItem: {
     width: '100%',
-    height: Utils.hp(45),
+    height: Utils.hp(Platform.OS === 'ios' ? 45 : 43),
     justifyContent: 'center',
     flexDirection: 'row',
     borderBottomColor: 'gray',
@@ -108,11 +108,11 @@ export default StyleSheet.create({
     backgroundColor: '#f2f2f2'
   },
   itemText: {
-    fontSize: Utils.hp(13)
+    fontSize: Utils.hp(Platform.OS === 'ios' ? 13 : 11)
   },
   borderTop: {
   },
   headerText: {
-    fontSize: Utils.hp(15)
+    fontSize: Utils.hp(Platform.OS === 'ios' ? 15 : 13)
   }
 })

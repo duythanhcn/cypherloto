@@ -22,7 +22,7 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   secondView: {
-    width: '70%%',
+    width: '70%',
     height: '50%',
     justifyContent: 'space-around',
     alignItems: 'center',

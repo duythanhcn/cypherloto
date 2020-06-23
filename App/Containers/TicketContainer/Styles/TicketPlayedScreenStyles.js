@@ -50,7 +50,7 @@ export default StyleSheet.create({
     flexDirection: 'row'
   },
   secondView: {
-    width: '70%%',
+    width: '70%',
     height: '50%',
     justifyContent: 'space-around',
     alignItems: 'center',
@@ -58,7 +58,7 @@ export default StyleSheet.create({
   },
   thirdView: {
     width: '100%',
-    height: '25%%',
+    height: '25%',
     justifyContent: 'center',
     alignItems: 'center'
   },
