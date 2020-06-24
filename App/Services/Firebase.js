@@ -30,7 +30,7 @@ class FireBase {
         .setBody(notification.body)
         .setData(notification.data)
         .android.setChannelId('Cypher Lottery')
-        .android.setSmallIcon('ic_notification')
+        .android.setSmallIcon('ic_noti')
         .android.setColor('#57C2D2')
         .android.setPriority(firebase.notifications.Android.Priority.High)
 
