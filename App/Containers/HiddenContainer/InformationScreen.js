@@ -45,32 +45,35 @@ const InformationScreen = React.memo(props => {
   return (
     <View style={Styles.container}>
       <ScrollView
+        horizontal
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}>
-        <View style={Styles.itemView}>
-          <View style={[Styles.view1, Styles.headerView]}>
-            <Text style={Styles.headerText}>Match</Text>
+        <View>
+          <View style={Styles.itemView}>
+            <View style={[Styles.view1, Styles.headerView]}>
+              <Text style={Styles.headerText}>Match</Text>
+            </View>
+            <View style={[Styles.view2, Styles.odView]}>
+              <Text style={Styles.headerText}>Price</Text>
+            </View>
+            <View style={Styles.view2}>
+              <Text style={Styles.headerText}>Mega Play 2X</Text>
+            </View>
+            <View style={[Styles.view2, Styles.odView]}>
+              <Text style={Styles.headerText}>Mega Play 3X</Text>
+            </View>
+            <View style={Styles.view2}>
+              <Text style={Styles.headerText}>Mega Play 4X</Text>
+            </View>
+            <View style={[Styles.view2, Styles.odView]}>
+              <Text style={Styles.headerText}>Mega Play 5X</Text>
+            </View>
+            <View style={Styles.view2}>
+              <Text style={Styles.headerText}>Mega Play 10X</Text>
+            </View>
           </View>
-          <View style={[Styles.view2, Styles.odView]}>
-            <Text style={Styles.headerText}>Price</Text>
-          </View>
-          <View style={Styles.view2}>
-            <Text style={Styles.headerText}>Mega Play 2X</Text>
-          </View>
-          <View style={[Styles.view2, Styles.odView]}>
-            <Text style={Styles.headerText}>Mega Play 3X</Text>
-          </View>
-          <View style={Styles.view2}>
-            <Text style={Styles.headerText}>Mega Play 4X</Text>
-          </View>
-          <View style={[Styles.view2, Styles.odView]}>
-            <Text style={Styles.headerText}>Mega Play 5X</Text>
-          </View>
-          <View style={Styles.view2}>
-            <Text style={Styles.headerText}>Mega Play 10X</Text>
-          </View>
+          {price.map((item, index) => renderItem(item, index))}
         </View>
-        {price.map((item, index) => renderItem(item, index))}
       </ScrollView>
     </View>);
 })
