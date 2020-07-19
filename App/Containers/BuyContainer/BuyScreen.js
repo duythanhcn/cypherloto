@@ -42,7 +42,7 @@ const BuyScreen = React.memo(props => {
       return;
     }
     if (balance <= 0) {
-      setMessage('The balance is not enough to make a transaction');
+      setMessage('The Balance is not enough to buy a ticket.');
       setShowAlert(true);
       return;
     }

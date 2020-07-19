@@ -6,11 +6,22 @@ import InputComponent from '../../Components/ItemComponent/InputComponent';
 import apiService from '../../Services/API';
 import validation from '../../Common/validation';
 import Message from '../../Common/Message';
+import AlertModal from '../../Components/ModelComponent/AlertModal';
 
 const SignUpScreen = React.memo(props => {
   const { navigation } = props;
   const [errorMessage, setErrorMessage] = useState('');
   const [formData, setFormData] = useState({ email: '', password: '', confirmPassword: '', firstName: '', lastName: '' })
+  const [isShowAlert, setShowAlert] = useState(false);
+  const actions = [
+    {
+      btnText: 'OK',
+      btnAction: () => {
+        setShowAlert(false);
+        navigation.navigate('SignIn');
+      }
+    }
+  ]
 
   async function signUp() {
     setErrorMessage('');
@@ -25,7 +36,7 @@ const SignUpScreen = React.memo(props => {
       const response = await apiService.register(formData.email, formData.firstName, formData.lastName, formData.password);
       const { data } = response;
       if (!data.errors) {
-        navigation.navigate('SignIn');
+        setShowAlert(true);
       } else {
         setErrorMessage(data.errors.message);
       }
@@ -113,6 +124,11 @@ const SignUpScreen = React.memo(props => {
           </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>
+      <AlertModal
+        isVisible={isShowAlert}
+        message={`You have successful register. Please check your email to verify your your account.\nThank you!`}
+        title='Inform'
+        actions={actions} />
     </View>
   )
 });
